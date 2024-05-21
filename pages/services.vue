@@ -97,14 +97,14 @@
   </template>
 
 <script>
-import Service from '~/components/service.vue'
+/*import Service from '~/components/service.vue'
 
     export default {
         name: 'services',
         components: {
             Service
         }
-    }
+    }*/
 </script>
     
 <style>
