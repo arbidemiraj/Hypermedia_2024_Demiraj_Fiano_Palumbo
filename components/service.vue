@@ -26,7 +26,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 100%;
-    max-width: calc(50% - 100px); /* Ensures two cards per row with a gap */
+    max-width: calc(50% - 10px); /* Ensures two cards per row with a gap */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
