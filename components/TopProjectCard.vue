@@ -2,7 +2,7 @@
     <div class="card">
       <img :src="`https://rvghxglrqukcznmytpnn.supabase.co/storage/v1/object/public/images/projects/project${image_id}.png`" alt="Project image" class="card-image">
       <h3 class="card-title">{{ title }}</h3>
-      <button class="card-button">See more {{image_id}} ></button>
+      <button class="card-button">See more ></button>
     </div>
   </template>
 
