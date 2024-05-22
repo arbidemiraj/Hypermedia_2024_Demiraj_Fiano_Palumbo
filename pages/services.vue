@@ -49,7 +49,7 @@ import service from '@/components/service.vue'
     }
 </script>
     
-<style>
+<style scoped>
     main {
         display: flex;
         flex-direction: column;

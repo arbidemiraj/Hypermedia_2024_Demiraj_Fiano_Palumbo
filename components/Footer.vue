@@ -2,21 +2,49 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Contact Information</h3>
-                    <p>Email: example@example.com</p>
-                    <p>Phone: 123-456-7890</p>
-                    <p>Address: 123 Main Street, City, Country</p>
-                </div>
                 <div class="logo-footer">
                 <NuxtLink to="/" title="Homepage">
                     <img src="../assets/images/logo.png" id="logo" class="logo-img" alt="Company logo"/>
                 </NuxtLink>
+                <ul>
+                    <li>
+                        <NuxtLink to="/aboutUs">About us</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/activities">Activities</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/team">Team</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/contact">Get help</NuxtLink>
+                    </li>
+                </ul>
                 </div>
-                <div class="socials"> <b>Follow us:</b>
-                    <a href="https://x.com/" target=”_blank” aria-label="Link to Twitter"><img src="" alt="Twitter Logo" class="twitter-footer"></a>
-                    <a href="https://www.instagram.com" target=”_blank” aria-label="Link to Instagram"><img src="" alt="Instagram Logo" class="instagram-footer"></a>
-                    <a href="https://www.linkedin.com" target=”_blank” aria-label="Link to LinkedIn"><img src="" alt="LinkedIn Logo" class="linkedin-footer"></a>
+                <div class="footer-info">
+                    <h3>CONTACT INFORMATION</h3>
+                    <div class="contact-container">
+                        <Icon name="cib:mail-ru" color="white" size="35"/><p>Email: example@example.com</p>
+                    </div>
+                    <div class="contact-container">
+                        <Icon name="ic:baseline-phone" color="white" size="35"/><p>Phone: 123-456-7890</p>
+                    </div>
+                    <div class="contact-container">
+                        <Icon name="mdi:address-marker" color="white" size="35"/><p>Address: 123 Main Street, City, Country</p>
+                    </div>
+                </div>
+                <div class="footer-opening-info">
+                    <h3>OPENING HOURS</h3>
+                    <div>
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+                <div class="socials"> 
+                    <a href="https://instagram.com/" target=”_blank” aria-label="Link to Instagram"><Icon name="f7:logo-instagram" color="white" size="40" /></a>
+                    <a href="https://facebook.com/" target=”_blank” aria-label="Link to Facebook"><Icon name="f7:logo-facebook" color="white" size="40" /></a>
+                    <a href="https://x.com/" target=”_blank” aria-label="Link to Twitter"><Icon name="f7:logo-twitter" color="white" size="40" /></a>
                 </div>
                 <div class="footer-links">
                     <!-- Add any additional links here -->
@@ -27,30 +55,62 @@
 </template>
 
 <style scoped>
+
+p {
+    margin: 1rem 0;
+}
+
+.footer-opening-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
 .footer {
     background-color: #DDB98E;
+    width: 100%;
     color: white;
-    padding: 20px;
+    padding: 15px;
     margin-top: auto;
 }
+
 .logo-footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    list-style: none;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+}
+
 .logo-img {
     width: 200px;
     margin: 0 auto;
-    align-self: flex-end;
-}
-.footer-content {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
-.footer-info {
-    margin-right: 20px;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 </style>

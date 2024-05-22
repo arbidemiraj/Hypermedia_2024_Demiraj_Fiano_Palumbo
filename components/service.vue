@@ -19,7 +19,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .card {
     background-color: rgb(249, 247, 247);
     border-radius: 20px;
