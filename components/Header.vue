@@ -7,7 +7,7 @@
                     <NuxtLink to="/aboutUs">About us</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/services">Activities</NuxtLink>
+                    <NuxtLink to="/activities">Activities</NuxtLink>
                 </li>
                 <li>
                     <NuxtLink to="/team">Team</NuxtLink>

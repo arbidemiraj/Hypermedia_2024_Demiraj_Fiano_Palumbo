@@ -1,8 +1,5 @@
 <template>
     <main>
-        <div class=nav>
-            <h1></h1>
-        </div>
         <div class="title-background">
             <h1 class=title>Projects</h1>
         </div>
@@ -15,19 +12,19 @@
                 <button class="arrow left-arrow">←</button>
                 <div class="projects">
                     <div class="project-card">
-                        <img src="\assets\img\logo1Project.png" alt="Project Image">
+                        <img src="\assets\images\logo1Project.png" alt="Project Image">
                         <h2>Project Name</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
                         <button class="btn">Learn more</button>
                     </div>
                     <div class="project-card">
-                        <img src="\assets\img\logo2Project.png" alt="Project Image">
+                        <img src="\assets\images\logo2Project.png" alt="Project Image">
                         <h2>Project Name</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
                         <button class="btn">Learn more</button>
                     </div>
                     <div class="project-card">
-                        <img src="\assets\img\logo3Project.png" alt="Project Image">
+                        <img src="\assets\images\logo3Project.png" alt="Project Image">
                         <h2>Project Name</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
                         <button class="btn">Learn more</button>
@@ -56,7 +53,7 @@
         background-color: #f5f5f5;
     }
     .title-background {
-        background-image: url('C:\Users\Paulette\Desktop\byYourSide\Hypermedia_2024_Demiraj_Fiano_Palumbo\assets\img\imageWomenScritta.png');
+        background-image: url('assets/images/imageWomenScritta.png');
         background-size: cover; 
         background-position: center;
         padding: 5px;
@@ -67,12 +64,7 @@
     }
     .title{
         font-size: 50px;
-    }
-    .nav {
-        background-color: #bb5f75;
-        text-align: left;
-        width: 100%;
-        height: 50px;
+        margin-left: 10px;
     }
     .text-section {
     text-align: center;
@@ -153,7 +145,7 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;
 }
