@@ -4,11 +4,11 @@ export default defineNuxtConfig({
   components: true,
   css: ['~/assets/css/global.css'],
   modules: ['nuxt-icon', '@nuxtjs/supabase'],
-  runtimeConfig: {
-    public: {
-      SUPABASE_URL: process.env.SUPABASE_URL,
-      SUPABASE_KEY: process.env.SUPABASE_KEY,
-    }
+  supabase: {
+    // Ensure these are correct
+    redirect: false,
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
   },
 })
 
