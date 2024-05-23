@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { serverSupabaseClient } from '#supabase/server'
 
 //PAGE 'PROJECTS'
 //Get all the projects
@@ -6,7 +6,7 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 export default defineEventHandler(async (event) => {
     const id = event.context.params.id
     
-    const client = createServerSupabaseClient(event)
+    const client = serverSupabaseClient(event)
 
     const { data, error }= await client.from('Activity').select("id, name, image").eq('activity_id', id).eq('type', true)
     if(error) {
