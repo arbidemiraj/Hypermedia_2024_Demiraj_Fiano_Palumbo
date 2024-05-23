@@ -3,8 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
   css: ['~/assets/css/global.css'],
-  modules: ['nuxt-icon'],
-  plugins: ['~/plugins/supabase.js'],
+  modules: ['nuxt-icon', '@nuxtjs/supabase'],
   runtimeConfig: {
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,

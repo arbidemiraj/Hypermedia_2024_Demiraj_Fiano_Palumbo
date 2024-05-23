@@ -16,6 +16,7 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@nuxtjs/supabase": "^1.2.2",
     "nuxt-icon": "^0.6.10",
     "supabase": "^1.57.3"
   }
