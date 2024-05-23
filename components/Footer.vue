@@ -73,16 +73,19 @@ p {
 }
 
 .footer {
-    background-color: #DDB98E;
+    background: linear-gradient(90deg,#deba8a, #e0bd85);
     width: 100%;
+    overflow: hidden;
     color: white;
     padding: 15px;
     margin-top: auto;
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
 }
 
 .logo-footer {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 ul {
@@ -90,6 +93,8 @@ ul {
     flex-direction: column;
     gap: 0.8rem;
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 ul li a {
@@ -105,12 +110,31 @@ ul li a {
 .footer-content {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping to prevent overflow */
 }
 
 .socials {
     display: flex;
     align-items: center;
     gap: 2rem;
+    justify-content: center; /* Center align socials */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
+/* Add responsive design to handle smaller screens */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .socials {
+        gap: 1rem;
+    }
+}
 </style>

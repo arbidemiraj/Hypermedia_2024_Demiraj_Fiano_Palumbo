@@ -4,13 +4,13 @@
             <NuxtLink to="/"><img class='logo-image' src='/assets/images/logo.png' :width="200"></NuxtLink>
             <ul>
                 <li>
-                    <NuxtLink to="/aboutUs">About us</NuxtLink>
+                    <NuxtLink to="/aboutUs"><b>About us</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/activities">Activities</NuxtLink>
+                    <NuxtLink to="/activities"><b>Activities</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/team">Team</NuxtLink>
+                    <NuxtLink to="/team"><b>Team</b></NuxtLink>
                 </li>
                 <li>
                     <NuxtLink to="/contact"><CustomButton/></NuxtLink>
@@ -37,14 +37,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     flex: 1;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .site-header {
     height: 55px;
-    background-color: #bb5f75;
+    background: linear-gradient(90deg, #cf556c 78%, #b12a5b 100%);
     color: white;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
     padding-inline: 1rem;
 }
 

@@ -4,11 +4,9 @@ import { serverSupabaseClient } from '#supabase/server'
 //Get all the services
 
 export default defineEventHandler(async (event) => {
-    const id = event.context.params.id
-    
-    const client = serverSupabaseClient(event)
+    const client = await serverSupabaseClient(event)
 
-    const { data, error }= await client.from('Activity').select("id, name, image").eq('activity_id', id).eq('type', false)
+    const { data, error }= await client.from('Activity').select("id, name, image").eq('type', false)
     if(error) {
         throw createError({statusCode: 400, statusMessage: error.message})
     }
