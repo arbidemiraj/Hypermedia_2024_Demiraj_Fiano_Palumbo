@@ -1,8 +1,7 @@
 <template>
   <NuxtLink class="team-member" to="/team">
-      <img :src="image" :alt="name" class="team-member__image" />
-      <h3 class="team-member__name">{{ name }}</h3>
-      <p class="team-member__role">{{ role }}</p>
+      <img :src='image' :alt="name" class="team-member__image" />
+      <h3 class="team-member__name">{{ name }} {{ surname }}</h3>
     </NuxtLink>
   </template>
 
@@ -13,7 +12,7 @@ export default {
       type: String,
       required: true
     },
-    role: {
+    surname: {
       type: String,
       required: true
     },
@@ -27,15 +26,17 @@ export default {
 
 <style scoped>
 .team-member {
-    background-color: rgb(249, 247, 247);
+    background-color: rgba(249, 247, 247, 0.147);
+    color: black;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 100%;
-    max-width: calc(20% - 50px); /* Ensures two cards per row with a gap */
+    max-width: calc(20% - 20px); /* Ensures two cards per row with a gap */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
     margin: 1rem;
     text-decoration: none;
@@ -47,11 +48,14 @@ export default {
 }
 .team-member__image {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+  margin: 1rem;
 }
 .team-member__name {
-  margin: 0.5rem 0;
+  margin: 1rem 0;
+  font-size: 22px;
+  padding: 10px;
 }
 .team-member__role {
   color: gray;

@@ -1,6 +1,6 @@
 <template>
     <div class="button-container">
-      <button class="btn-primary" @click="handleClick">Get Help</button>
+      <button class="btn-primary" @click="handleClick"><b>Get Help</b></button>
     </div>
   </template>
   
@@ -20,9 +20,9 @@
     background-color: #DDB98E;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px 22px;
     font-size: 18px;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
