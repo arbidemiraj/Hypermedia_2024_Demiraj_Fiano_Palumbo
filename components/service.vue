@@ -1,7 +1,10 @@
 <template>
     <div class="card">
         <div class="card-content">
+            <div class="title-icon-container">
             <h2>{{title}}</h2>
+                <Icon class="service-icon" name="healthicons:justice-negative" color="#bb5f75" size="40"/>
+            </div>
             <p>{{description}}</p>
         </div>
         <div class="card-footer">
@@ -39,6 +42,18 @@
 }
 .card-content {
     padding: 20px;
+}
+
+.title-icon-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}
+
+.service-icon {
+    border-radius: 50px;
 }
 
 .card-content h2 {

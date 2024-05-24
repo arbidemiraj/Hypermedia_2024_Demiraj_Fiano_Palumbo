@@ -20,18 +20,15 @@
             :description="service.description" />
         </div>
         <div class="bottom-link-container">
-            <Nuxtlink to="/projects" class="bottom-link"> Go to all projects </Nuxtlink>
+            <NuxtLink to="/projects" class="bottom-link"> Go to all projects </NuxtLink>
         </div>
     </main>
   </template>
 
 <script>
-import service from '@/components/service.vue'
+    //const { data: Activity } = await useFetch('/api/services') //get all projects
 
     export default {
-        components: {
-            service
-        },
         data() {
             return {
                 services: [
@@ -88,10 +85,8 @@ import service from '@/components/service.vue'
 .bottom-link {
     background-color: transparent;
     color: #bb5f75;
-    text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
-    cursor: pointer;
 }
 .bottom-link:hover {
     color: #be7687;

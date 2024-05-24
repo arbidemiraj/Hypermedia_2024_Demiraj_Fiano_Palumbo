@@ -11,33 +11,33 @@
             <div class="projects-container">
                 <button class="arrow left-arrow">←</button>
                 <div class="projects">
-                    <div class="project-card">
-                        <img src="\assets\images\logo1Project.png" alt="Project Image">
-                        <h2>Project Name</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
-                        <button class="btn">Learn more</button>
-                    </div>
-                    <div class="project-card">
-                        <img src="\assets\images\logo2Project.png" alt="Project Image">
-                        <h2>Project Name</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
-                        <button class="btn">Learn more</button>
-                    </div>
-                    <div class="project-card">
-                        <img src="\assets\images\logo3Project.png" alt="Project Image">
-                        <h2>Project Name</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula elit et lacus tincidunt facilisis.</p>
-                        <button class="btn">Learn more</button>
-                    </div>
+                    <Project v-for="(project, index) in project"
+                    :key="index"
+                    :title="project.title"
+                    :description="project.description" />
                 </div>
                 <button class="arrow right-arrow">→</button>
             </div>
         </div>
         <div class="bottom-link-container">
-            <Nuxtlink to="/services" class="bottom-link"> Go to all services </Nuxtlink>
+            <NuxtLink to="/services" class="bottom-link"> Go to all services </NuxtLink>
         </div>
     </main>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                project: [
+                    { title: 'Re-birth', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
+                    { title: 'Case rifugio', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
+                    { title: 'Pronto soccorso', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
+                ]
+            }
+        }
+    }
+</script>
     
 <style scoped>
     main {
@@ -178,10 +178,8 @@
 .bottom-link {
     background-color: transparent;
     color: #bb5f75;
-    text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
-    cursor: pointer;
 }
 .bottom-link:hover {
     color: #be7687;
