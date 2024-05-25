@@ -3,3 +3,11 @@ html, body {
     padding: 0;
     font-family: Poppins;
 }
+
+h1 {
+    font-family: Inter;
+    font-style: italic;
+    font-size: 50px;
+    font-weight: 800;
+    color: #fff;
+}

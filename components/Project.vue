@@ -1,22 +1,54 @@
 <template>
-    <div class="project-card">
-        <img src="\assets\images\logo1Project.png" alt="Project Image">
-        <h2>{{title}}</h2>
-        <p>{{description}}</p>
-        <button class="btn">Learn more</button>
-    </div>
+    <NuxtLink :to="'/projects/' + id" class="card-link">
+        <div class="project-card">
+            <img :src='image' alt="Project Image">
+            <h2>{{title}}</h2>
+            <p>{{truncatedDescription}}</p>
+            <button class="btn">Learn more</button>
+        </div>
+    </NuxtLink>
 </template>
 
 <script>
     export default {
-    props: {
-      title: String,
-      description: String,
+        props: {
+            title: {
+            type: String,
+            required: true,
+            },
+            description: {
+            type: String,
+            required: true,
+            },
+            image: {
+            type: String,
+            required: true,
+            },
+            id: {
+            type: Number,
+            required: true,
+            },
+        },
+        computed: {
+            truncatedDescription() {
+            const introduction = this.description.split('###')[0];
+
+            const words = introduction.split(' ');
+            if (words.length > 50) {
+                return words.slice(0, 50).join(' ') + '...';
+            }
+            
+            return introduction;
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>
+.card-link {
+    text-decoration: none;
+    color: black;
+}
 .project-card {
     background-color: white;
     border-radius: 10px;

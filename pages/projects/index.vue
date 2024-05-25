@@ -11,10 +11,12 @@
             <div class="projects-container">
                 <button class="arrow left-arrow">←</button>
                 <div class="projects">
-                    <Project v-for="(project, index) in project"
+                    <Project v-for="(project, index) in Activity"
                     :key="index"
-                    :title="project.title"
-                    :description="project.description" />
+                    :title="project.name"
+                    :description="project.description"
+                    :image="project.image"
+                    :id="project.id"/>
                 </div>
                 <button class="arrow right-arrow">→</button>
             </div>
@@ -25,18 +27,8 @@
     </main>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                project: [
-                    { title: 'Re-birth', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
-                    { title: 'Case rifugio', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
-                    { title: 'Pronto soccorso', description: 'Lorem ipsum dolor sit amet. Qui voluptatem magni et consequatur error. Et fuga minus et ipsa eveniet rem aliquam tempore eos beatae soluta ut suscipit aperiam in consequatur similique.' },
-                ]
-            }
-        }
-    }
+<script setup>
+    const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
 </script>
     
 <style scoped>

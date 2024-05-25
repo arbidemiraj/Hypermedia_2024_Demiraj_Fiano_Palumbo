@@ -1,23 +1,28 @@
 <template>
     <div class="button-container">
-      <button class="btn-primary" @click="handleClick"><b>Get Help</b></button>
+      <button class="btn-primary" @click="handleClick"><b>{{text}}</b></button>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'MyButtonComponent',
+    props: {
+      text: {
+        type: String,
+        required: true
+      }
+    },
     methods: {
-    handleClick() {
-        this.$router.push('/contact');
-    }
+      handleClick() {
+          this.$router.push('/contact');
+      }
     }
   }
   </script>
   
   <style scoped> 
   .btn-primary {
-    background-color: #DDB98E;
+    background: linear-gradient(90deg, #DDB98E, #d2b392);
     color: white;
     border: none;
     padding: 12px 22px;
@@ -26,9 +31,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
   .btn-primary:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
   </style>
   
