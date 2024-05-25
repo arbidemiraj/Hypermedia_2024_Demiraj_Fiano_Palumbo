@@ -17,7 +17,7 @@
                         <NuxtLink to="/team">Team</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink to="/contact">Get help</NuxtLink>
+                        <NuxtLink to="/contactUs">Get help</NuxtLink>
                     </li>
                 </ul>
                 </div>
