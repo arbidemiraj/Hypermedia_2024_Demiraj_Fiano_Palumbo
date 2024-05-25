@@ -8,12 +8,10 @@
           <h1>{{ person.name }}</h1>
           <p><strong>Email:</strong> {{ person.email }}</p>
           <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
-          <h2>Career:</h2>
-          <p v-html="person.cv"></p>
         </div>
       </div>
-      <div class="biography">
-        <p>{{ person.biography }}</p>
+      <div class="cv">
+        <p>{{ person.cv }}</p>
       </div>
     </div>
 
