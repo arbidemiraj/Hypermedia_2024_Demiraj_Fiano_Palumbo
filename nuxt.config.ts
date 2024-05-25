@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
-  css: ['~/assets/css/global.css'],
+  css: 
+    ['~/assets/css/global.css',
+    '@fortawesome/fontawesome-free/css/all.css',
+    '~/assets/css/global.css'],
+  build: {
+    transpile: ['@fortawesome/fontawesome-free']
+  },
   modules: ['nuxt-icon', '@nuxtjs/supabase', "@nuxt/fonts"],
   supabase: {
     redirect: false,

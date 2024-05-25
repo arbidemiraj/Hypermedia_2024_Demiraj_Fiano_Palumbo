@@ -8,9 +8,6 @@
       <TeamMemberCard v-for="(member, index) in Person" :key="index" :name="member.name" :surname="member.surname"
         :image="member.photo" />
     </div>
-    <div class="bottom-link-container">
-            <NuxtLink to="/team" class="bottom-link"> Go to all services </NuxtLink>
-        </div>
   </div>
 </template>
 
