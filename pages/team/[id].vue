@@ -2,31 +2,36 @@
   <div>
     <div class="person">
       <div class="header">
-        <router-link to="/team" class="back-link">← Back to our team </router-link>
-        <img :src="person.imageUrl" alt="Profile Picture" class="profile-picture" />
+        <NuxtLink to="/team" class="back-link">← Back to our team </NuxtLink>
+        <img :src="Person.photo" alt="Profile Picture" class="profile-picture" />
         <div class="info">
-          <h1>{{ person.name }}</h1>
-          <p><strong>Email:</strong> {{ person.email }}</p>
-          <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
+          <h1>{{ Person.name }}</h1>
+          <p><strong>Email:</strong> {{ Person.email }}</p>
+          <p><strong>Birthdate:</strong> {{ Person.birthdate }}</p>
         </div>
       </div>
       <div class="cv">
-        <p>{{ person.cv }}</p>
+        <p>{{ Person.cv }}</p>
       </div>
     </div>
 
     <div class="navigation">
-      <router-link :to="previousLink">← PREVIOUS</router-link>
-      <router-link :to="nextLink">NEXT →</router-link>
+      <NuxtLink :to="previousLink">← PREVIOUS</NuxtLink>
+      <NuxtLink :to="nextLink">NEXT →</NuxtLink>
     </div>
   </div>
 </template>
 
         
-<script>
+<script setup>
+
   const { id } = useRoute().params;
   const { data: Person, pending, error } = await useFetch(`/api/team/${id}`);
-
+  //const { data: managedProjects } = await useFetch(`/api/activities/projects/projectByPerson/${id}`)
+  //const { data: managedServices } = await useFetch(`/api/activities/services/serviceByPerson/${id}`)
+ 
+  const previousLink = computed(() => `/team/${parseInt(id) - 1}`)
+  const nextLink = computed(() => `/team/${parseInt(id) + 1}`)
 </script>
   
 <style scoped>
