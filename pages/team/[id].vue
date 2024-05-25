@@ -2,11 +2,11 @@
   <div>
     <div class="person">
       <div class="header">
-        <NuxtLink to="/team" class="back-link">← Back to our team </NuxtLink>
+        <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
         <img :src="Person.photo" alt="Profile Picture" class="profile-picture" />
         <div class="info">
           <h1>{{ Person.name }}</h1>
-          <p><strong>Email:</strong> {{ Person.email }}</p>
+          <p><strong>Email:</strong> {{ Person.mail }}</p>
           <p><strong>Birthdate:</strong> {{ Person.birthdate }}</p>
         </div>
       </div>
@@ -29,12 +29,15 @@
   const { data: Person, pending, error } = await useFetch(`/api/team/${id}`);
   //const { data: managedProjects } = await useFetch(`/api/activities/projects/projectByPerson/${id}`)
   //const { data: managedServices } = await useFetch(`/api/activities/services/serviceByPerson/${id}`)
- 
+
   const previousLink = computed(() => `/team/${parseInt(id) - 1}`)
   const nextLink = computed(() => `/team/${parseInt(id) + 1}`)
 </script>
   
 <style scoped>
+template {
+  padding: 20px;
+}
 .person {
   max-width: 800px;
   margin: 0 auto;

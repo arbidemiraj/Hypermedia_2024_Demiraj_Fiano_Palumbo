@@ -3,9 +3,8 @@
     <div class="title-background">
       <h1 class='title'>OUR<br>TEAM</h1>
     </div>
-
     <div class="team__members">
-      <TeamMemberCard v-for="(member, index) in Person" :key="index" :name="member.name" :surname="member.surname"
+      <TeamMemberCard v-for="(member, index) in Person" :key="index" :id=member.id :name="member.name" :surname="member.surname"
         :image="member.photo" />
     </div>
   </div>
