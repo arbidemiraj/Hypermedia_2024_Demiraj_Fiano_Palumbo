@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="team-member" to="/team">
+  <NuxtLink class="team-member" :to="'/team/' + id">
       <img :src='image' :alt="name" class="team-member__image" />
       <h3 class="team-member__name">{{ name }} {{ surname }}</h3>
     </NuxtLink>
@@ -8,6 +8,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
