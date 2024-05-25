@@ -1,25 +1,39 @@
 <template>
-    <div class="card">
-        <div class="card-content">
-            <div class="title-icon-container">
-            <h2>{{title}}</h2>
-                <Icon class="service-icon" name="healthicons:justice-negative" color="#bb5f75" size="40"/>
+    <NuxtLink :to="'/services/' + id" class="card">
+            <div class="card-content">
+                <div class="title-icon-container">
+                <h2>{{title}}</h2>
+                    <Icon class="service-icon" :name='image' color="#bb5f75" size="40"/>
+                </div>
+                <p>{{description}}</p>
             </div>
-            <p>{{description}}</p>
-        </div>
-        <div class="card-footer">
-            <button class="btn">See more</button>
-        </div>
-    </div>
+            <div class="card-footer">
+                <button class="btn">See more</button>
+            </div>
+    </NuxtLink>
 </template>
 
 <script>
     export default {
-    props: {
-      title: String,
-      description: String,
-    }
-  }
+        props: {
+            title: {
+                type: String,
+                required: true
+            },
+            image: {
+                type: String,
+                required: true
+            },
+            description: {
+                type: String,
+                required: true
+            },
+            id: {
+                type: Number,
+                required: true
+            },
+        },
+    };
 </script>
 
 <style scoped>
@@ -33,6 +47,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-decoration: none;
 }
 
 .card:hover {
@@ -84,7 +99,7 @@
     cursor: pointer;
     font-size: 0.9rem;
 }
-.btn:hover {
+/*.btn:hover {
     background-color: #be7687;
-}
+}*/
 </style>
