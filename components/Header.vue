@@ -1,33 +1,32 @@
 <template>
     <header class="site-header">
         <nav>
-            <NuxtLink to="/"><img class='logo-image' src='/assets/images/logo.png' :width="200"></NuxtLink>
+            <NuxtLink to="/">
+                <img class="logo-image" src="/assets/images/logo.png" width="220" alt="Site Logo">
+            </NuxtLink>
             <ul>
                 <li>
-                    <NuxtLink to="/aboutUs"><b>About us</b></NuxtLink>
+                    <NuxtLink to="/aboutUs" exact-active-class="active"><b>About Us</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/activities"><b>Activities</b></NuxtLink>
+                    <NuxtLink to="/activities" exact-active-class="active"><b>Activities</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/team"><b>Team</b></NuxtLink>
+                    <NuxtLink to="/team" exact-active-class="active"><b>Team</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/contact"><CustomButton/></NuxtLink>
+                    <NuxtLink to="/contact" exact-active-class="active"><CustomButton text="Get Help"/></NuxtLink>
                 </li>
             </ul>
         </nav>
     </header>
 </template>
 
-<script>
-export default {
-    name: 'Header',
+<style scoped>
+.logo-image {
+    transition: opacity 0.3s;
 }
 
-</script>
-
-<style scoped>
 .logo-image:hover {
     opacity: 0.5;
 }
@@ -36,33 +35,36 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1;
     font-size: 18px;
 }
 
 .site-header {
-    height: 55px;
+    height: 35px;
     background: linear-gradient(90deg, #cf556c 78%, #b12a5b 100%);
     color: white;
-    padding-bottom: 2rem;
-    padding-inline: 1rem;
+    padding: 0 1rem 2rem;
 }
 
-.site-header nav ul {
+nav ul {
     list-style: none;
-    justify-content: flex-end;
-    align-items: center;
     display: flex;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
-.site-header nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
+    transition: background-color 0.3s, opacity 0.3s;
 }
 
-.site-header nav ul li a:hover {
-    background-color: #bb5f75;
-    opacity: 0.5;
+nav ul li a:hover {
+    color: #b12a5b;
+}
+
+nav ul li a.active {
+    color: #ddba8e;
 }
 </style>
