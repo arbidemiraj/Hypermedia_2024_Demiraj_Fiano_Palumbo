@@ -15,7 +15,7 @@
                     <NuxtLink to="/team" exact-active-class="active"><b>Team</b></NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/contact" exact-active-class="active"><CustomButton text="Get Help"/></NuxtLink>
+                    <NuxtLink to="/contactUs" exact-active-class="active"><CustomButton text="Get Help"/></NuxtLink>
                 </li>
             </ul>
         </nav>
