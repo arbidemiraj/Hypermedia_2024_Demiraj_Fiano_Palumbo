@@ -3,15 +3,15 @@
     <div class="person">
       <div class="header">
         <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
-        <img :src="Person.photo" alt="Profile Picture" class="profile-picture" />
+        <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
         <div class="info">
-          <h1>{{ Person.name }}</h1>
-          <p><strong>Email:</strong> {{ Person.mail }}</p>
-          <p><strong>Birthdate:</strong> {{ Person.birthdate }}</p>
+          <h1>{{ person.name }}</h1>
+          <p><strong>Email:</strong> {{ person.mail }}</p>
+          <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
         </div>
       </div>
       <div class="cv">
-        <p>{{ Person.cv }}</p>
+        <p>{{ person.cv }}</p>
       </div>
     </div>
 
@@ -20,18 +20,52 @@
       <NuxtLink :to="nextLink">NEXT →</NuxtLink>
     </div>
   </div>
+
+  <div class="managed-projects">
+  <h2>MANAGED PROJECTS</h2>
+  <div class="projects">
+    <div v-for="(project, index) in managedProjects" :key="index" class="project">
+      <img :src="project.image" alt="Project Image" class="project-image" />
+      <p>{{ project.name }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="managed-services">
+  <h2>MANAGED SERVICES</h2>
+  <div class="services">
+    <div v-for= "(service, index) in managedServices" 
+    :key="index" class="service">
+      <img :src="service.image" alt="Service Image" class="service-image" />
+      <p>{{ service.name }}</p>
+    </div>
+  </div>
+</div>
 </template>
 
         
 <script setup>
 
-  const { id } = useRoute().params;
-  const { data: Person, pending, error } = await useFetch(`/api/team/${id}`);
-  //const { data: managedProjects } = await useFetch(`/api/activities/projects/projectByPerson/${id}`)
-  //const { data: managedServices } = await useFetch(`/api/activities/services/serviceByPerson/${id}`)
+  const { id } = useRoute().params; //person id
+  const { data: person, pending, error } = await useFetch(`/api/team/${id}`);
+  const { data: managedProjects } = await useFetch(`/api/activities/projects/projectsByPerson/${id}`);
+  const { data: managedServices } = await useFetch(`/api/activities/services/servicesByPerson/${id}`);
 
-  const previousLink = computed(() => `/team/${parseInt(id) - 1}`)
-  const nextLink = computed(() => `/team/${parseInt(id) + 1}`)
+  const firstId = 2;
+  const lastId = 21;
+
+  const previousLink = computed(() => {
+    const currentId = parseInt(id);
+    const prevId = currentId === firstId ? lastId : currentId - 1;
+    return `/team/${prevId}`;
+  });
+
+  const nextLink = computed(() => {
+    const currentId = parseInt(id);
+    const nextId = currentId === lastId ? firstId : currentId + 1;
+    return `/team/${nextId}`;
+  });
+
 </script>
   
 <style scoped>
