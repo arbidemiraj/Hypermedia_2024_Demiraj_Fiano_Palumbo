@@ -14,7 +14,8 @@
     "@nuxt/fonts": "^0.7.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "vue3-carousel-nuxt": "^1.1.1"
   },
   "devDependencies": {
     "@nuxtjs/supabase": "^1.2.2",

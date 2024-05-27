@@ -5,12 +5,12 @@ import { serverSupabaseClient } from '#supabase/server'
 //Get all the projects whose the current person is rsponsible for
 
 export default defineEventHandler(async (event) => {
-    const person = event.context.params.id //person id
+    const id = event.context.params.id //person id
 
     const client = await serverSupabaseClient(event)
 
-    const { data, error }= await client.from('Activity').select("id, name, image").eq("responsible", person).eq("type", true).limit(1).single()
-    
+    const { data, error }= await client.from('Activity').select("id, name, image").eq("responsible", id).eq("type", true)
+
     if(error) {
         throw createError({statusCode: 400, statusMessage: error.message})
     }
