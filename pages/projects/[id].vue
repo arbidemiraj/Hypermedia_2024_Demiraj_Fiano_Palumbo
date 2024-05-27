@@ -8,7 +8,7 @@
                 <h2 class="project-title">{{ Activity.name }}</h2>
                 
                 <div class="managed-by">
-                <p> managed by <b>{{ Person.name }} {{ Person.surname }}</b></p>
+                <p> managed by <NuxtLink :to="'/team/'+Person.id" class="person-link"><b>{{ Person.name }} {{ Person.surname }}</b></NuxtLink></p>
                 <img :src="Person.photo" alt="Person image" class="person-logo"/>
                 </div>
                 </div>
@@ -96,5 +96,13 @@ const sections = computed(() => {
 .managed-by {
     display: flex;
     flex-direction: row;
+}
+.person-link {
+    text-decoration: none;
+    color: #bb5f75;
+}
+
+.person-link:hover{
+    opacity: 0.8;
 }
 </style>
