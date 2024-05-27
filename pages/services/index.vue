@@ -61,6 +61,7 @@ main {
 
 .title {
     font-size: 50px;
+    margin-left: 10px;
 }
 
 .container {
