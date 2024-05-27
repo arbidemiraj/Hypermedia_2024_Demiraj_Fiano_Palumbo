@@ -1,170 +1,81 @@
 <template>
     <main>
         <div class="title-background">
-            <h1 class=title>Projects</h1>
+            <h1 class="title">Projects</h1>
         </div>
-        <h1>Our philosophy</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae elit dapibus, tincidunt lectus a, varius arcu. 
-                Nunc non mollis tellus. Sed arcu leo, faucibus vitae hendrerit at, eleifend et leo. Morbi facilisis rutrum imperdiet. 
+        <div class="text-container">
+            <h2>Our philosophy</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae elit dapibus, tincidunt lectus a,
+                varius arcu.
+                Nunc non mollis tellus. Sed arcu leo, faucibus vitae hendrerit at, eleifend et leo. Morbi facilisis
+                rutrum
+                imperdiet.
                 Proin pharetra tincidunt neque eu imperdiet. Interdum et malesuada fames ac ante ipsum primis in.</p>
-        <div class="text-section">
-            <div class="projects-container">
-                <button class="arrow left-arrow">←</button>
-                <div class="projects">
-                    <Project v-for="(project, index) in Activity"
-                    :key="index"
-                    :title="project.name"
-                    :description="project.description"
-                    :image="project.image"
-                    :id="project.id"/>
-                </div>
-                <button class="arrow right-arrow">→</button>
-            </div>
+        </div>
+        <div class="carousel-container">
+            <Carousel :items-to-show="3" :wrapAround="true" :transition="500">
+                <Slide v-for="(project, index) in Activity" :key="project.id">
+                    <Project :title="project.name" :description="project.description" :image="project.image"
+                        :id="project.id" />
+                </Slide>
+
+                <template #addons>
+                    <Navigation />
+                </template>
+            </Carousel>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/services" class="bottom-link"> Go to all services </NuxtLink>
+            <NuxtLink to="/services" class="bottom-link"> Go to all services
+                <Icon name="ep:arrow-right-bold" />
+            </NuxtLink>
         </div>
     </main>
 </template>
 
 <script setup>
-    const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
+const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
 </script>
-    
+
 <style scoped>
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-    }
-    .title-background {
-        background-image: url('assets/images/imageWomenScritta.png');
-        background-size: cover; 
-        background-position: center;
-        padding: 5px;
-        text-align: left;
-        color: white;
-        width: 100%;
-        box-shadow: 5px black;
-    }
-    .title{
-        font-size: 50px;
-        margin-left: 10px;
-    }
-    .text-section {
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-
-.text-section h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.text-section p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.projects-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.projects {
-    display: flex;
-    gap: 70px;
-    flex-wrap: nowrap;
-}
-
-.project-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px;
-    text-align: left;
-    padding: 20px;
+main {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-.project-card:hover {
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+.text-container {
+    padding: 20px;
 }
 
-.project-card img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.project-card h2 {
-    margin-bottom: 10px;
-    font-size: 1.25rem;
-    color: #333;
-    text-align: center;
-}
-
-.project-card p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.project-card .btn {
-    background-color: #bb5f75;
+.title-background {
+    background-image: url('assets/images/imageWomenScritta.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    text-align: left;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.project-card .btn:hover {
-    background-color: #be7687;
-}
-
-.arrow {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #bb5f75;
-    cursor: pointer;
-    padding: 0 10px;
-}
-
-.arrow:hover {
-    color: #be7687;
-}
-
-.left-arrow {
-    margin-right: 10px;
-}
-
-.right-arrow {
+.title {
+    font-size: 50px;
     margin-left: 10px;
+}
+
+.carousel-container {
+    margin: 20px 0;
+}
+
+.bottom-link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .bottom-link {
@@ -172,10 +83,13 @@
     color: #bb5f75;
     font-size: 1.2rem;
     font-weight: bold;
+    text-decoration: none;
 }
+
 .bottom-link:hover {
     color: #be7687;
 }
+
 .bottom-link-container {
     margin: 20px;
 }

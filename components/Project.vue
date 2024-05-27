@@ -48,14 +48,15 @@
 .card-link {
     text-decoration: none;
     color: black;
+    width: 80%;
+    height: 550px;
+    margin: 20px;
 }
+
 .project-card {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px;
     text-align: left;
     padding: 20px;
     display: flex;
@@ -96,6 +97,8 @@
     color: white;
     border: none;
     padding: 10px 20px;
+    position: relative;
+    margin-bottom: 10px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;

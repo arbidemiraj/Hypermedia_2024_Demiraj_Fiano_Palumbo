@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['@fortawesome/fontawesome-free']
   },
-  modules: ['nuxt-icon', '@nuxtjs/supabase', "@nuxt/fonts"],
+  modules: ['nuxt-icon', '@nuxtjs/supabase', "@nuxt/fonts", "vue3-carousel-nuxt"],
   supabase: {
     redirect: false,
   },

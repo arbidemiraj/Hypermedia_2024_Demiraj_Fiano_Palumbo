@@ -76,15 +76,7 @@
     flex-direction: column;
     gap: 20px;
   }
-  
-  .mission, .history, .directions {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
+
   iframe {
     width: 100%;
     border: none;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="person">
       <div class="header">
         <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
@@ -19,7 +19,6 @@
       <NuxtLink :to="previousLink">← PREVIOUS</NuxtLink>
       <NuxtLink :to="nextLink">NEXT →</NuxtLink>
     </div>
-  </div>
 
   <div class="managed-projects">
   <h2>MANAGED PROJECTS</h2>
@@ -36,10 +35,11 @@
   <div class="services">
     <div v-for= "(service, index) in managedServices" 
     :key="index" class="service">
-      <img :src="service.image" alt="Service Image" class="service-image" />
+      <Icon :name="service.image" class="service-image" color="#bb5f75"/>
       <p>{{ service.name }}</p>
     </div>
   </div>
+</div>
 </div>
 </template>
 
@@ -69,9 +69,14 @@
 </script>
   
 <style scoped>
-template {
+.container{
   padding: 20px;
 }
+.managed-projects, .managed-services {
+  margin-top: 1rem;
+  padding: 20px;
+}
+
 .person {
   max-width: 800px;
   margin: 0 auto;
@@ -105,13 +110,8 @@ template {
 }
 
 .info h1 {
-  margin: 0;
   font-size: 2rem;
   text-align: center;
-}
-
-.info p {
-  margin: 0.5rem 0;
 }
 
 .biography {
