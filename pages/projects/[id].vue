@@ -2,18 +2,36 @@
     <div class="project">
         <NuxtLink to="/projects" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to projects</NuxtLink>
         <div class="title">
-            <img :src="Activity.image" alt="Project image" class="project-logo"/>
-            <h2>{{ Activity.name }}</h2>
+            <div class="project-title-container">
+                <img :src="Activity.image" alt="Project image" class="project-logo"/>
+                <div class="team">
+                <h2 class="project-title">{{ Activity.name }}</h2>
+                
+                <div class="managed-by">
+                <p> managed by <b>{{ Person.name }} {{ Person.surname }}</b></p>
+                <img :src="Person.photo" alt="Person image" class="person-logo"/>
+                </div>
+                </div>
+            </div>
+            
+            
         </div>
         <div v-for="(section, index) in sections" :key="index">
             <p>{{ section }}</p>
         </div>
+    </div>
+    <div class="">
+        <NuxtLink to="/projects" class="bottom-link"> Go to all projects
+            <Icon name="ep:arrow-right-bold" />
+        </NuxtLink>
     </div>
 </template>
 
 <script setup>
 const { id } = useRoute().params;
 const { data: Activity, pending, error } = await useFetch(`/api/activities/projects/${id}`);
+const { data: Person} = await useFetch(`/api/team/${Activity.value.responsible}`);
+
 
 const sections = computed(() => {
   return Activity.value?.description ? Activity.value.description.split('###') : [];
@@ -51,5 +69,32 @@ const sections = computed(() => {
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.project-title {
+    font-size: 50px;
+    margin: 0;
+}
+
+.project-title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.person-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.managed-by {
+    display: flex;
+    flex-direction: row;
 }
 </style>

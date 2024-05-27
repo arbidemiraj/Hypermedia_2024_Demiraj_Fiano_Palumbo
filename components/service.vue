@@ -5,7 +5,7 @@
                 <h2>{{title}}</h2>
                     <Icon class="service-icon" :name='image' color="#bb5f75" size="40"/>
                 </div>
-                <p>{{description}}</p>
+                <p>{{truncatedDescription}}</p>
             </div>
             <div class="card-footer">
                 <button class="btn">See more</button>
@@ -33,6 +33,18 @@
                 required: true
             },
         },
+        computed: {
+            truncatedDescription() {
+            const introduction = this.description.split('###')[0];
+
+            const words = introduction.split(' ');
+            if (words.length > 50) {
+                return words.slice(0, 50).join(' ') + '...';
+            }
+            
+            return introduction;
+            }
+        }
     };
 </script>
 
