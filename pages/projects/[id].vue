@@ -17,13 +17,8 @@
             
         </div>
         <div v-for="(section, index) in sections" :key="index">
-            <p>{{ section }}</p>
+            <p v-html="newLineOnEnter(section)"></p>
         </div>
-    </div>
-    <div class="">
-        <NuxtLink to="/projects" class="bottom-link"> Go to all projects
-            <Icon name="ep:arrow-right-bold" />
-        </NuxtLink>
     </div>
 </template>
 
@@ -32,6 +27,10 @@ const { id } = useRoute().params;
 const { data: Activity, pending, error } = await useFetch(`/api/activities/projects/${id}`);
 const { data: Person} = await useFetch(`/api/team/${Activity.value.responsible}`);
 
+
+const newLineOnEnter = (text) => {
+    return text.replace(/\n/g, '<br>');
+}
 
 const sections = computed(() => {
   return Activity.value?.description ? Activity.value.description.split('###') : [];
