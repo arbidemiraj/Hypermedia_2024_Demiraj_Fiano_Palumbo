@@ -8,27 +8,28 @@
   <div class="chat-header">
     <div class="chatbot-name">
       <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
-      <h1><b>Hope</b></h1>
+      <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
     </div>
     <button class="close-btn" @click="toggleChat"><b>x</b></button>
   </div>
   <div class="chat-content">
     <div class="messageBox">
-      <div v-for="(message, index) in defaultMessages" :key="index" class="bot-message">
-          <p>{{ message }}</p>
+      <div class="message-container">
+        <div v-if="!isOptionSelected" class="bot-message">
+          <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below</p>
+        </div>
       </div>
-      <div v-for="(message, index) in messages" :key="index">
-        <div v-if="message.isUser" class="user-message">
-          <p>{{ message.content }}</p>
-        </div>
-        <div v-if="!message.isUser" class="bot-message">
-          <p >{{ message.content }}</p>
-        </div>
+      
+      <button v-if="!isOptionSelected" v-for="(message, index) in optionMessages" :key="index" class="bot-message-option" @click="handleSelectedOption(index)">
+        <p>{{ message }}</p>
+      </button>
+      <div v-for="(message, index) in messages" :key="index" :class="message.isUser ? 'user-message' : 'bot-message'">
+        <p>{{ message.content }}</p>
       </div>
     </div>
   </div>
   <div class="inputContainer">
-    <input v-model="currentMessage.content" type="text" class="messageInput" placeholder="Ask me anything..." @keyup.enter="sendMessage"/>
+    <input v-model="currentMessage" type="text" class="messageInput" placeholder="Ask me anything..." @keyup.enter="sendMessage"/>
     <button class="askButton" @click="sendMessage">
       Ask
     </button>
@@ -42,16 +43,14 @@ export default {
   data() {
     return {
       isChatVisible: false,
-      defaultMessages: [
-        "Hi I’m Hope and I’m here to help you! What do you need help for? Click one of the two options below",
+      optionMessages: [
         "LEGAL COUNSELING",
         "RECOGNISE THE VIOLENCE"
       ],
-      currentMessage: {
-            content: String,
-            isUser: Boolean,
-            },
+      currentMessage: '',
       messages: [],
+      selectedOption: '',
+      isOptionSelected: false,
     };
 
   },
@@ -61,13 +60,13 @@ export default {
         this.messages = [];
       }
       this.isChatVisible = !this.isChatVisible;
+      this.isOptionSelected = false;
     },
     sendMessage() {
-      if (this.currentMessage.content.trim() !== "") {
-        this.currentMessage.isUser = true;
-        this.messages.push(this.currentMessage);
+      if (this.currentMessage.trim() !== "") {
+        this.messages.push({content: this.currentMessage, isUser: true});
         this.respondToUser(this.currentMessage);
-        this.currentMessage.content = ""; //TODO check if this is the best way to clear the input
+        this.currentMessage = '';
       }
     },
     respondToUser(message) {
@@ -76,15 +75,38 @@ export default {
         "RECOGNISE THE VIOLENCE": "Recognizing violence is the first step. We can provide resources and support for you.",
         "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
       };
+
       const defaultResponse = "I'm not sure how to help with that. Please type 'HELP' for assistance.";
-      const response = {content: responses[message.content.toUpperCase()] || defaultResponse, isUser: false};
-      this.messages.push(response);
+
+      if(message !== "HELP" && responses[message.toUpperCase()]) {
+        this.isOptionSelected = true;
+        this.selectedOption = message.toUpperCase();
+        const response = {content: responses[message.toUpperCase()], isUser: false};
+        this.messages = [];
+        this.messages.push(response);
+      }else {
+        const response = {content: responses[message.toUpperCase()] || defaultResponse, isUser: false};
+        this.messages.push(response);
+      }
+     
+    },
+    handleSelectedOption(index) {
+      this.isOptionSelected = true;
+      this.selectedOption = this.optionMessages[index];
+      this.messages = [];
+      this.respondToUser(this.selectedOption);
     }
   }
 };
 </script>
 
 <style scoped>
+.message-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
 .chatbot-icon {
   position: fixed;
   bottom: 20px;
@@ -103,6 +125,12 @@ export default {
 .chatbot-img {
   width: 40px;
   height: auto;
+}
+
+.selected-bot {
+  color: #bb5f75;
+  align-items: center;
+  font-size: 12px;
 }
 
 .chat-box {
@@ -131,7 +159,8 @@ export default {
 
 .chatbot-name {
   display: flex;
-  align-items: left;
+  align-items: center;
+  font-size: 16px;
 }
 
 .chatbot-img-header {
@@ -165,7 +194,7 @@ h1 {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   height: 410px; /* forse dovrà essere max-height */
   overflow-y: auto;
   padding: 0 16px;
@@ -177,8 +206,27 @@ h1 {
   padding: 10px;
   border-radius: 10px;
   text-align: left;
+  align-self: flex-start;
+  width: 70%;
   color: white;
+}
 
+.bot-message-option {
+  background-color:rgba(193, 60, 92, 0.83);
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  align-self: flex-start;
+  width: 70%;
+  color: white;
+}
+
+.bot-message-option:hover {
+  opacity: 0.8;
 }
 
 .bot-message p {
@@ -191,6 +239,8 @@ h1 {
   padding: 10px;
   border-radius: 10px;
   text-align: right;
+  align-self: flex-end;
+  width: 70%;
   color: black;
 }
 
