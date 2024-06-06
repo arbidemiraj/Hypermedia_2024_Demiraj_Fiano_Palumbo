@@ -3,9 +3,9 @@
     <div class="person">
       <div class="header">
         <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
-        <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
         <div class="info">
-          <h1>{{ person.name }}</h1>
+          <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
+          <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
           <p><strong>Email:</strong> {{ person.mail }}</p>
           <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
         </div>
@@ -15,33 +15,38 @@
       </div>
     </div>
 
-    <div class="navigation">
-      <NuxtLink :to="previousLink">← PREVIOUS</NuxtLink>
-      <NuxtLink :to="nextLink">NEXT →</NuxtLink>
-    </div>
+    <div class="side-content">
+      <div class="managed-projects">
+        <h2>MANAGED PROJECTS</h2>
+        <div class="projects">
+          <div v-for="(project, index) in managedProjects" :key="index" class="project">
+            <NuxtLink :to="'/projects/' + project.id">
+            <img :src="project.image" alt="Project Image" class="project-image" />
+            <p>{{ project.name }}</p>
+          </NuxtLink>
+          </div>
+        </div>
+      </div>
 
-  <div class="managed-projects">
-  <h2>MANAGED PROJECTS</h2>
-  <div class="projects">
-    <div v-for="(project, index) in managedProjects" :key="index" class="project">
-      <img :src="project.image" alt="Project Image" class="project-image" />
-      <p>{{ project.name }}</p>
+      <div class="managed-services">
+        <h2>MANAGED SERVICES</h2>
+        <div class="services">
+          <div v-for="(service, index) in managedServices" :key="index" class="service">
+            <NuxtLink :to="'/services/' + service.id">
+            <Icon :name="service.image" class="service-image" color="#bb5f75"/>
+            <p>{{ service.name }}</p>
+          </NuxtLink>
+          </div>
+        </div>
+      </div>
+      <div class="navigation">
+        <NuxtLink :to="previousLink"><strong>← PREVIOUS</strong></NuxtLink>
+        <NuxtLink :to="nextLink"><strong>NEXT →</strong></NuxtLink>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="managed-services">
-  <h2>MANAGED SERVICES</h2>
-  <div class="services">
-    <div v-for= "(service, index) in managedServices" 
-    :key="index" class="service">
-      <Icon :name="service.image" class="service-image" color="#bb5f75"/>
-      <p>{{ service.name }}</p>
-    </div>
-  </div>
-</div>
-</div>
 </template>
+
 
         
 <script setup>
@@ -69,22 +74,71 @@
 </script>
   
 <style scoped>
-.container{
-  padding: 20px;
-}
-.managed-projects, .managed-services {
-  margin-top: 1rem;
-  padding: 20px;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
 }
 
 .person {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  flex: 1.0;
+  margin-left: 40px;
+}
+
+.person-name {
+  font-size: 2rem;
+}
+
+.profile-picture {
+  align-self: center;
+}
+
+.cv {
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+.side-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.managed-projects, .managed-services {
+  margin-top: 20px;
+}
+
+.managed-projects h2, .managed-services h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.projects, .services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project, .service {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.project-image, .service-image {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px;
+}
+
+.navigation {
+  margin-top: 20px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header {
@@ -101,29 +155,10 @@
   margin-bottom: 1rem;
 }
 
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
 
-.info h1 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-.biography {
+.info {
   font-size: 1rem;
-  line-height: 1.5;
-  margin-top: 1rem;
-}
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  margin: 2rem 0;
+  text-align: center;
 }
 
 .navigation a {
@@ -131,25 +166,6 @@
   color: #333;
 }
 
-.managed-projects, .managed-services {
-  margin-top: 2rem;
-}
-
-.projects, .services {
-  display: flex;
-  gap: 1rem;
-}
-
-.project, .service {
-  text-align: center;
-}
-
-.project-image, .service-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
 </style>
   
 
