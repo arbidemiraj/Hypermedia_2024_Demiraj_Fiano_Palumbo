@@ -13,12 +13,16 @@
       <div class="cv">
         <p>{{ person.cv }}</p>
       </div>
+      <div class="navigation">
+        <NuxtLink :to="previousLink"><strong>← PREVIOUS</strong></NuxtLink>
+        <NuxtLink :to="nextLink"><strong>NEXT →</strong></NuxtLink>
+      </div>
     </div>
 
     <div class="side-content">
       <div class="managed-projects">
         <h2>MANAGED PROJECTS</h2>
-        <div class="projects">
+        <div v-if=hasProjects class="projects">
           <div v-for="(project, index) in managedProjects" :key="index" class="project">
             <NuxtLink :to="'/projects/' + project.id">
             <img :src="project.image" alt="Project Image" class="project-image" />
@@ -26,11 +30,14 @@
           </NuxtLink>
           </div>
         </div>
+        <div v-else>
+          <p>Not responsible for any projects yet!</p>
+        </div>
       </div>
 
       <div class="managed-services">
         <h2>MANAGED SERVICES</h2>
-        <div class="services">
+        <div v-if=hasServices class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
             <NuxtLink :to="'/services/' + service.id">
             <Icon :name="service.image" class="service-image" color="#bb5f75"/>
@@ -38,10 +45,9 @@
           </NuxtLink>
           </div>
         </div>
-      </div>
-      <div class="navigation">
-        <NuxtLink :to="previousLink"><strong>← PREVIOUS</strong></NuxtLink>
-        <NuxtLink :to="nextLink"><strong>NEXT →</strong></NuxtLink>
+        <div v-else>
+            <p>Not responsible for any service yet!</p>
+          </div>
       </div>
     </div>
   </div>
@@ -70,6 +76,9 @@
     const nextId = currentId === lastId ? firstId : currentId + 1;
     return `/team/${nextId}`;
   });
+
+  const hasProjects = managedProjects != null ? true : false;
+  const hasServices = managedServices === null ? false : true;
 
 </script>
   
@@ -135,9 +144,10 @@
 }
 
 .navigation {
-  margin-top: 20px;
   width: 40%;
   display: flex;
+  flex: 1;
+  margin-left: 200px;
   justify-content: space-between;
 }
 
