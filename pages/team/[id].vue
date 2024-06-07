@@ -77,8 +77,8 @@
     return `/team/${nextId}`;
   });
 
-  const hasProjects = managedProjects != null ? true : false;
-  const hasServices = managedServices === null ? false : true;
+  const hasProjects = computed(() => managedProjects.value && managedProjects.value.length > 0);
+  const hasServices = computed(() => managedServices.value && managedServices.value.length > 0);
 
 </script>
   
