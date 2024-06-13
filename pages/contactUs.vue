@@ -65,6 +65,7 @@
 </template>
 
 <script>
+//commento solo per prova
 /*prova per invio mail predefinita tramite form
 export default {
   data() {
