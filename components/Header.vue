@@ -40,7 +40,7 @@ nav {
 
 .site-header {
     height: 35px;
-    background: linear-gradient(90deg, #cf556c 78%, #b12a5b 100%);
+    background: linear-gradient(90deg, #b35c6e 78%, #b35c6e 100%);
     color: white;
     padding: 0 1rem 2rem;
 }
