@@ -1,27 +1,37 @@
 <template>
-  <div class="container" :class="{ 'centered': !hasProjects }">
-    <div class="person">
+  <div class="container">
+    <div class="person" :class="{ 'centered': !hasActivities }">
       <div class="header">
         <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
         <div class="navigation">
-          <NuxtLink :to="previousLink" class="nav-button"><strong>← PREVIOUS</strong></NuxtLink>
-          <NuxtLink :to="nextLink" class="nav-button"><strong>NEXT →</strong></NuxtLink>
+          <NuxtLink :to="previousLink" class="nav-button">
+            <Icon name="eva:arrow-back-outline" /> <strong>PREVIOUS</strong>
+          </NuxtLink>
+          <NuxtLink :to="nextLink" class="nav-button">
+            <strong>NEXT</strong> <Icon name="eva:arrow-forward-outline" />
+          </NuxtLink>
         </div>
         <div class="info">
+          <div v-if="personPending">
+                    <Loader />
+                </div>
           <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
           <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
           <p><strong>Email:</strong> {{ person.mail }}</p>
           <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
-          <div class="cv">
-            <p>{{ person.cv }}</p>
-          </div>
+        </div>
+        <div :class="{ 'cv': true, 'centered-cv': !hasActivities }">
+          <p>{{ person.cv }}</p>
         </div>
       </div>
     </div>
-    <div v-if="hasProjects" class="side-content">
-      <div class="managed-projects">
+    <div v-if="hasActivities" class="side-content">
+      <div v-if="hasProjects" class="managed-projects">
         <h2>MANAGED PROJECTS</h2>
-        <div v-if="hasProjects" class="projects">
+        <div v-if="projectsPending">
+                    <Loader />
+                </div>
+        <div class="projects">
           <div v-for="(project, index) in managedProjects" :key="index" class="project">
             <NuxtLink :to="'/projects/' + project.id">
               <img :src="project.image" alt="Project Image" class="project-image" />
@@ -29,14 +39,14 @@
             </NuxtLink>
           </div>
         </div>
-        <div v-else>
-          <p>Not responsible for any projects yet!</p>
-        </div>
       </div>
 
-      <div class="managed-services">
+      <div v-if="hasServices" class="managed-services">
         <h2>MANAGED SERVICES</h2>
-        <div v-if="hasServices" class="services">
+        <div v-if="servicesPending">
+                    <Loader />
+                </div>
+        <div class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
             <NuxtLink :to="'/services/' + service.id">
               <Icon :name="service.image" class="service-image" color="#bb5f75"/>
@@ -51,11 +61,18 @@
 
 
 <script setup>
+import handleFetchError from '~/composables/errorHandler';
 
   const { id } = useRoute().params; //person id
-  const { data: person, pending, error } = await useFetch(`/api/team/${id}`);
-  const { data: managedProjects } = await useFetch(`/api/activities/projects/projectsByPerson/${id}`);
-  const { data: managedServices } = await useFetch(`/api/activities/services/servicesByPerson/${id}`);
+
+  const { data: person, pending: personPending, error: error1 } = await useFetch(`/api/team/${id}`);
+  if (error1.value?.statusCode) handleFetchError(person, error1.statusCode);
+
+  const { data: managedProjects, pending: projectsPending, error: error2 } = await useFetch(`/api/activities/projects/projectsByPerson/${id}`);
+  if (error2.value?.statusCode) handleFetchError(managedProjects, error2.statusCode);
+
+  const { data: managedServices, pending: servicesPending, error: error3 } = await useFetch(`/api/activities/services/servicesByPerson/${id}`);
+  if (error3.value?.statusCode) handleFetchError(managedServices, error3.statusCode);
 
   const firstId = 2;
   const lastId = 21;
@@ -74,10 +91,13 @@
 
   const hasProjects = computed(() => managedProjects.value && managedProjects.value.length > 0);
   const hasServices = computed(() => managedServices.value && managedServices.value.length > 0);
+  const hasActivities = computed(() => hasProjects.value || hasServices.value);
+
 
 </script>
   
 <style scoped>
+
 .container {
   display: flex;
   flex-direction: row;
@@ -96,11 +116,6 @@
 
 .profile-picture {
   align-self: center;
-}
-
-.cv {
-  
-  position: relative;
 }
 
 .side-content {
@@ -198,4 +213,11 @@
 .person.centered {
   margin-left: 0;
 }
+
+.centered-cv {
+  text-align: center;
+  max-width: 600px; /* Esempio di larghezza massima per il CV centrato */
+  margin: 0 auto; /* Per centrare il contenuto */
+}
+
 </style>
