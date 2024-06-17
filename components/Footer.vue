@@ -24,13 +24,13 @@
                 <div class="footer-info">
                     <h3>CONTACT INFORMATION</h3>
                     <div class="contact-container">
-                        <Icon name="cib:mail-ru" color="white" size="35"/><p>Email: example@example.com</p>
+                        <Icon name="cib:mail-ru" color="white" size="35"/><p>Email: byyoursidecenter@gmail.com </p>
                     </div>
                     <div class="contact-container">
-                        <Icon name="ic:baseline-phone" color="white" size="35"/><p>Phone: 123-456-7890</p>
+                        <Icon name="ic:baseline-phone" color="white" size="35"/><p>Phone: +39 367 8919785</p>
                     </div>
                     <div class="contact-container">
-                        <Icon name="mdi:address-marker" color="white" size="35"/><p>Address: 123 Main Street, City, Country</p>
+                        <Icon name="mdi:address-marker" color="white" size="35"/><p>Address: Via Fratelli Sangallo, 40, 20133, Milano (MI), Italia</p>
                     </div>
                 </div>
                 <div class="footer-opening-info">
