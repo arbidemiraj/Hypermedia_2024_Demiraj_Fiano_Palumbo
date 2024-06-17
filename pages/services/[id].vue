@@ -30,6 +30,12 @@
 </template>
 
 <script setup>
+
+useSeoMeta({
+    title: 'ByYourSide | Service',
+    description: 'This is the single service page containing all the information about a specific service, including its detailed description and responsible.',
+});
+
 const { id } = useRoute().params;
 const { data: Activity, pending, error } = await useFetch(`/api/activities/services/${id}`);
 
