@@ -19,7 +19,6 @@
           <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below</p>
         </div>
       </div>
-      
       <button v-if="!isOptionSelected" v-for="(message, index) in optionMessages" :key="index" class="bot-message-option" @click="handleSelectedOption(index)">
         <p>{{ message }}</p>
       </button>
@@ -37,67 +36,82 @@
 </div>
 </template>
 
-<script>
-
-export default {
-  data() {
-    return {
-      isChatVisible: false,
-      optionMessages: [
-        "LEGAL COUNSELING",
-        "RECOGNISE THE VIOLENCE"
-      ],
-      currentMessage: '',
-      messages: [],
-      selectedOption: '',
-      isOptionSelected: false,
-    };
-
-  },
-  methods: {
-    toggleChat() {
-      if(this.isChatVisible === true){
-        this.messages = [];
-      }
-      this.isChatVisible = !this.isChatVisible;
-      this.isOptionSelected = false;
-    },
-    sendMessage() {
-      if (this.currentMessage.trim() !== "") {
-        this.messages.push({content: this.currentMessage, isUser: true});
-        this.respondToUser(this.currentMessage);
-        this.currentMessage = '';
-      }
-    },
-    respondToUser(message) {
-      const responses = {
-        "LEGAL COUNSELING": "You can get legal counseling by contacting our legal team at legal@help.com.",
-        "RECOGNISE THE VIOLENCE": "Recognizing violence is the first step. We can provide resources and support for you.",
-        "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
+<script>  
+  export default {
+    data() {
+      return {
+        isChatVisible: false,
+        optionMessages: [
+          "LEGAL COUNSELING",
+          "RECOGNISE THE VIOLENCE"
+        ],
+        currentMessage: '',
+        messages: [],
+        selectedOption: '',
+        isOptionSelected: false,
       };
-
-      const defaultResponse = "I'm not sure how to help with that. Please type 'HELP' for assistance.";
-
-      if(message !== "HELP" && responses[message.toUpperCase()]) {
+  
+    },
+    methods: {
+      toggleChat() {
+        if(this.isChatVisible === true){
+          this.messages = [];
+          //this.messageHistoryLegal = [];
+          //this.messageHistoryRecognize = [];
+        }
+        this.isChatVisible = !this.isChatVisible;
+        this.isOptionSelected = false;
+      },
+      sendMessage() {
+        if (this.currentMessage.trim() !== "") {
+          this.messages.push({content: this.currentMessage, isUser: true});
+          this.respondToUser(this.currentMessage);
+          this.currentMessage = '';
+        }
+      },
+      async respondToUser(message) {
+        let chatbotResponseText = '';
+        try {
+          if(this.selectedOption == "LEGAL COUNSELING") {
+            this.isOptionSelected = true;
+            const chatbotResponse = await fetch('/api/chatBotLegal/', {
+              method: 'POST',
+              body: message,          
+            }); 
+            chatbotResponseText = await chatbotResponse.text();
+            const response = {content: chatbotResponseText , isUser: false};
+            console.log(response);
+            this.messages.push(response);
+          }else if (this.selectedOption == "RECOGNISE THE VIOLENCE") {
+            this.isOptionSelected = true;
+            const chatbotResponse = await fetch('/api/chatBotRecognise/', {
+              method: 'POST',
+              body: message,          
+            }); 
+            chatbotResponseText = await chatbotResponse.text();
+            const response = {content: chatbotResponseText , isUser: false};
+            console.log(response);
+            this.messages.push(response);
+          }
+        } catch (error) {
+        console.error('Error fetching chatbot response:', error);
+        return 'Sorry, I am having trouble understanding your request.';
+        }
+      },
+      handleSelectedOption(index) {
+        const responses = {
+          "LEGAL COUNSELING": "I’m here to support you with legal assistance and provide the guidance you need. If you’re facing domestic abuse, understanding your legal rights and options is crucial. I can provide legal advice, and help you navigate the steps to ensure your safety and protect your rights.",
+          "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
+          "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
+        };
         this.isOptionSelected = true;
-        this.selectedOption = message.toUpperCase();
-        const response = {content: responses[message.toUpperCase()], isUser: false};
+        this.selectedOption = this.optionMessages[index];
         this.messages = [];
-        this.messages.push(response);
-      }else {
-        const response = {content: responses[message.toUpperCase()] || defaultResponse, isUser: false};
+        const response = {content: responses[this.selectedOption.toUpperCase()], isUser: false};
         this.messages.push(response);
       }
-     
-    },
-    handleSelectedOption(index) {
-      this.isOptionSelected = true;
-      this.selectedOption = this.optionMessages[index];
-      this.messages = [];
-      this.respondToUser(this.selectedOption);
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
