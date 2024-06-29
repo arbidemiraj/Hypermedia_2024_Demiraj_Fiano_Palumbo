@@ -39,7 +39,7 @@
         <h2>Our Main Services</h2>
         <div class="text-card-box">
           <div class="card-container" v-if="TopServices">
-              <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/services' + service.id" class="card">
+              <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/services/' + service.id" class="card">
                   <Icon class="card-icon" :name="service.image" color="#bb5f75" size="40" />
                   <h3 class="card-title">{{ service.name }}</h3>
                   <button class="btn">Learn more</button>
@@ -56,7 +56,7 @@
           </p>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/projects" class="bottom-link"> Go to all services
+            <NuxtLink to="/services/" class="bottom-link"> Go to all services
                 <Icon name="ep:arrow-right-bold" />
             </NuxtLink>
         </div>
