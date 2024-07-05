@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@nuxt/fonts": "^0.7.0",
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/axios": "^5.13.6",
@@ -19,6 +22,7 @@
     "express": "^4.19.2",
     "nodemailer": "^6.9.13",
     "nuxt": "^3.11.2",
+    "openai": "^4.51.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
     "vue3-carousel-nuxt": "^1.1.1"

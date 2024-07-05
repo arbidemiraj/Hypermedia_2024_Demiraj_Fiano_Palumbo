@@ -33,6 +33,12 @@
 </template>
 
 <script setup>
+
+useSeoMeta({
+    title: 'ByYourSide | Projects',
+    description: 'This is the projects page with a list of all the projects offered by the center, with summarized information.',
+});
+
 const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
 const screenWidth = ref(window.innerWidth);
 

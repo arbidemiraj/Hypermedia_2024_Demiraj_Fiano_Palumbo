@@ -15,8 +15,20 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      env: {
+        OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+      },
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
+    },
+  },
+  app: {
+    head: {
+        title: 'Violence Against Women',
+        meta: [{ name: 'description', content: 'ByYourSide is a website that supports women against violence and abuses' }],
+        htmlAttrs: {
+            lang: 'en',
+        },
     },
   },
 })

@@ -28,6 +28,12 @@
 </template>
 
 <script setup>
+
+useSeoMeta({
+    title: 'ByYourSide | Services',
+    description: 'This is the services page with a list of all the services offered by the center, with summarized information.',
+});
+
 const { data: Activity } = await useFetch('/api/activities/services');
 </script>
 

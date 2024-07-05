@@ -12,13 +12,12 @@
           </NuxtLink>
         </div>
         <div class="info">
-          <div v-if="personPending">
-                    <Loader />
-                </div>
           <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
-          <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
-          <p><strong>Email:</strong> {{ person.mail }}</p>
-          <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
+          <div class="person-details">
+            <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
+            <p><strong>Email:</strong> {{ person.mail }}</p>
+            <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
+          </div>
         </div>
         <div :class="{ 'cv': true, 'centered-cv': !hasActivities }">
           <p>{{ person.cv }}</p>
@@ -29,8 +28,8 @@
       <div v-if="hasProjects" class="managed-projects">
         <h2>MANAGED PROJECTS</h2>
         <div v-if="projectsPending">
-                    <Loader />
-                </div>
+          <Loader />
+        </div>
         <div class="projects">
           <div v-for="(project, index) in managedProjects" :key="index" class="project">
             <NuxtLink class="managed-link":to="'/projects/' + project.id">
@@ -44,8 +43,8 @@
       <div v-if="hasServices" class="managed-services">
         <h2>MANAGED SERVICES</h2>
         <div v-if="servicesPending">
-                    <Loader />
-                </div>
+          <Loader />
+        </div>
         <div class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
             <NuxtLink class="managed-link":to="'/services/' + service.id">
@@ -60,8 +59,14 @@
 </template>
 
 
+
 <script setup>
 import handleFetchError from '~/composables/errorHandler';
+
+useSeoMeta({
+    title: 'ByYourSide | Person',
+    description: 'This is the single person page with all relevant information about a team member, including its curriculum vitae and the activities they are responsible for.',
+});
 
   const { id } = useRoute().params; //person id
 
@@ -116,6 +121,23 @@ import handleFetchError from '~/composables/errorHandler';
 
 .profile-picture {
   align-self: center;
+  width: 250px; 
+  height: auto;
+}
+
+.person-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 30px;
 }
 
 .side-content {
@@ -173,23 +195,23 @@ import handleFetchError from '~/composables/errorHandler';
   margin: 0 10px;
   text-decoration: none;
   color: white;
-  background-color: #c96d81; /* Colore di sfondo simile a quello dell'immagine */
+  background-color: #c96d81; 
   border: none;
-  border-radius: 25px; /* Per rendere i bordi arrotondati */
+  border-radius: 25px; 
   font-weight: bold;
   font-size: 16px;
 }
 
 .nav-button:hover {
-  background-color: #b35c6e; /* Colore di sfondo al passaggio del mouse */
+  background-color: #b35c6e; 
 }
 
 .nav-button svg {
-  margin-right: 5px; /* Spazio tra l'icona e il testo */
+  margin-right: 5px; 
 }
 
 .nav-button strong {
-  margin-left: 5px; /* Spazio tra l'icona e il testo */
+  margin-left: 5px; 
 }
 
 .header {
@@ -204,12 +226,6 @@ import handleFetchError from '~/composables/errorHandler';
   text-decoration: none;
   color: #333;
   margin-bottom: 1rem;
-}
-
-.info {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 30px;
 }
 
 .container.centered {

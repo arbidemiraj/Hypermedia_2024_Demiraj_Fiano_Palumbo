@@ -1,6 +1,10 @@
 <template>
   <div class="title-background">
+<<<<<<< HEAD
       <h1 class="title">ABOUT US</h1>
+=======
+      <h1 class="title">ABOUT <br>US</br></h1>
+>>>>>>> origin/main
     </div>
     <div class="about-page">
       <section class="about-section">
@@ -54,6 +58,10 @@
   </template>
   
   <script setup>
+    useSeoMeta({
+      title: 'ByYourSide | About Us',
+      description: 'This is the about page with a brief history and mission of the company, including its main activities such as projects and services.',
+    });
   </script>
   
   <style scoped>
@@ -62,6 +70,9 @@
     padding: 10px;
     font-size: xx-large;
     flex: 1;
+    margin-left: -10px;
+    margin-top: -10px;
+    font-style: oblique;
   }
 
   .about-page {
@@ -84,6 +95,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
   }
   
   .mission-history {

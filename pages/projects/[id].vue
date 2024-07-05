@@ -1,6 +1,6 @@
 <template>
     <div class="project">
-        <NuxtLink to="/projects" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to projects</NuxtLink>
+        <NuxtLink to="/projects" class="back-link"><Icon name="eva:arrow-back-outline"/> Go to projects</NuxtLink>
         <div class="title">
             <div class="project-title-container">
                 <img :src="Activity.image" alt="Project image" class="project-logo"/>
@@ -22,6 +22,12 @@
 </template>
 
 <script setup>
+
+useSeoMeta({
+    title: 'ByYourSide | Project',
+    description: 'This is the single project page containing all the information about a specific project, including its detailed description and responsible.',
+});
+
 const { id } = useRoute().params;
 const { data: Activity, pending, error } = await useFetch(`/api/activities/projects/${id}`);
 const { data: Person} = await useFetch(`/api/team/${Activity.value.responsible}`);

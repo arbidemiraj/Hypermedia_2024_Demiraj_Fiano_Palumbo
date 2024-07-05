@@ -70,6 +70,10 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue';
+useSeoMeta({
+    title: 'ByYourSide | Contacts',
+    description: 'This is the contacts page with a form for asking for help, the option of sending an email or make a call.',
+});
 
 const email = ref('');
 const message = ref('');
