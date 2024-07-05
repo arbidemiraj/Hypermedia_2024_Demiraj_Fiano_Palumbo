@@ -56,6 +56,12 @@ useSeoMeta({
 
 .title {
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .title {
+    text-align: center;
+  }
 }
 </style>

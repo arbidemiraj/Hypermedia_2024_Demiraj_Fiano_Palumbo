@@ -10,7 +10,7 @@
       <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
       <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
     </div>
-    <button class="close-btn" @click="toggleChat"><b>x</b></button>
+    <button class="close-btn" @click="toggleChat"><Icon size="35" color="#d5697f" name="material-symbols:close"></Icon></button>
   </div>
   <div class="chat-content">
     <div class="messageBox">

@@ -1,11 +1,14 @@
 <template>
   <div class="title-background">
+<<<<<<< HEAD
+      <h1 class="title">ABOUT US</h1>
+=======
       <h1 class="title">ABOUT <br>US</br></h1>
+>>>>>>> origin/main
     </div>
     <div class="about-page">
       <section class="about-section">
         <div class="left-content">
-          <p class="subtitle">BY YOUR SIDE</p>
           <div class="mission-history">
             <div class="mission">
               <h2>MISSION</h2>
@@ -62,8 +65,7 @@
   </script>
   
   <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-  
+
   .subtitle{
     padding: 10px;
     font-size: xx-large;
@@ -72,10 +74,9 @@
     margin-top: -10px;
     font-style: oblique;
   }
+
   .about-page {
     padding: 20px;
-    flex: 1;
-    margin-left: 0px;
   }
   
   .about-section {
@@ -90,12 +91,7 @@
     margin: 30px;
   }
   
-  .left-content {
-    max-width: 50%;
-  }
-  
   .right-content {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,15 +101,19 @@
   .mission-history {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: -10px;
+    margin-top: 30px;
   }
 
   iframe {
-    width: 80%;
-    margin-top:110px;
-    border: none;
-    border-radius: 8px;
+    border: 0;
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+  }
+
+  .title {
+    font-size: 50px;
+    margin-left: 10px;
   }
 
   .title-background {
@@ -125,6 +125,33 @@
   color: white;
   width: 100%;
   box-shadow: 5px black;
+}
+
+.directions {
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .title-background{
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-page {
+    padding: 10px;
+  }
+
+  .left-content, .right-content {
+    width: 100%;
+    margin: 0;
+  }
 }
   </style>
   

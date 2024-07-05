@@ -87,19 +87,15 @@ main {
 }
 
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
-  background-size: cover;
-  background-position: center;
-  padding: 5px;
+  display: flex;
   text-align: left;
-  color: white;
-  width: 100%;
-  box-shadow: 5px black;
+  color: #bb5f75;
 }
 
 .title {
   font-size: 50px;
-  margin-left: 10px;
+  color: #bb5f75;
+  font-family: 'Poppins', sans-serif;
 }
 
 section {
@@ -226,9 +222,26 @@ h2 {
     margin: 20px;
 }
 
-.services {
-  position: absolute;
-  right: 330px;
-  top: 680px;
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px;
+  }
+
+  .text-card-box {
+    flex-direction: column;
+  }
+
+  .description-text {
+    margin-right: 0;
+  }
+
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 80%;
+    height: auto;
+  }
 }
 </style>
