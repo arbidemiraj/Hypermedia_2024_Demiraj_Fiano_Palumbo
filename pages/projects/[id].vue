@@ -8,8 +8,7 @@
                 <h2 class="project-title">{{ Activity.name }}</h2>
                 
                 <div class="managed-by">
-                <p> managed by <NuxtLink :to="'/team/'+Person.id" class="person-link"><b>{{ Person.name }} {{ Person.surname }}</b></NuxtLink></p>
-                <img :src="Person.photo" alt="Person image" class="person-logo"/>
+                <p> managed by <NuxtLink :to="'/team/'+Person.id" class="person-link"><b>{{ Person.name }} {{ Person.surname }}</b>&nbsp;&nbsp;<img :src="Person.photo" alt="Person image" class="person-logo"/></NuxtLink></p>
                 </div>
                 </div>
             </div>
@@ -103,5 +102,30 @@ const sections = computed(() => {
 
 .person-link:hover{
     opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .project {
+        padding-inline: 20px;
+    }
+    .project-logo {
+        width: 100px;
+        height: 100px;
+    }
+    .project-title {
+        font-size: 30px;
+    }
+    .managed-by {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+    }
+    .person-logo {
+        width: 40px;
+        height: 40px;
+    }
+    .team {
+        margin-top: 20px;
+    }
 }
 </style>

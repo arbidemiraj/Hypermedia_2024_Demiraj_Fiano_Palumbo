@@ -127,4 +127,32 @@ const sections = computed(() => {
     flex-direction: row;   
     gap: 10px;
 }
+
+@media (max-width: 768px) {
+    .service {
+        padding-inline: 20px;
+    }
+
+    .managed-by {
+        font-size: 14px;
+    }
+
+    .service-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .person-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-title {
+        font-size: 30px;
+    }
+
+    .team {
+        margin-top: 20px;
+    }
+}
 </style>

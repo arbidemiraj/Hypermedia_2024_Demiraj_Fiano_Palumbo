@@ -39,7 +39,7 @@
         <h2>Our Main Services</h2>
         <div class="text-card-box">
           <div class="card-container" v-if="TopServices">
-              <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/services' + service.id" class="card">
+              <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/services/' + service.id" class="card">
                   <Icon class="card-icon" :name="service.image" color="#bb5f75" size="40" />
                   <h3 class="card-title">{{ service.name }}</h3>
                   <button class="btn">Learn more</button>
@@ -89,19 +89,15 @@ main {
 }
 
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
-  background-size: cover;
-  background-position: center;
-  padding: 5px;
+  display: flex;
   text-align: left;
-  color: white;
-  width: 100%;
-  box-shadow: 5px black;
+  color: #bb5f75;
 }
 
 .title {
   font-size: 50px;
-  margin-left: 10px;
+  color: #bb5f75;
+  font-family: 'Poppins', sans-serif;
 }
 
 section {
@@ -225,5 +221,28 @@ h2 {
 .bottom-link-container {
     text-align: end;
     margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px;
+  }
+
+  .text-card-box {
+    flex-direction: column;
+  }
+
+  .description-text {
+    margin-right: 0;
+  }
+
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 80%;
+    height: auto;
+  }
 }
 </style>

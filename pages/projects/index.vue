@@ -13,7 +13,7 @@
                 Proin pharetra tincidunt neque eu imperdiet. Interdum et malesuada fames ac ante ipsum primis in.</p>
         </div>
         <div class="carousel-container">
-            <Carousel :items-to-show="3" :wrapAround="true" :transition="500">
+            <Carousel :items-to-show="itemsToShow" :wrapAround="true" :transition="500">
                 <Slide v-for="(project, index) in Activity" :key="project.id">
                     <Project :title="project.name" :description="project.description" :image="project.image"
                         :id="project.id" />
@@ -34,6 +34,29 @@
 
 <script setup>
 const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
+const screenWidth = ref(window.innerWidth);
+
+const updateScreenWidth = () => {
+  screenWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', updateScreenWidth);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth);
+});
+
+const itemsToShow = computed(() => {
+  if (screenWidth.value >= 1200) {
+    return 3;
+  } else if (screenWidth.value >= 800) {
+    return 2;
+  } else {
+    return 1;
+  }
+});
 </script>
 
 <style scoped>

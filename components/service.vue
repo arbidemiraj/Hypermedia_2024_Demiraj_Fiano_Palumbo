@@ -114,4 +114,10 @@
 /*.btn:hover {
     background-color: #be7687;
 }*/
+
+@media (max-width: 768px) {
+    .card {
+        max-width: calc(100% - 20px);
+    }
+}
 </style>
