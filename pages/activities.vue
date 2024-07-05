@@ -1,9 +1,4 @@
 <template>
-
-  <Head>
-    <Title>Activities</Title>
-  </Head>
-
   <main>
     <div class="title-background">
       <h1 class="title">Activities</h1>
@@ -12,14 +7,12 @@
       <section>
         <h2>Our Main Projects</h2>
         <div class="text-card-box">
-          <p class="description-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
+          <p class="description-text">Our social center is dedicated to empowering and supporting women who have faced all forms of violence. 
+            Inspired by the resilience and strength of survivors, our mission is to create a safe haven where women can heal, rebuild, and thrive. 
+            Our projects were born out of a profound commitment to address the root causes of violence and to foster a community of solidarity 
+            and support. Through various initiatives, we aim to provide educational opportunities, skill-building workshops, and advocacy 
+            programs that empower women to reclaim their lives and voices. Our ultimate goal is to transform pain into power and to cultivate 
+            a society where every woman can live free from fear and violence.
           </p>
           <div class="card-container" v-if="TopProjects">
             <NuxtLink class="card" v-for="project in TopProjects" :key="project.id" :to="'/projects/'+project.id">
@@ -36,7 +29,7 @@
         </div>
       </section>
       <section>
-        <h2>Our Main Services</h2>
+        <h2 class="services">Our Main Services</h2>
         <div class="text-card-box">
           <div class="card-container" v-if="TopServices">
               <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/services/' + service.id" class="card">
@@ -45,14 +38,13 @@
                   <button class="btn">Learn more</button>
               </NuxtLink>
           </div>
-          <p class="description-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
+          <p class="description-text"><br></br>
+            At our social center, we offer a comprehensive range of services designed to support and uplift women 
+            who have experienced violence. Driven by a deep understanding of the unique challenges faced by survivors, our services include 
+            personalized counseling, legal assistance, and emergency shelter. We also provide health and wellness programs, job placement support,
+             and childcare services to ensure holistic care for every woman and her family. These services were established to create a network 
+             of care that addresses immediate needs and fosters long-term stability and independence. Our commitment is to walk alongside 
+             each woman on her journey to recovery, providing the resources and support necessary for her to rebuild her life with dignity and hope.
           </p>
         </div>
         <div class="bottom-link-container">
@@ -66,6 +58,12 @@
 </template>
 
 <script setup>
+
+useSeoMeta({
+    title: 'ByYourSide | Activities',
+    description: 'This is the activities page with a list of the activities the company has worked on, classifying them into projects or services.',
+});
+
 const { data: TopProjects } = await useAsyncData('topProjects', () =>
   $fetch('/api/activities/projects/topProjects')
 );
@@ -182,6 +180,7 @@ h2 {
   text-decoration: none;
 }
 
+
 .btn {
   background-color: #bb5f75;
   color: white;
@@ -225,5 +224,11 @@ h2 {
 .bottom-link-container {
     text-align: end;
     margin: 20px;
+}
+
+.services {
+  position: absolute;
+  right: 330px;
+  top: 680px;
 }
 </style>

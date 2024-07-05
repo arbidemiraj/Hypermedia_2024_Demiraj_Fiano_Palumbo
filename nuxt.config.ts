@@ -22,4 +22,13 @@ export default defineNuxtConfig({
       SUPABASE_KEY: process.env.SUPABASE_KEY,
     },
   },
+  app: {
+    head: {
+        title: 'Violence Against Women',
+        meta: [{ name: 'description', content: 'ByYourSide is a website that supports women against violence and abuses' }],
+        htmlAttrs: {
+            lang: 'en',
+        },
+    },
+  },
 })

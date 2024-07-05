@@ -14,6 +14,11 @@
 </template>
 
 <script setup>
+useSeoMeta({
+    title: 'ByYourSide | Team',
+    description: 'This is the team page with a list of the members working in the center.',
+});
+
   const { data: Person, pending, error } = await useFetch('/api/team');
 </script>
 

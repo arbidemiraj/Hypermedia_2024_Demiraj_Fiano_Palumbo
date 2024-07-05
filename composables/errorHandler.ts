@@ -2,10 +2,10 @@
 export default function handleFetchError(data: Ref<any>, errorCode: number) {
     let errorMessage = '';
     if (!data.value) {
-        errorMessage = 'This page does not exist';
+        errorMessage = 'Oops! The page you were looking for seems inexistent...';
         throw createError({ statusCode: 404, message: errorMessage });
     } else {
-        errorMessage = 'Error while fetching data from the database ';
+        errorMessage = 'There was an error catching a value from the database... Try again later!';
         throw createError({ statusCode: errorCode, message: errorMessage });
     }
     
