@@ -11,11 +11,6 @@
         type: String,
         required: true
       }
-    },
-    methods: {
-      handleClick() {
-          this.$router.push('/contact');
-      }
     }
   }
   </script>

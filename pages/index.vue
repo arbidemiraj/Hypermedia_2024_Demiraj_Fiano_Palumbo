@@ -16,25 +16,25 @@
     <img class="no-violence-img" src="/assets/images/home_stopviolence.png" alt="stop-violence" />
   </div>
   <div id="get-help" class="assistance-container">
-    <b class="main-text-black">Immediate Help Options for Women in Need</b>
+    <b class="main-text-white">Immediate Help Options for Women in Need</b>
     <p style="padding: 50px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet rhoncus
       tortor, eget venenatis quam. Donec enim turpis, feugiat sit amet quam a, dapibus facilisis nunc. Fusce sodales
       tempor venenatis.</p>
     <div class="contact-option-container">
       <div class="contact-option">
-        <Icon name="material-symbols:call" color="#bb5f75" size="100" />
+        <Icon name="material-symbols:call" color="#fff" size="100" />
         <b class="contact-title">Hotline Support</b>
       </div>
       <div class="contact-option">
-        <Icon name="fluent:chat-20-filled" color="#bb5f75" size="100" />
+        <Icon name="fluent:chat-20-filled" color="#fff" size="100" />
         <b class="contact-title">ChatBot support</b>
       </div>
       <div class="contact-option">
-        <Icon name="streamline:sos-help-emergency-sign-solid" color="#bb5f75" size="100" />
+        <Icon name="streamline:sos-help-emergency-sign-solid" color="#fff" size="100" />
         <b class="contact-title">Emergency services</b>
       </div>
       <div class="contact-option">
-        <Icon name="fluent:mail-20-filled" color="#bb5f75" size="100" />
+        <Icon name="fluent:mail-20-filled" color="#fff" size="100" />
         <b class="contact-title">Contact us</b>
       </div>
     </div>
@@ -52,24 +52,16 @@
     <img class="for-women-img" src="/assets/images/forwomen.png" alt="stop-violence" />
   </div>
   <div class="faq-container">
-    <b class="main-text-black">Frequently Asked Questions</b>
-    <FaqItem v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer" />
+    <b class="faq-title">Frequently Asked Questions</b>
+    <div class="faq-item-container">
+      <FaqItem v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer" />
+    </div>
   </div>
+  <ScrollToTop />
 </template>
 
-<script>
-export default {
-  methods: {
-    scrollTo(hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  },
-  data() {
-    return {
-      faqs: [
+<script setup>
+const faqs =  [
         {
           question: 'What should I do if I am in immediate danger?',
           answer: 'If you are in immediate danger, call emergency services (911 in the US) immediately. Try to get to a safe location if possible, such as a friend\'s house, a public place, or a domestic violence shelter.'
@@ -110,10 +102,14 @@ export default {
           question: 'How can I rebuild my life after leaving an abusive relationship?',
           answer: 'Rebuilding your life involves seeking emotional support, possibly finding new housing, securing financial stability, and taking legal action if necessary. Reach out to support groups, therapy, job training programs, and legal aid to assist in this process.'
         }
-      ]
-    };
-  }
-}
+      ];
+
+    const scrollTo = (hash) => {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 </script>
 
 <style scoped>
@@ -122,22 +118,25 @@ html {
   /* Fallback for browsers that support it */
 }
 
-template {
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
-}
-
 .women-title {
   color: #bb5f75;
-  font-size: 64px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 68px;
   font-weight: 900;
 }
 
 .faq-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+}
+
+.faq-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
   padding: 50px;
+  margin: 0 auto;
 }
 
 .activities-content {
@@ -178,6 +177,7 @@ template {
   font-size: 20px;
   cursor: pointer;
   margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .activities-container {
@@ -198,7 +198,7 @@ template {
 .contact-title {
   font-size: 24px;
   font-weight: 900;
-  color: black;
+  color: white;
 }
 
 .contact-option {
@@ -213,11 +213,14 @@ template {
 }
 
 .assistance-container {
+  background-color: #bb5f75;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   justify-content: center;
+  padding: 100px 0px;
 }
 
 .main-text-black {
@@ -227,9 +230,23 @@ template {
   color: black;
 }
 
+.faq-title {
+  margin-top: 80px;
+  font-size: 42px;
+  font-weight: 900;
+  color: #000;
+  align-self: center;
+}
+
+.main-text-white {
+  margin-top: 80px;
+  font-size: 42px;
+  font-weight: 900;
+  color: white;
+}
+
 .container {
   background-image: url('assets/images/home_main_image_cut.jpg');
-  opacity: 0.9;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -258,9 +275,10 @@ template {
 .main-text {
   margin-top: 80px;
   padding: 100px;
-  width: 600px;
+  width: 800px;
   font-size: 60px;
   font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
   color: white;
 }
 
@@ -268,11 +286,14 @@ template {
   .container {
     display: flex;
     justify-content: center;
-    opacity: 0.95;
     padding: 50px 20px;
     background-size: cover;
     background-image: url('assets/images/home_mobile_img.jpg');
     height: 600px;
+  }
+
+  .header {
+    height: 100%;
   }
 
   .women-title {
@@ -294,19 +315,23 @@ template {
     font-weight: 400;
     padding: 10px 20px;
     font-size: 20px;
-    margin-top: 50px;
+    margin-top: 100px;
   }
 
   .main-text {
-    opacity: 1;
-    font-size: 32px;
+    font-size: 38px;
+    width: auto;
     padding: 0px;
     margin: 0px;
   }
 
+  .women-title {
+    color: #de768e;
+    font-size: 40px;
+  }
+
   p {
     font-size: 16px;
-
   }
 
   .content-container {
@@ -314,7 +339,7 @@ template {
   }
 
   .no-violence-img {
-    height: 300px;
+    height: 180px;
   }
 
   .mission-container {
@@ -325,8 +350,21 @@ template {
     font-size: 32px;
   }
 
+  .main-text-white {
+    font-size: 32px;
+  }
+
+  .faq-title {
+    font-size: 32px;
+  }
+
   .activities-container {
     flex-direction: column;
+  }
+
+  .button-activities {
+    width: 250px;
+    font-size: 16px;
   }
 
   .contact-option-container {
@@ -341,8 +379,12 @@ template {
   }
 
   .for-women-img {
-    height: 400px;
-    margin: 50px 0px;
+    height: 280px;
+    margin: 60px 0px;
+  }
+
+  .faq-container {
+    text-align: center;
   }
 }
 </style>

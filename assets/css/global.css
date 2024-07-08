@@ -4,6 +4,10 @@ html, body {
     font-family: Poppins;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 h1 {
     font-size: 50px;
     font-weight: 800;

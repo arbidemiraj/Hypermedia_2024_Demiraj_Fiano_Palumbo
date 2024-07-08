@@ -4,13 +4,17 @@
       <img class="chatbot-img" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
     </div>
   </NuxtLink>
-<div class="chat-box" v-if="isChatVisible">
+  <transition name="fade">
+<div v-if="isChatVisible" class="chat-box">
   <div class="chat-header">
     <div class="chatbot-name">
       <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
       <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
     </div>
-    <button class="close-btn" @click="toggleChat"><Icon size="35" color="#d5697f" name="material-symbols:close"></Icon></button>
+    <div class="icons-container">
+      <button class="close-btn" @click="toggleChat"><Icon size="23" color="#d5697f" name="fluent:minimize-12-filled"></Icon></button>
+      <button class="close-btn" @click="closeChat"><Icon size="23" color="#d5697f" name="ep:close-bold"></Icon></button>
+    </div>
   </div>
   <div class="chat-content">
     <div class="messageBox">
@@ -34,6 +38,7 @@
     </button>
   </div>
 </div>
+</transition>
 </template>
 
 <script>  
@@ -54,12 +59,12 @@
     },
     methods: {
       toggleChat() {
-        if(this.isChatVisible === true){
-          this.messages = [];
-          //this.messageHistoryLegal = [];
-          //this.messageHistoryRecognize = [];
-        }
         this.isChatVisible = !this.isChatVisible;
+      },
+      closeChat() {
+        this.messages = [];
+        this.isChatVisible = !this.isChatVisible;
+        this.selectedOption = '';
         this.isOptionSelected = false;
       },
       sendMessage() {
@@ -121,6 +126,15 @@
   gap: 8px;
 }
 
+.fade-enter-active, .fade-leave-active {
+  opacity: 1;
+  transform: translateY(50px);
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
 .chatbot-icon {
   position: fixed;
   bottom: 20px;
@@ -150,10 +164,9 @@
 .chat-box {
   position: fixed;
   width: 360px;
-  height: 510px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   z-index: 1000;
   text-align: center;
   background-color: white;
@@ -164,6 +177,7 @@
   right: 150px;
   bottom: 50px;
 }
+
 .chat-header {
   display: flex;
   justify-content: space-between;
@@ -296,5 +310,41 @@ h1 {
 
 .askButton:hover {
   background-color:  #bb5f75;
+}
+
+@media (max-width: 768px) {
+  .chat-box {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    box-sizing: border-box;
+  }
+
+  .fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .fade-leave-active {
+    transition: all 0.3s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+
+  .messageBox {
+    height: 100%;
+    background-color: white;
+  }
+
+  .inputContainer {
+    position: fixed;
+    padding: 8px 16px;
+    bottom: 20px;
+  }
 }
 </style>
