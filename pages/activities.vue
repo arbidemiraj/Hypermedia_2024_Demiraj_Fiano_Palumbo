@@ -86,6 +86,9 @@ main {
   background-color: #f5f5f5;
 }
 
+.services {
+  margin-left: 800px;
+}
 .title-background {
   display: flex;
   text-align: left;
@@ -134,14 +137,16 @@ h2 {
   text-decoration: none;
   color: black;
   background-color: white;
-  width: 200px;
+  width: 250px;
   height: 300px;
+  margin-top: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   gap: 10px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -152,7 +157,7 @@ h2 {
 
 .card-image {
   width: 150px;
-  height: 150px;
+  height: 200px;
   border-radius: 50px;
 }
 
@@ -176,13 +181,12 @@ h2 {
   text-decoration: none;
 }
 
-
 .btn {
   background-color: #bb5f75;
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 10px;
+  bottom: 10px;
   border-radius: 20px;
   font-size: 0.9rem;
 }
@@ -225,6 +229,10 @@ h2 {
 @media (max-width: 768px) {
   .container {
     padding: 10px 20px;
+  }
+
+  .services {
+    margin: 0;
   }
 
   .text-card-box {

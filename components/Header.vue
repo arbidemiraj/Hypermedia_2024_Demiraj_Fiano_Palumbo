@@ -1,62 +1,70 @@
 <template>
-    <header class="site-header">
-      <nav>
-        <NuxtLink to="/" @click="closeMenu">
-          <img class="logo-image" src="/assets/images/logo.png" width="220" alt="Site Logo" />
-        </NuxtLink>
-        <ul class="standard-nav">
-          <li>
-            <NuxtLink to="/aboutUs" exact-active-class="active"><b>ABOUT US</b></NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/activities" exact-active-class="active"><b>ACTIVITIES</b></NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/team" exact-active-class="active"><b>TEAM</b></NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/contactUs" exact-active-class="active">
-              <CustomButton text="GET HELP" />
-            </NuxtLink>
-          </li>
-        </ul>
-        <button class="mobile-menu-btn" @click="toggleMenu">
-          <Icon :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'" size="30px" color="white" />
-        </button>
-      </nav>
-      <div v-if="isMenuOpen" class="lateral-menu">
+  <header class="site-header">
+    <nav>
+      <NuxtLink to="/" @click="closeMenu">
+        <img class="logo-image" src="/assets/images/logo.png" width="220" alt="Site Logo" />
+      </NuxtLink>
+      <ul class="standard-nav">
+        <li>
+          <NuxtLink to="/aboutUs" exact-active-class="active"><b>ABOUT US</b></NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/activities" exact-active-class="active"><b>ACTIVITIES</b></NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/team" exact-active-class="active"><b>TEAM</b></NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/contactUs" exact-active-class="active">
+            <CustomButton text="GET HELP" />
+          </NuxtLink>
+        </li>
+      </ul>
+      <transition name="btn-fade">
+      <button class="mobile-menu-btn" @click="toggleMenu">
+        <Icon :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'" size="30px" color="white" />
+      </button>
+      </transition>
+    </nav>
+    <transition name="slide-fade">
+      <div v-if="isMenuOpen" class="mobile-menu">
         <ul class="mobile-links">
           <li>
-            <NuxtLink @click="toggleMenu" class="mobile-link" to="/aboutUs" exact-active-class="active"><b>ABOUT US</b></NuxtLink>
+            <NuxtLink @click="toggleMenu" class="mobile-link" to="/aboutUs" exact-active-class="active"><b>ABOUT US</b>
+            </NuxtLink>
           </li>
           <li>
-            <NuxtLink @click="toggleMenu" class="mobile-link" to="/activities" exact-active-class="active"><b>ACTIVITIES</b></NuxtLink>
+            <NuxtLink @click="toggleMenu" class="mobile-link" to="/activities" exact-active-class="active">
+              <b>ACTIVITIES</b></NuxtLink>
           </li>
           <li>
-            <NuxtLink @click="toggleMenu" class="mobile-link" to="/team" exact-active-class="active"><b>TEAM</b></NuxtLink>
+            <NuxtLink @click="toggleMenu" class="mobile-link" to="/team" exact-active-class="active"><b>TEAM</b>
+            </NuxtLink>
           </li>
           <li>
-            <NuxtLink @click="toggleMenu" class="mobile-link" to="/contactUs" exact-active-class="active"><b>GET HELP</b></NuxtLink>
+            <NuxtLink @click="toggleMenu" class="mobile-link" to="/contactUs" exact-active-class="active"><b>GET
+                HELP</b></NuxtLink>
           </li>
         </ul>
       </div>
-    </header>
-  </template>
-  
+    </transition>
+  </header>
+</template>
+
 
 <script setup>
-  let isMenuOpen = ref(false);
-  
-  const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value;
-    document.querySelector('body')?.classList.toggle('disable-scrolling');
-  };
+let isMenuOpen = ref(false);
 
-  const closeMenu = () => {
-    isMenuOpen.value = false;
-    document.querySelector('body')?.classList.remove('disable-scrolling');
-  };
-  
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  document.querySelector('body')?.classList.toggle('disable-scrolling');
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+  document.querySelector('body')?.classList.remove('disable-scrolling');
+};
+
 </script>
 
 <style scoped>
@@ -111,22 +119,39 @@ nav ul li a.active {
 
 .disable-scrolling {
   overflow: hidden;
-  height: 100vh; /* Prevents scrolling */
+  height: 100vh;
+  /* Prevents scrolling */
 }
 
-.lateral-menu {
+.mobile-menu {
   display: none;
 }
 
 @media (max-width: 800px) {
+
   .standard-nav {
     display: none;
+  }
+
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.3s ease-in;
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(200px);
+    opacity: 0;
   }
 
   .site-header {
     background: linear-gradient(90deg, #b35c6e 78%, #b35c6e 100%);
     color: white;
     padding: 0.5rem 1rem;
+    height: 100%;
   }
 
   .logo-image {
@@ -141,18 +166,19 @@ nav ul li a.active {
     cursor: pointer;
     color: white;
     z-index: 1000;
+    transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   }
 
   .mobile-menu-btn:hover {
     opacity: 0.5;
   }
 
-  .lateral-menu {
+  .mobile-menu {
     top: 0;
     bottom: 0;
     right: 0;
-    height: auto;
-    background: linear-gradient(90deg, #de90a1c4 78%,#d5697f 100%,#d58696 100% #d58696 100%);
+    height: 2000px;
+    background: linear-gradient(90deg, #de90a1c4 78%, #d5697f 100%, #d58696 100% #d58696 100%);
     width: auto;
     color: white;
     display: flex;
@@ -184,4 +210,3 @@ nav ul li a.active {
   }
 }
 </style>
-
