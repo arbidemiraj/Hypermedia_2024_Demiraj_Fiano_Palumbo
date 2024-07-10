@@ -15,7 +15,6 @@
             a society where every woman can live free from fear and violence.
           </p>
           <div class="card-container" v-if="TopProjects">
-            <NuxtLink class="card" v-for="project in TopProjects" :key="project.id" :to="'/activities/projects/'+project.id">
             <div v-if="projectsPending">
               <Loader />
             </div>
