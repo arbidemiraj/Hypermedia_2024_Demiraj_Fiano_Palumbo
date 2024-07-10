@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="title-background">
-            <h1 class="title">Projects</h1>
+            <h1 class="title">PROJECTS</h1>
         </div>
         <div class="text-container">
             <h2>Our philosophy</h2>
@@ -13,6 +13,9 @@
                 Proin pharetra tincidunt neque eu imperdiet. Interdum et malesuada fames ac ante ipsum primis in.</p>
         </div>
         <div class="carousel-container">
+            <div v-if="projectsPending">
+                <Loader />
+            </div>
             <Carousel :items-to-show="itemsToShow" :wrapAround="true" :transition="500">
                 <Slide v-for="(project, index) in Activity" :key="project.id">
                     <Project :title="project.name" :description="project.description" :image="project.image"
@@ -39,7 +42,7 @@ useSeoMeta({
     description: 'This is the projects page with a list of all the projects offered by the center, with summarized information.',
 });
 
-const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
+const { data: Activity, pending: projectsPending, error } = await useFetch('/api/activities/projects');
 const screenWidth = ref(window.innerWidth);
 
 const updateScreenWidth = () => {
@@ -80,20 +83,23 @@ main {
     padding: 20px;
 }
 
-.title-background {
-    background-image: url('assets/images/imageWomenScritta.png');
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    text-align: left;
-    color: white;
-    width: 100%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.title {
+  font-size: 50px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
-.title {
-    font-size: 50px;
-    margin-left: 10px;
+.title-background {
+  background-image: url("assets/images/imageWomenScritta.png");
+  background-size: cover;
+  background-position: center;
+  padding: 5px;
+  text-align: left;
+  color: white;
+  width: 100%;
+  box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
 
 .carousel-container {

@@ -34,18 +34,24 @@ useSeoMeta({
   padding: 0 2rem;
 }
 
+.title {
+  font-size: 50px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
 .title-background {
-  background-image: url('assets/images/image.png');
+  background-image: url("assets/images/image.png");
   background-size: cover;
   background-position: center;
   padding: 5px;
   text-align: left;
   color: white;
-  box-sizing: border-box;
   width: 100%;
   box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
-
 .team__members {
   display: flex;
   flex-wrap: wrap;

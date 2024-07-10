@@ -4,11 +4,17 @@
             <Icon name="eva:arrow-back-outline" /> Go to projects
         </NuxtLink>
         <div class="title">
+            <div v-if="projectsPending">
+                 <Loader />
+            </div>
                 <img :src="Activity.image" alt="Project image" class="project-logo" />
                 <div class="team">
                     <h2 class="project-title">{{ Activity.name }}</h2>
 
                     <div class="managed-by">
+                        <div v-if="personPending">
+                            <Loader />
+                        </div>
                         <p> managed by <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
                                     Person.surname }}</b>&nbsp;&nbsp;
                                 <img :src="Person.photo" alt="Person image" class="person-logo" />
@@ -34,8 +40,8 @@ useSeoMeta({
 });
 
 const { id } = useRoute().params;
-const { data: Activity, pending, error } = await useFetch(`/api/activities/projects/${id}`);
-const { data: Person } = await useFetch(`/api/team/${Activity.value.responsible}`);
+const { data: Activity, pending: projectsPending, error: error1 } = await useFetch(`/api/activities/projects/${id}`);
+const { data: Person, personPending, error: error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Project details"]
 

@@ -16,6 +16,9 @@
         </div>
 
         <div class="container">
+            <div v-if="servicesPending">
+                <Loader />
+            </div>
             <Service v-for="(service, index) in Activity" :key="index" :title="service.name" :image="service.image"
                 :description="service.description" :id="service.id" />
         </div>
@@ -34,7 +37,7 @@ useSeoMeta({
     description: 'This is the services page with a list of all the services offered by the center, with summarized information.',
 });
 
-const { data: Activity } = await useFetch('/api/activities/services');
+const { data: Activity, pending: servicesPending, error } = await useFetch('/api/activities/services');
 </script>
 
 <style scoped>
@@ -54,21 +57,25 @@ main {
     padding: 20px;
 }
 
-.title-background {
-    background-image: url('assets/images/imageWomenScritta.png');
-    background-size: cover;
-    background-position: center;
-    padding: 5px;
-    text-align: left;
-    color: white;
-    width: 100%;
-    box-shadow: 5px black;
+.title {
+  font-size: 50px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
-.title {
-    font-size: 50px;
-    margin-left: 10px;
+.title-background {
+  background-image: url("assets/images/imageWomenScritta.png");
+  background-size: cover;
+  background-position: center;
+  padding: 5px;
+  text-align: left;
+  color: white;
+  width: 100%;
+  box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
+
 
 .container {
     display: flex;

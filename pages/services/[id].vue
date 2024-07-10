@@ -6,9 +6,15 @@
         <div class="title">
             <Icon class="service-logo" :name='Activity.image' alt="Service image" />
             <div class="team">
+                <div v-if="servicesPending">
+                    <Loader />
+                </div>
                 <h2 class="project-title">{{ Activity.name }}</h2>
 
                 <div class="managed-by">
+                    <div v-if="personPending">
+                        <Loader />
+                    </div>
                     <p> managed by 
                         <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
                                 Person.surname }}</b>&nbsp;&nbsp;<img :src="Person.photo" alt="Person image" class="person-logo" /></NuxtLink>
@@ -41,9 +47,9 @@ useSeoMeta({
 });
 
 const { id } = useRoute().params;
-const { data: Activity, pending, error } = await useFetch(`/api/activities/services/${id}`);
+const { data: Activity, pending: servicesPending, error1 } = await useFetch(`/api/activities/services/${id}`);
 
-const { data: Person } = await useFetch(`/api/team/${Activity.value.responsible}`);
+const { data: Person, pending: personPending, error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Service details", 'Benefits', 'How it works'];
 

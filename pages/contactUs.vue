@@ -136,17 +136,25 @@ function resetForm() {
 
 
 <style scoped>
-  .title-background {
-    background-image: url('/assets/images/help.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 5px;
-    text-align: left;
-    color: white;
-    box-sizing: border-box;
-    width: 100%;
-    box-shadow: 5px black;
-  }
+  .title {
+  font-size: 50px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+.title-background {
+  background-image: url("assets/images/helping-hand.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.90;
+  padding: 5px;
+  text-align: left;
+  color: white;
+  width: 100%;
+  box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
+}
 
   .contact-page {
     font-family: Arial, sans-serif;
