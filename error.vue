@@ -6,7 +6,7 @@
       <hr class="separator" />
       <div class="error-content">
         <div class="error-text">
-          <h1>Oops! The page you were looking for seems inexistent...<br>Try with a different one!<p class="sad-face">:(</p></br></h1>
+          <h1>Oops! The page you were looking for seems inexistent :(<br>Try with a different one</br></h1>
           
         </div>
         <div class="error-icon">
@@ -15,7 +15,10 @@
       </div>
     </div>
     <div class="error-bottom">
-      <button @click="goBack" class="back-button"><strong> GO BACK</strong></button>
+      <button @click="goBack" class="back-button"><strong> PREVIOUS PAGE </strong></button>
+      <NuxtLink to="/">
+        <button class="home-button"><strong> HOME PAGE </strong></button>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -27,6 +30,9 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    goHome() {
+      this.$router.go('./src/pages/index.vue');
     }
   }
 }
@@ -92,7 +98,7 @@ export default {
 }
 
 .error-text h1 {
-  font-size: 38px;
+  font-size: 30px;
   line-height: 1.4;
   margin: 0;
 }
@@ -125,12 +131,27 @@ export default {
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 50px;
 }
 
 .back-button:hover {
   background-color: #f0e1e8;
 }
+
+.home-button {
+  background-color: white;
+  color: #b35c6e;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+
+.home-button:hover {
+  background-color: #f0e1e8;
+}
+
 
 .sad-face {
   font-size: 32px;

@@ -12,6 +12,9 @@
           </NuxtLink>
         </div>
         <div class="info">
+          <div v-if="personPending">
+            <Loader />
+          </div>
           <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
           <div class="person-details">
             <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
