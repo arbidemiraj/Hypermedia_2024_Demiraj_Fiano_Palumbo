@@ -1,6 +1,6 @@
 <template>
     <div class="project">
-        <NuxtLink to="/projects" class="back-link">
+        <NuxtLink to="/activities/projects" class="back-link">
             <Icon name="eva:arrow-back-outline" /> Go to projects
         </NuxtLink>
         <div class="title">
@@ -9,11 +9,11 @@
                     <h2 class="project-title">{{ Activity.name }}</h2>
 
                     <div class="managed-by">
-                        <p> managed by <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
+                        <p> managed by</p>
+                        <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
                                     Person.surname }}</b>&nbsp;&nbsp;
                                 <img :src="Person.photo" alt="Person image" class="person-logo" />
-                            </NuxtLink>
-                        </p>
+                        </NuxtLink>
                     </div>
             </div>
 
@@ -97,19 +97,18 @@ const sections = computed(() => {
 
 .managed-by {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.managed-by-p {
-    display: flex;
-    align-items: center;
-    justify-self: center;
+    align-items: center; /* Ensure vertical alignment is centered */
+    gap: 10px; /* Maintain spacing between elements */
+    margin-top: 10px; /* Add some space above the managed-by section */
 }
 
 .person-link {
     text-decoration: none;
     color: #bb5f75;
+    display: flex;
+    align-items: center; /* This ensures that the text inside .person-link is also centered */
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
 }
 
 .person-link:hover {
@@ -131,9 +130,13 @@ const sections = computed(() => {
     }
 
     .managed-by {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start on smaller screens */
+    }
+
+    .person-link {
         display: flex;
-        flex-direction: row;
-        font-size: 14px;
+        align-items: center; /* Ensure the text and image are aligned */
     }
 
     .person-logo {

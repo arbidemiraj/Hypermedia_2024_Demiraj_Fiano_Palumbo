@@ -1,6 +1,6 @@
 <template>
     <div class="service">
-        <NuxtLink to="/services" class="back-link">
+        <NuxtLink to="/activities/services" class="back-link">
             <Icon name="eva:arrow-back-outline" /> Back to services
         </NuxtLink>
         <div class="title">

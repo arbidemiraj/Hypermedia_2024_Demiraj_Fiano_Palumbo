@@ -120,9 +120,9 @@ html {
 
 .women-title {
   color: #bb5f75;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Bebas Neu', sans-serif;
   font-size: 68px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .faq-container {
@@ -177,7 +177,6 @@ html {
   font-size: 20px;
   cursor: pointer;
   margin-top: 20px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .activities-container {
@@ -278,7 +277,7 @@ html {
   width: 800px;
   font-size: 60px;
   font-weight: 900;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display' sans-serif;
   color: white;
 }
 

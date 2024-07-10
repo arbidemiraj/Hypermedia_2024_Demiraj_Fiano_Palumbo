@@ -32,7 +32,7 @@
         </div>
         <div class="projects">
           <div v-for="(project, index) in managedProjects" :key="index" class="project">
-            <NuxtLink class="managed-link":to="'/projects/' + project.id">
+            <NuxtLink class="managed-link":to="'/activities/projects/' + project.id">
               <img :src="project.image" alt="Project Image" class="project-image" />
               <p>{{ project.name }}</p>
             </NuxtLink>
@@ -47,7 +47,7 @@
         </div>
         <div class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
-            <NuxtLink class="managed-link":to="'/services/' + service.id">
+            <NuxtLink class="managed-link":to="'/activities/services/' + service.id">
               <Icon :name="service.image" class="service-image" color="#bb5f75"/>
               <p>{{ service.name }}</p>
             </NuxtLink>
@@ -123,6 +123,7 @@ useSeoMeta({
   align-self: center;
   width: 250px; 
   height: auto;
+  border-radius: 200px;
 }
 
 .person-details {
@@ -161,8 +162,6 @@ useSeoMeta({
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
 }
 
@@ -252,12 +251,17 @@ useSeoMeta({
     align-items: center;
   }
 
+  .info {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .person {
     margin-left: 0;
   }
 
   .centered-cv {
-    max-width: 100%; /* Larghezza massima per il CV centrato */
+    max-width: 80%; /* Larghezza massima per il CV centrato */
   }
 
   .nav-button {

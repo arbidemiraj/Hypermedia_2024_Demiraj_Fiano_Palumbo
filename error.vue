@@ -136,6 +136,30 @@ export default {
   font-size: 32px;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .error-page {
+    height: 100%;
+  }
+  .error-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-text {
+    padding: 0;
+    text-align: center;
+  }
+
+  .error-text h1 {
+    font-size: 24px;
+  }
+
+  .warning-icon {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
 </style>
 
 
