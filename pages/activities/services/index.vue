@@ -20,7 +20,7 @@
                 :description="service.description" :id="service.id" />
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/projects" class="bottom-link"> Go to all projects
+            <NuxtLink to="/activities/projects" class="bottom-link"> Go to all projects
                 <Icon name="ep:arrow-right-bold" />
             </NuxtLink>
         </div>
@@ -35,6 +35,8 @@ useSeoMeta({
 });
 
 const { data: Activity } = await useFetch('/api/activities/services');
+
+console.log(Activity)
 </script>
 
 <style scoped>

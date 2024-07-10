@@ -1,9 +1,9 @@
 <template>
-    <NuxtLink :to="'/projects/' + id" class="card-link">
+    <NuxtLink :to="'/activities/projects/' + id" class="card-link">
         <div class="project-card">
             <img :src='image' alt="Project Image">
             <h2>{{title}}</h2>
-            <p>{{truncatedDescription}}</p>
+            <div class="description" v-html="truncatedDescription"></div>
             <button class="btn">Learn more</button>
         </div>
     </NuxtLink>
@@ -34,8 +34,10 @@
             const introduction = this.description.split('###')[0];
 
             const words = introduction.split(' ');
-            if (words.length > 50) {
-                return words.slice(0, 50).join(' ') + '...';
+
+            if (words.length > 35) {
+                console.log(words.length);
+                return words.slice(0, 35).join('  ') + '...';
             }
             
             return introduction;
@@ -57,6 +59,7 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 550px;
     text-align: left;
     padding: 20px;
     display: flex;
@@ -97,8 +100,8 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    position: relative;
-    margin-bottom: 10px;
+    bottom: 40px;
+    position: fixed;
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;
@@ -106,6 +109,12 @@
 
 .project-card .btn:hover {
     background-color: #be7687;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #000;
+    line-height: 1.5;
 }
 
 </style>

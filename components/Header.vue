@@ -9,7 +9,7 @@
           <NuxtLink to="/aboutUs" exact-active-class="active"><b>ABOUT US</b></NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/activities" exact-active-class="active"><b>ACTIVITIES</b></NuxtLink>
+          <NuxtLink to="/activities" :class="{ 'active': isActivitiesPage }"><b>ACTIVITIES</b></NuxtLink>
         </li>
         <li>
           <NuxtLink to="/team" exact-active-class="active"><b>TEAM</b></NuxtLink>
@@ -53,7 +53,11 @@
 
 
 <script setup>
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+
 let isMenuOpen = ref(false);
+const route = useRoute();
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -64,6 +68,10 @@ const closeMenu = () => {
   isMenuOpen.value = false;
   document.querySelector('body')?.classList.remove('disable-scrolling');
 };
+
+const isActivitiesPage = computed(() => {
+  return ['/activities', '/activities/services', '/activities/projects'].includes(route.path);
+});
 
 </script>
 

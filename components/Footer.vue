@@ -73,7 +73,7 @@ p {
 }
 
 .footer {
-    background: linear-gradient(90deg,#deba8a, #e0bd85);
+    background: linear-gradient(90deg,#bb5f75, #bb5f75);
     width: 100%;
     overflow: hidden;
     color: white;

@@ -126,14 +126,19 @@
   gap: 8px;
 }
 
-.fade-enter-active, .fade-leave-active {
-  opacity: 1;
-  transform: translateY(50px);
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;
-  transform: translateY(50px);
-}
+.fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .fade-leave-active {
+    transition: all 0.3s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    transform: translateY(1200px);
+    opacity: 0;
+  }
 
 .chatbot-icon {
   position: fixed;
@@ -224,7 +229,6 @@ h1 {
   flex-direction: column;
   gap: 8px;
   height: 410px; /* forse dovrà essere max-height */
-  overflow-y: auto;
   padding: 0 16px;
   flex-grow: 1;
 }
@@ -316,6 +320,8 @@ h1 {
   .chat-box {
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    flex-grow: 1;
     right: 0;
     bottom: 0;
     background-color: white;
@@ -338,6 +344,9 @@ h1 {
 
   .messageBox {
     height: 100%;
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 100px;
     background-color: white;
   }
 
@@ -345,6 +354,14 @@ h1 {
     position: fixed;
     padding: 8px 16px;
     bottom: 20px;
+  }
+
+  .user-message p {
+    font-size: 14px;
+  }
+
+  .bot-message p {
+    font-size: 14px;
   }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-    <NuxtLink :to="'/services/' + id" class="card">
+    <NuxtLink :to="'/activities/services/' + id" class="card">
             <div class="card-content">
                 <div class="title-icon-container">
                 <h2>{{title}}</h2>
                     <Icon class="service-icon" :name='image' color="#bb5f75" size="40"/>
                 </div>
-                <p v-html="truncatedDescription"></p>
+                <div class="description" v-html="truncatedDescription"></div>
             </div>
             <div class="card-footer">
                 <button class="btn">See more</button>
@@ -69,6 +69,12 @@
 }
 .card-content {
     padding: 20px;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #000;
+    line-height: 1.5;
 }
 
 .title-icon-container{

@@ -13,8 +13,8 @@
                 Proin pharetra tincidunt neque eu imperdiet. Interdum et malesuada fames ac ante ipsum primis in.</p>
         </div>
         <div class="carousel-container">
-            <Carousel :items-to-show="itemsToShow" :wrapAround="true" :transition="500">
-                <Slide v-for="(project, index) in Activity" :key="project.id">
+            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500">
+                <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id">
                     <Project :title="project.name" :description="project.description" :image="project.image"
                         :id="project.id" />
                 </Slide>
@@ -25,7 +25,7 @@
             </Carousel>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/services" class="bottom-link"> Go to all services
+            <NuxtLink to="/activities/services" class="bottom-link"> Go to all services
                 <Icon name="ep:arrow-right-bold" />
             </NuxtLink>
         </div>
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 
 useSeoMeta({
     title: 'ByYourSide | Projects',
@@ -40,14 +41,18 @@ useSeoMeta({
 });
 
 const { data: Activity, pending, error } = await useFetch('/api/activities/projects');
-const screenWidth = ref(window.innerWidth);
+
+const screenWidth = ref(0);
+const carouselKey = ref(0);
 
 const updateScreenWidth = () => {
   screenWidth.value = window.innerWidth;
+  carouselKey.value += 1;
 };
 
 onMounted(() => {
-  window.addEventListener('resize', updateScreenWidth);
+    updateScreenWidth();
+    window.addEventListener('resize', updateScreenWidth);
 });
 
 onUnmounted(() => {
@@ -121,5 +126,11 @@ main {
 
 .bottom-link-container {
     margin: 20px;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: 100%;
+    }
 }
 </style>
