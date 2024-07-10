@@ -54,7 +54,7 @@
           </p>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/projects" class="bottom-link"> Go to all services
+            <NuxtLink to="/services/" class="bottom-link"> Go to all services
                 <Icon name="ep:arrow-right-bold" />
             </NuxtLink>
         </div>
@@ -92,20 +92,19 @@ main {
   background-color: #f5f5f5;
 }
 
+.services {
+  margin-left: 800px;
+}
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
-  background-size: cover;
-  background-position: center;
-  padding: 5px;
+  display: flex;
   text-align: left;
-  color: white;
-  width: 100%;
-  box-shadow: 5px black;
+  color: #bb5f75;
 }
 
 .title {
   font-size: 50px;
-  margin-left: 10px;
+  color: #bb5f75;
+  font-family: 'Poppins', sans-serif;
 }
 
 section {
@@ -144,14 +143,16 @@ h2 {
   text-decoration: none;
   color: black;
   background-color: white;
-  width: 200px;
+  width: 250px;
   height: 300px;
+  margin-top: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   gap: 10px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -162,7 +163,7 @@ h2 {
 
 .card-image {
   width: 150px;
-  height: 150px;
+  height: 200px;
   border-radius: 50px;
 }
 
@@ -186,13 +187,12 @@ h2 {
   text-decoration: none;
 }
 
-
 .btn {
   background-color: #bb5f75;
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 10px;
+  bottom: 10px;
   border-radius: 20px;
   font-size: 0.9rem;
 }
@@ -232,9 +232,30 @@ h2 {
     margin: 20px;
 }
 
-.services {
-  position: absolute;
-  right: 330px;
-  top: 680px;
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px;
+  }
+
+  .services {
+    margin: 0;
+  }
+
+  .text-card-box {
+    flex-direction: column;
+  }
+
+  .description-text {
+    margin-right: 0;
+  }
+
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 80%;
+    height: auto;
+  }
 }
 </style>

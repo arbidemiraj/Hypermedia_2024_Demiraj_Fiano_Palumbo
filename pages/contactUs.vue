@@ -162,7 +162,6 @@ function resetForm() {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
@@ -200,7 +199,8 @@ function resetForm() {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
+    padding: 50px 0;
     overflow: hidden;
   }
 
@@ -297,12 +297,10 @@ function resetForm() {
   }
   
   .email-info {
-    background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
   }
   
   .email-info a {

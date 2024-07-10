@@ -126,15 +126,27 @@ ul li a {
     .footer-content {
         flex-direction: column;
         align-items: center;
+        font-size: 0.9rem;
+        
     }
 
     .contact-container {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
+        gap: 2rem;
+        margin: 10px 0;
     }
 
     .socials {
         gap: 1rem;
+    }
+
+    .footer-opening-info {
+        display: none;
+    }
+
+    ul { 
+        display: none;
     }
 }
 </style>

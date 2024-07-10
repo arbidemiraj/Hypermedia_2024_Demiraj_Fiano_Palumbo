@@ -5,7 +5,7 @@
                 <h2>{{title}}</h2>
                     <Icon class="service-icon" :name='image' color="#bb5f75" size="40"/>
                 </div>
-                <p>{{truncatedDescription}}</p>
+                <p v-html="truncatedDescription"></p>
             </div>
             <div class="card-footer">
                 <button class="btn">See more</button>
@@ -39,7 +39,7 @@
 
             const words = introduction.split(' ');
             if (words.length > 50) {
-                return words.slice(0, 50).join(' ') + '...';
+                return words.slice(0, 50).join(' ') + ' ...';
             }
             
             return introduction;
@@ -114,4 +114,10 @@
 /*.btn:hover {
     background-color: #be7687;
 }*/
+
+@media (max-width: 768px) {
+    .card {
+        max-width: calc(100% - 20px);
+    }
+}
 </style>

@@ -4,14 +4,22 @@ html, body {
     font-family: Poppins;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 h1 {
-    font-family: Inter;
-    font-style: italic;
     font-size: 50px;
     font-weight: 800;
     color: #fff;
 }
 
-p, strong, h1, h2, h3, h4, h5, h6, title {
-    font-family: Inter ;
+.disable-scrolling {
+    overflow-y: hidden;
+}
+
+@media (width >=1000px) {
+    body {
+        overflow: auto !important;
+    }
 }

@@ -4,13 +4,17 @@
       <img class="chatbot-img" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
     </div>
   </NuxtLink>
-<div class="chat-box" v-if="isChatVisible">
+  <transition name="fade">
+<div v-if="isChatVisible" class="chat-box">
   <div class="chat-header">
     <div class="chatbot-name">
       <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
       <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
     </div>
-    <button class="close-btn" @click="toggleChat"><b>x</b></button>
+    <div class="icons-container">
+      <button class="close-btn" @click="toggleChat"><Icon size="23" color="#d5697f" name="fluent:minimize-12-filled"></Icon></button>
+      <button class="close-btn" @click="closeChat"><Icon size="23" color="#d5697f" name="ep:close-bold"></Icon></button>
+    </div>
   </div>
   <div class="chat-content">
     <div class="messageBox">
@@ -19,7 +23,6 @@
           <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below</p>
         </div>
       </div>
-      
       <button v-if="!isOptionSelected" v-for="(message, index) in optionMessages" :key="index" class="bot-message-option" @click="handleSelectedOption(index)">
         <p>{{ message }}</p>
       </button>
@@ -35,69 +38,85 @@
     </button>
   </div>
 </div>
+</transition>
 </template>
 
-<script>
-
-export default {
-  data() {
-    return {
-      isChatVisible: false,
-      optionMessages: [
-        "LEGAL COUNSELING",
-        "RECOGNISE THE VIOLENCE"
-      ],
-      currentMessage: '',
-      messages: [],
-      selectedOption: '',
-      isOptionSelected: false,
-    };
-
-  },
-  methods: {
-    toggleChat() {
-      if(this.isChatVisible === true){
-        this.messages = [];
-      }
-      this.isChatVisible = !this.isChatVisible;
-      this.isOptionSelected = false;
-    },
-    sendMessage() {
-      if (this.currentMessage.trim() !== "") {
-        this.messages.push({content: this.currentMessage, isUser: true});
-        this.respondToUser(this.currentMessage);
-        this.currentMessage = '';
-      }
-    },
-    respondToUser(message) {
-      const responses = {
-        "LEGAL COUNSELING": "You can get legal counseling by contacting our legal team at legal@help.com.",
-        "RECOGNISE THE VIOLENCE": "Recognizing violence is the first step. We can provide resources and support for you.",
-        "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
+<script>  
+  export default {
+    data() {
+      return {
+        isChatVisible: false,
+        optionMessages: [
+          "LEGAL COUNSELING",
+          "RECOGNISE THE VIOLENCE"
+        ],
+        currentMessage: '',
+        messages: [],
+        selectedOption: '',
+        isOptionSelected: false,
       };
-
-      const defaultResponse = "I'm not sure how to help with that. Please type 'HELP' for assistance.";
-
-      if(message !== "HELP" && responses[message.toUpperCase()]) {
-        this.isOptionSelected = true;
-        this.selectedOption = message.toUpperCase();
-        const response = {content: responses[message.toUpperCase()], isUser: false};
+  
+    },
+    methods: {
+      toggleChat() {
+        this.isChatVisible = !this.isChatVisible;
+      },
+      closeChat() {
         this.messages = [];
-        this.messages.push(response);
-      }else {
-        const response = {content: responses[message.toUpperCase()] || defaultResponse, isUser: false};
+        this.isChatVisible = !this.isChatVisible;
+        this.selectedOption = '';
+        this.isOptionSelected = false;
+      },
+      sendMessage() {
+        if (this.currentMessage.trim() !== "") {
+          this.messages.push({content: this.currentMessage, isUser: true});
+          this.respondToUser(this.currentMessage);
+          this.currentMessage = '';
+        }
+      },
+      async respondToUser(message) {
+        let chatbotResponseText = '';
+        try {
+          if(this.selectedOption == "LEGAL COUNSELING") {
+            this.isOptionSelected = true;
+            const chatbotResponse = await fetch('/api/chatBotLegal/', {
+              method: 'POST',
+              body: message,          
+            }); 
+            chatbotResponseText = await chatbotResponse.text();
+            const response = {content: chatbotResponseText , isUser: false};
+            console.log(response);
+            this.messages.push(response);
+          }else if (this.selectedOption == "RECOGNISE THE VIOLENCE") {
+            this.isOptionSelected = true;
+            const chatbotResponse = await fetch('/api/chatBotRecognise/', {
+              method: 'POST',
+              body: message,          
+            }); 
+            chatbotResponseText = await chatbotResponse.text();
+            const response = {content: chatbotResponseText , isUser: false};
+            console.log(response);
+            this.messages.push(response);
+          }
+        } catch (error) {
+        console.error('Error fetching chatbot response:', error);
+        return 'Sorry, I am having trouble understanding your request.';
+        }
+      },
+      handleSelectedOption(index) {
+        const responses = {
+          "LEGAL COUNSELING": "I’m here to support you with legal assistance and provide the guidance you need. If you’re facing domestic abuse, understanding your legal rights and options is crucial. I can provide legal advice, and help you navigate the steps to ensure your safety and protect your rights.",
+          "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
+          "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
+        };
+        this.isOptionSelected = true;
+        this.selectedOption = this.optionMessages[index];
+        this.messages = [];
+        const response = {content: responses[this.selectedOption.toUpperCase()], isUser: false};
         this.messages.push(response);
       }
-     
-    },
-    handleSelectedOption(index) {
-      this.isOptionSelected = true;
-      this.selectedOption = this.optionMessages[index];
-      this.messages = [];
-      this.respondToUser(this.selectedOption);
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
@@ -105,6 +124,15 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  opacity: 1;
+  transform: translateY(50px);
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .chatbot-icon {
@@ -136,10 +164,9 @@ export default {
 .chat-box {
   position: fixed;
   width: 360px;
-  height: 510px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   z-index: 1000;
   text-align: center;
   background-color: white;
@@ -150,6 +177,7 @@ export default {
   right: 150px;
   bottom: 50px;
 }
+
 .chat-header {
   display: flex;
   justify-content: space-between;
@@ -282,5 +310,41 @@ h1 {
 
 .askButton:hover {
   background-color:  #bb5f75;
+}
+
+@media (max-width: 768px) {
+  .chat-box {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    box-sizing: border-box;
+  }
+
+  .fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .fade-leave-active {
+    transition: all 0.3s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+
+  .messageBox {
+    height: 100%;
+    background-color: white;
+  }
+
+  .inputContainer {
+    position: fixed;
+    padding: 8px 16px;
+    bottom: 20px;
+  }
 }
 </style>

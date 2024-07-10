@@ -13,7 +13,7 @@
 }
 
 .loader-icon {
-    color: #b35c6e;
+    color: #bb5f75;
     animation: spin 1.5s linear infinite;
 }
 

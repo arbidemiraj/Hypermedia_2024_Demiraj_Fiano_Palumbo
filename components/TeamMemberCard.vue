@@ -36,7 +36,7 @@ export default {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 100%;
-    max-width: calc(20% - 20px); /* Ensures two cards per row with a gap */
+    max-width: calc(22% - 20px); /* Ensures two cards per row with a gap */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -63,5 +63,11 @@ export default {
 }
 .team-member__role {
   color: gray;
+}
+
+@media (max-width: 768px) {
+  .team-member {
+    max-width: calc(70% - 20px);
+  }
 }
 </style>

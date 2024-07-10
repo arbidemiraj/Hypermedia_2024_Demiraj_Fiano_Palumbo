@@ -9,23 +9,27 @@
                 <h2 class="project-title">{{ Activity.name }}</h2>
 
                 <div class="managed-by">
-                    <p> managed by <NuxtLink :to="'/team/'+Person.id" class="person-link"><b>{{ Person.name }} {{ Person.surname }}</b></NuxtLink></p>
-                    <img :src="Person.photo" alt="Person image" class="person-logo" />
+                    <p> managed by 
+                        <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
+                                Person.surname }}</b>&nbsp;&nbsp;<img :src="Person.photo" alt="Person image" class="person-logo" /></NuxtLink>
+                    </p>
+                    
                 </div>
             </div>
         </div>
 
         <div v-for="(section, index) in sections" :key="index">
             <h2>{{ sectionTitles[index] }}</h2>
-            <p>{{ section }}</p>
+            <div v-html="section"></div>
         </div>
         <div class="testimonials-container">
             <h2>Testimonials</h2>
             <div v-for="(testimonial, index) in Activity.testimonials" :key="index" class="testimonial">
-            <Icon name="system-uicons:user" class="testimonial-icon"/><p>"{{ testimonial }}"</p>
+                <Icon name="system-uicons:user" class="testimonial-icon" />
+                <p>"{{ testimonial }}"</p>
+            </div>
         </div>
-        </div>
-        
+
     </div>
 </template>
 
@@ -39,12 +43,12 @@ useSeoMeta({
 const { id } = useRoute().params;
 const { data: Activity, pending, error } = await useFetch(`/api/activities/services/${id}`);
 
-const { data: Person} = await useFetch(`/api/team/${Activity.value.responsible}`);
+const { data: Person } = await useFetch(`/api/team/${Activity.value.responsible}`);
 
-const sectionTitles = ['Introduction', 'Our Mission', "Service details", 'Benefits', 'How it works']
+const sectionTitles = ['Introduction', 'Our Mission', "Service details", 'Benefits', 'How it works'];
 
 const sections = computed(() => {
-  return Activity.value?.description ? Activity.value.description.split('###') : [];
+    return Activity.value?.description ? Activity.value.description.split('###') : [];
 });
 
 </script>
@@ -65,7 +69,7 @@ const sections = computed(() => {
     color: #bb5f75;
 }
 
-.person-link:hover{
+.person-link:hover {
     opacity: 0.8;
 }
 
@@ -88,6 +92,10 @@ const sections = computed(() => {
     color: #bb5f75;
     width: 180px;
     height: 180px;
+}
+
+strong {
+    color:#bb5f75;
 }
 
 .service {
@@ -128,9 +136,38 @@ const sections = computed(() => {
     flex-direction: column;
     margin-top: 50px;
 }
+
 .managed-by {
     display: flex;
-    flex-direction: row;   
+    flex-direction: row;
     gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .service {
+        padding-inline: 20px;
+    }
+
+    .managed-by {
+        font-size: 14px;
+    }
+
+    .service-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .person-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-title {
+        font-size: 30px;
+    }
+
+    .team {
+        margin-top: 20px;
+    }
 }
 </style>
