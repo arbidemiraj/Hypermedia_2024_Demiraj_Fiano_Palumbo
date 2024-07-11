@@ -155,6 +155,7 @@ iframe {
   color: white;
   width: 100%;
   box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
 
 .directions {

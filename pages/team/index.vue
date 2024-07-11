@@ -41,9 +41,9 @@ useSeoMeta({
   padding: 5px;
   text-align: left;
   color: white;
-  box-sizing: border-box;
   width: 100%;
   box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
 
 .team__members {
@@ -55,8 +55,10 @@ useSeoMeta({
 }
 
 .title {
-  font-size: 36px;
-  font-weight: 900;
+  font-size: 50px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
 @media (max-width: 768px) {

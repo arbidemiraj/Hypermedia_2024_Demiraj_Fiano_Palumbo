@@ -4,23 +4,29 @@
             <Icon name="eva:arrow-back-outline" /> Go to projects
         </NuxtLink>
         <div class="title">
-                <img :src="Activity.image" alt="Project image" class="project-logo" />
-                <div class="team">
-                    <h2 class="project-title">{{ Activity.name }}</h2>
+            <div v-if="projectsPending">
+                <Loader />
+            </div>
+            <img :src="Activity.image" alt="Project image" class="project-logo" />
+            <div class="team">
+                <h2 class="project-title">{{ Activity.name }}</h2>
 
-                    <div class="managed-by">
-                        <p> managed by</p>
-                        <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
-                                    Person.surname }}</b>&nbsp;&nbsp;
-                                <img :src="Person.photo" alt="Person image" class="person-logo" />
-                        </NuxtLink>
+                <div class="managed-by">
+                    <p> managed by</p>
+                    <div v-if="personPending">
+                        <Loader />
                     </div>
+                    <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
+                        Person.surname }}</b>&nbsp;&nbsp;
+                        <img :src="Person.photo" alt="Person image" class="person-logo" />
+                    </NuxtLink>
+                </div>
             </div>
 
 
         </div>
         <div v-for="(section, index) in sections" :key="index">
-            <h2>{{sectionTitles[index]}}</h2>
+            <h2>{{ sectionTitles[index] }}</h2>
             <div v-html="section"></div>
         </div>
     </div>
@@ -34,8 +40,8 @@ useSeoMeta({
 });
 
 const { id } = useRoute().params;
-const { data: Activity, pending, error } = await useFetch(`/api/activities/projects/${id}`);
-const { data: Person } = await useFetch(`/api/team/${Activity.value.responsible}`);
+const { data: Activity, pending: projectsPending, error: error1 } = await useFetch(`/api/activities/projects/${id}`);
+const { data: Person, personPending, error: error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Project details"]
 
@@ -97,18 +103,24 @@ const sections = computed(() => {
 
 .managed-by {
     display: flex;
-    align-items: center; /* Ensure vertical alignment is centered */
-    gap: 10px; /* Maintain spacing between elements */
-    margin-top: 10px; /* Add some space above the managed-by section */
+    align-items: center;
+    /* Ensure vertical alignment is centered */
+    gap: 10px;
+    /* Maintain spacing between elements */
+    margin-top: 10px;
+    /* Add some space above the managed-by section */
 }
 
 .person-link {
     text-decoration: none;
     color: #bb5f75;
     display: flex;
-    align-items: center; /* This ensures that the text inside .person-link is also centered */
-    margin: 0; /* Reset default margin */
-    padding: 0; /* Reset default padding */
+    align-items: center;
+    /* This ensures that the text inside .person-link is also centered */
+    margin: 0;
+    /* Reset default margin */
+    padding: 0;
+    /* Reset default padding */
 }
 
 .person-link:hover {
@@ -130,13 +142,16 @@ const sections = computed(() => {
     }
 
     .managed-by {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
-        align-items: flex-start; /* Align items to the start on smaller screens */
+        flex-direction: column;
+        /* Stack elements vertically on smaller screens */
+        align-items: flex-start;
+        /* Align items to the start on smaller screens */
     }
 
     .person-link {
         display: flex;
-        align-items: center; /* Ensure the text and image are aligned */
+        align-items: center;
+        /* Ensure the text and image are aligned */
     }
 
     .person-logo {

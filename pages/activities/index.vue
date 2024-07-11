@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="title-background">
-      <h1 class="title">Activities</h1>
+      <h1 class="title">ACTIVITIES</h1>
     </div>
     <div class="container">
       <section>
@@ -95,16 +95,24 @@ main {
 .services {
   margin-left: 800px;
 }
+
 .title-background {
-  display: flex;
+  background-image: url("assets/images/imageWomenScritta.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 2;
+  padding: 5px;
   text-align: left;
-  color: #bb5f75;
+  color: white;
+  width: 100%;
+  box-shadow: 5px black;
 }
 
 .title {
   font-size: 50px;
-  color: #bb5f75;
-  font-family: 'Poppins', sans-serif;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
 section {
