@@ -44,7 +44,7 @@
                 <div class="socials"> 
                     <a href="https://instagram.com/" target=”_blank” aria-label="Link to Instagram"><Icon name="f7:logo-instagram" color="white" size="40" /></a>
                     <a href="https://facebook.com/" target=”_blank” aria-label="Link to Facebook"><Icon name="f7:logo-facebook" color="white" size="40" /></a>
-                    <a href="https://x.com/" target=”_blank” aria-label="Link to Twitter"><Icon name="f7:logo-twitter" color="white" size="40" /></a>
+                    <a href="https://x.com/" target=”_blank” aria-label="Link to Twitter"><Icon name="ri:twitter-x-line" color="white" size="40" /></a>
                 </div>
                 <div class="footer-links">
                     <!-- Add any additional links here -->

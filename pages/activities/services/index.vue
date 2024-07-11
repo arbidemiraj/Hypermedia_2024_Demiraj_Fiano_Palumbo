@@ -1,9 +1,4 @@
 <template>
-
-    <Head>
-        <Title>Services</Title>
-    </Head>
-
     <main>
         <div class="title-background">
             <h1 class=title>Services</h1>
@@ -22,11 +17,11 @@
             <Service v-for="(service, index) in Activity" :key="index" :title="service.name" :image="service.image"
                 :description="service.description" :id="service.id" />
         </div>
-        <div class="bottom-link-container">
+        <nav class="bottom-link-container">
             <NuxtLink to="/activities/projects" class="bottom-link"> Go to all projects
-                <Icon name="ep:arrow-right-bold" />
+                <Icon name="ep:arrow-right-bold" aria-hidden="true"/>
             </NuxtLink>
-        </div>
+        </nav>
     </main>
 </template>
 

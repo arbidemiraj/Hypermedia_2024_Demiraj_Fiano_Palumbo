@@ -1,15 +1,17 @@
 <template>
   <div class="team">
-    <div class="title-background">
+    <header class="title-background">
       <h1 class='title'>OUR<br>TEAM</h1>
-    </div>
-    <div class="team__header">
-      <p>Welcome to our team page! Here, you'll meet the compassionate and dedicated professionals committed to empowering and supporting women. Our team of experts provides a safe and nurturing environment, offering the care and resources needed for healing and rebuilding lives with dignity and strength.</p>
-    </div>
-      <div class="team__members">
-      <TeamMemberCard v-for="(member, index) in Person" :key="index" :id=member.id :name="member.name" :surname="member.surname"
-        :image="member.photo" />
-    </div>
+    </header>
+    <main>
+      <div class="team__header">
+        <p>Welcome to our team page! Here, you'll meet the compassionate and dedicated professionals committed to empowering and supporting women. Our team of experts provides a safe and nurturing environment, offering the care and resources needed for healing and rebuilding lives with dignity and strength.</p>
+      </div>
+      <section class="team__members" aria-label="Team Members">
+        <TeamMemberCard v-for="(member, index) in Person" :key="index" :id="member.id" :name="member.name" :surname="member.surname"
+          :image="member.photo" />
+      </section>
+    </main>
   </div>
 </template>
 

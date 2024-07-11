@@ -1,35 +1,32 @@
 <template>
-    <div class="project">
-        <NuxtLink to="/activities/projects" class="back-link">
-            <Icon name="eva:arrow-back-outline" /> Go to projects
+    <main class="project" role="main">
+        <NuxtLink to="/activities/projects" class="back-link" aria-label="Go back to projects list">
+            <Icon name="eva:arrow-back-outline" aria-hidden="true" /> Go to projects
         </NuxtLink>
-        <div class="title">
-            <div v-if="projectsPending">
+        <section aria-labelledby="projectTitle">
+            <div v-if="projectsPending" role="alert" aria-live="polite">
                 <Loader />
             </div>
-            <img :src="Activity.image" alt="Project image" class="project-logo" />
+            <img :src="Activity.image" :alt="`Image of ${Activity.name} project`" class="project-logo" />
             <div class="team">
-                <h2 class="project-title">{{ Activity.name }}</h2>
-
-                <div class="managed-by">
-                    <p> managed by</p>
-                    <div v-if="personPending">
+                <h1 id="projectTitle" class="project-title">{{ Activity.name }}</h1>
+                <div class="managed-by" aria-label="Project manager">
+                    <p>Managed by</p>
+                    <div v-if="personPending" role="alert" aria-live="polite">
                         <Loader />
                     </div>
-                    <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
-                        Person.surname }}</b>&nbsp;&nbsp;
-                        <img :src="Person.photo" alt="Person image" class="person-logo" />
+                    <NuxtLink :to="'/team/' + Person.id" class="person-link" aria-label="View manager profile">
+                        <b>{{ Person.name }} {{ Person.surname }}</b>&nbsp;&nbsp;
+                        <img :src="Person.photo" :alt="`Image of ${Person.name} ${Person.surname}`" class="person-logo" />
                     </NuxtLink>
                 </div>
             </div>
-
-
-        </div>
-        <div v-for="(section, index) in sections" :key="index">
-            <h2>{{ sectionTitles[index] }}</h2>
+        </section>
+        <section v-for="(section, index) in sections" :key="index" :aria-labelledby="'sectionTitle' + index">
+            <h2 :id="'sectionTitle' + index">{{ sectionTitles[index] }}</h2>
             <div v-html="section"></div>
-        </div>
-    </div>
+        </section>
+    </main>
 </template>
 
 <script setup>

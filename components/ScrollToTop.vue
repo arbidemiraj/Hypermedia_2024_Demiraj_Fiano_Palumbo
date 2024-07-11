@@ -1,11 +1,16 @@
 <template>
   <div v-show="isVisible" class="scroll-to-top" @click="scrollToTop">
-    <Icon name="solar:round-alt-arrow-up-bold" color="#bb5f75" size="65" />
+    <Icon name="solar:round-alt-arrow-up-bold" color="#bb5f75" size="65" :aria-label="ariaLabel" :tabIndex="tabIndex"/>
   </div>
 </template>
 
 <script setup>
+
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+defineProps({
+  ariaLabel: String,
+  tabIndex: Number
+})
 
 const isVisible = ref(false);
 

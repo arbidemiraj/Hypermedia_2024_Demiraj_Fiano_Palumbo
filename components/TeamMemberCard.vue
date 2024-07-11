@@ -1,6 +1,6 @@
 <template>
   <NuxtLink class="team-member" :to="'/team/' + id">
-      <img :src='image' :alt="name" class="team-member__image" />
+      <img :src='image' class="team-member__image" :alt="`Photo of ${name} ${surname}`" />
       <h3 class="team-member__name">{{ name }} {{ surname }}</h3>
     </NuxtLink>
   </template>
@@ -67,7 +67,7 @@ export default {
 
 @media (max-width: 768px) {
   .team-member {
-    max-width: calc(70% - 20px);
+    max-width: calc(90% - 20px);
   }
 }
 </style>

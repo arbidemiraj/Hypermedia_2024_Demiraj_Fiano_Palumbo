@@ -21,13 +21,13 @@
         </li>
       </ul>
       <transition name="btn-fade">
-      <button class="mobile-menu-btn" @click="toggleMenu">
+      <button class="mobile-menu-btn" @click="toggleMenu" aria-label="Toggle mobile menu">
         <Icon :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'" size="30px" color="white" />
       </button>
       </transition>
     </nav>
     <transition name="slide-fade">
-      <div v-if="isMenuOpen" class="mobile-menu">
+      <div v-if="isMenuOpen" class="mobile-menu" role="navigation">
         <ul class="mobile-links">
           <li>
             <NuxtLink @click="toggleMenu" class="mobile-link" to="/aboutUs" exact-active-class="active"><b>ABOUT US</b>
@@ -135,8 +135,7 @@ nav ul li a.active {
   display: none;
 }
 
-@media (max-width: 800px) {
-
+@media (max-width: 768px) {
   .standard-nav {
     display: none;
   }

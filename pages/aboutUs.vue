@@ -1,18 +1,18 @@
 <template>
-  <div class="title-background">
+  <header class="title-background" role="banner">
     <h1 class="title">ABOUT US</h1>
-  </div>
+  </header>
   <div class="about-page">
     <section class="about-section">
       <div class="left-content">
-        <div class="mission-history">
-          <div class="mission">
+        <section class="mission-history">
+          <section class="mission">
             <h2>MISSION</h2>
             <p>
               At the ByYourSide Center our mission is clear and resolute: to provide a safe haven and comprehensive
               support services for women who have experienced violence.
 
-            <p> Our mission includes:
+              Our mission includes:
 
               Providing safety and shelter for women seeking refuge from abusive situations.
               Empowering survivors through tailored support services including counseling, legal advocacy, and access to
@@ -23,10 +23,8 @@
               Through compassion, determination, and a commitment to social justice, we strive to create a future where
               all women are valued, respected, and protected from violence.
             </p>
-
-            </p>
-          </div>
-          <div class="history">
+          </section>
+          <section class="history">
             <h2>HISTORY</h2>
             <p>
               The Women's Protection Center was founded in 1995 by a group of passionate activists and community leaders
@@ -35,19 +33,19 @@
               firsthand the devastating impact of gender-based violence on women in their community.
               Driven by a commitment to social justice and women's rights, the founders pooled their resources and
               rallied community support to establish the Women's Protection Center.
+            </p>
             <p>
               Since its inception, the center has grown significantly, expanding its services and outreach to meet the
               evolving needs of survivors. It has forged partnerships with local organizations, government agencies, and
               international NGOs to enhance its impact and advocate for systemic change.
             </p>
-            </p>
-          </div>
-        </div>
+          </section>
+        </section>
       </div>
       <div class="right-content">
-        <Loader v-if="isLoading"/>
+        <Loader v-if="isLoading" aria-busy="true"/>
         <iframe 
-          :class="!isLoading"
+          :class="{'is-loading': isLoading}"
           :src="iframeSrc" 
           width="600" 
           height="450" 
@@ -55,9 +53,11 @@
           allowfullscreen 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade" 
-          ref="iframe">
+          ref="iframe"
+          tabindex="0" 
+          aria-live="polite">
         </iframe>
-        <div class="directions">
+        <section class="directions">
           <h2>HOW TO GET HERE</h2>
           <p>
             <strong>Subway:</strong><br>
@@ -66,7 +66,7 @@
             <strong>Buses:</strong><br>
             Tram n° 19, Stop "Piazzale Leonardo da Vinci"
           </p>
-        </div>
+        </section>
       </div>
     </section>
   </div>
