@@ -7,12 +7,21 @@
       <div class="main-container">
         <h2 class="section-title">OUR MAIN PROJECTS</h2>
         <article class="text-card-box">
-          <p class="description-text">Our social center is dedicated to empowering and supporting women who have faced all forms of violence...</p>
+          <p class="description-text">
+            Our social center is dedicated to empowering and supporting women who have faced all forms of violence.
+            Inspired by the resilience and strength of survivors, our mission is to create a safe haven where women can
+            heal, rebuild, and thrive. Our projects were born out of a profound commitment to address the root causes of
+            violence and to foster a community of solidarity and support. Through various initiatives, we aim to provide
+            educational opportunities, skill-building workshops, and advocacy programs that empower women to reclaim
+            their lives and voices. Our ultimate goal is to transform pain into power and to cultivate a society where
+            every woman can live free from fear and violence
+          </p>
           <div class="card-container" v-if="TopProjects">
             <div v-if="projectsPending">
               <Loader />
             </div>
-            <NuxtLink class="card" v-for="project in TopProjects" :key="project.id" :to="'/activities/projects/'+project.id">
+            <NuxtLink class="card" v-for="project in TopProjects" :key="project.id"
+              :to="'/activities/projects/' + project.id">
               <img :src="project.image" :alt="`Image of the ${project.name} project`" class="card-image">
               <h3 class="card-title">{{ project.name }}</h3>
               <button class="btn">Learn more</button>
@@ -20,38 +29,45 @@
           </div>
         </article>
         <footer class="bottom-link-container">
-            <NuxtLink to="/activities/projects" class="bottom-link"> Go to all projects
-                <Icon name="ep:arrow-right-bold" />
-            </NuxtLink>
+          <NuxtLink to="/activities/projects" class="bottom-link"> Go to all projects
+            <Icon name="ep:arrow-right-bold" />
+          </NuxtLink>
         </footer>
       </div>
       <div class="main-container">
         <h2 class="section-title">OUR MAIN SERVICES</h2>
         <article class="text-card-box">
           <p class="description-text">
-            At our social center, we offer a comprehensive range of services designed to support and uplift women 
-            who have experienced violence. Driven by a deep understanding of the unique challenges faced by survivors, our services include 
-            personalized counseling, legal assistance, and emergency shelter. We also provide health and wellness programs, job placement support,
-             and childcare services to ensure holistic care for every woman and her family. These services were established to create a network 
-             of care that addresses immediate needs and fosters long-term stability and independence. Our commitment is to walk alongside 
-             each woman on her journey to recovery, providing the resources and support necessary for her to rebuild her life with dignity and hope.
+            At our social center, we offer a comprehensive range of services designed to support and uplift women
+            who have experienced violence. Driven by a deep understanding of the unique challenges faced by survivors,
+            our services include
+            personalized counseling, legal assistance, and emergency shelter. We also provide health and wellness
+            programs, job placement support,
+            and childcare services to ensure holistic care for every woman and her family. These services were
+            established to create a network
+            of care that addresses immediate needs and fosters long-term stability and independence. Our commitment is
+            to walk alongside
+            each woman on her journey to recovery, providing the resources and support necessary for her to rebuild her
+            life with dignity and hope.
           </p>
           <div class="card-container" v-if="TopServices">
             <div v-if="servicesPending">
               <Loader />
             </div>
-              <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/activities/services/' + service.id" class="card">
-                  <Icon class="card-icon" :alt="`Icon of the ${service.name} service`" :name="service.image" color="#bb5f75" size="40" />
-                  <h3 class="card-title">{{ service.name }}</h3>
-                  <button class="btn">Learn more</button>
-              </NuxtLink>
+            <NuxtLink v-for="service in TopServices" :key="service.id" :to="'/activities/services/' + service.id"
+              class="card">
+              <Icon class="card-icon" :alt="`Icon of the ${service.name} service`" :name="service.image" color="#bb5f75"
+                size="40" />
+              <h3 class="card-title">{{ service.name }}</h3>
+              <button class="btn">Learn more</button>
+            </NuxtLink>
           </div>
         </article>
         <footer class="bottom-link-container">
-            <NuxtLink to="/activities/services" class="bottom-link"> Go to all services
-                <Icon name="ep:arrow-right-bold" />
-            </NuxtLink>
-          </footer>
+          <NuxtLink to="/activities/services" class="bottom-link"> Go to all services
+            <Icon name="ep:arrow-right-bold" />
+          </NuxtLink>
+        </footer>
       </div>
     </section>
   </main>
@@ -60,8 +76,8 @@
 <script setup>
 
 useSeoMeta({
-    title: 'ByYourSide | Activities',
-    description: 'This is the activities page with a list of the activities the company has worked on, classifying them into projects or services.',
+  title: 'ByYourSide | Activities',
+  description: 'This is the activities page with a list of the activities the company has worked on, classifying them into projects or services.',
 });
 
 const { data: TopProjects, pending: projectsPending, error: error1 } = await useAsyncData('topProjects', () =>
@@ -210,25 +226,26 @@ main {
 }
 
 .bottom-link {
-    background-color: transparent;
-    text-decoration: none;
-    color: #bb5f75;
-    font-size: 1.2rem;
-    font-weight: bold;
+  background-color: transparent;
+  text-decoration: none;
+  color: #bb5f75;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .bottom-link:hover {
-    color: #be7687;
+  color: #be7687;
 }
 
 .bottom-link-container {
-    text-align: center;
-    margin: 50px;
+  text-align: center;
+  margin: 50px;
 }
 
 .container {
   text-align: center;
 }
+
 @media (max-width: 768px) {
   .container {
     padding: 10px 30px;
