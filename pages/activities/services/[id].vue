@@ -1,42 +1,39 @@
 <template>
-    <div class="service">
-        <NuxtLink to="/activities/services" class="back-link">
-            <Icon name="eva:arrow-back-outline" /> Back to services
+    <main class="service" role="main">
+        <NuxtLink to="/activities/services" class="back-link" aria-label="Go back to services list">
+            <Icon name="eva:arrow-back-outline" aria-hidden="true" /> Back to services
         </NuxtLink>
-        <div class="title">
-            <Icon class="service-logo" :name='Activity.image' alt="Service image" />
-            <div class="team">
-                <div v-if="servicesPending">
+        <article class="title">
+            <Icon class="service-logo" :name='Activity.image' alt="Service logo" />
+            <section class="team">
+                <div v-if="servicesPending" role="alert" aria-live="polite">
                     <Loader />
                 </div>
-                <h2 class="project-title">{{ Activity.name }}</h2>
-
+                <h1 class="project-title">{{ Activity.name }}</h1>
                 <div class="managed-by">
-                    <div v-if="personPending">
+                    <div v-if="personPending" role="alert" aria-live="polite">
                         <Loader />
                     </div>
-                    <p> managed by 
-                        <NuxtLink :to="'/team/' + Person.id" class="person-link"><b>{{ Person.name }} {{
-                                Person.surname }}</b>&nbsp;&nbsp;<img :src="Person.photo" alt="Person image" class="person-logo" /></NuxtLink>
-                    </p>
-                    
+                    <p> managed by </p>
+                    <NuxtLink :to="'/team/' + Person.id" class="person-link" aria-label="View manager profile">
+                        <b>{{ Person.name }} {{ Person.surname }}</b>
+                        <img :src="Person.photo" :alt="`Profile image of ${Person.name} ${Person.surname}`" class="person-logo" />
+                    </NuxtLink>
                 </div>
-            </div>
-        </div>
-
-        <div v-for="(section, index) in sections" :key="index">
-            <h2>{{ sectionTitles[index] }}</h2>
+            </section>
+        </article>
+        <section v-for="(section, index) in sections" :key="index" aria-labelledby="'sectionTitle' + index">
+            <h2 :id="'sectionTitle' + index">{{ sectionTitles[index] }}</h2>
             <div v-html="section"></div>
-        </div>
-        <div class="testimonials-container">
-            <h2>Testimonials</h2>
+        </section>
+        <aside class="testimonials-container" aria-labelledby="testimonialsHeading">
+            <h2 id="testimonialsHeading">Testimonials</h2>
             <div v-for="(testimonial, index) in Activity.testimonials" :key="index" class="testimonial">
-                <Icon name="system-uicons:user" class="testimonial-icon" />
-                <p>"{{ testimonial }}"</p>
+                <Icon name="system-uicons:user" class="testimonial-icon" aria-hidden="true" />
+                <blockquote>"{{ testimonial }}"</blockquote>
             </div>
-        </div>
-
-    </div>
+        </aside>
+    </main>
 </template>
 
 <script setup>
@@ -70,9 +67,32 @@ const sections = computed(() => {
     color: #bb5f75;
 }
 
+.team {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.managed-by {
+    display: flex;
+    align-items: center;
+    /* Ensure vertical alignment is centered */
+    gap: 10px;
+    /* Maintain spacing between elements */
+    margin-top: 10px;
+    /* Add some space above the managed-by section */
+}
+
 .person-link {
     text-decoration: none;
     color: #bb5f75;
+    display: flex;
+    align-items: center;
+    /* This ensures that the text inside .person-link is also centered */
+    margin: 0;
+    /* Reset default margin */
+    padding: 0;
+    /* Reset default padding */
 }
 
 .person-link:hover {
@@ -135,18 +155,6 @@ strong {
 .project-title {
     font-size: 50px;
     margin: 0;
-}
-
-.team {
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
-}
-
-.managed-by {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
 }
 
 @media (max-width: 768px) {

@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-        title: 'Violence Against Women',
+        title: 'ByYourSide',
         meta: [{ name: 'description', content: 'ByYourSide is a website that supports women against violence and abuses' }],
         htmlAttrs: {
             lang: 'en',

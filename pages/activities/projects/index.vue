@@ -5,35 +5,29 @@
         </div>
         <div class="text-container">
             <h2>Our philosophy</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae elit dapibus, tincidunt lectus a,
-                varius arcu.
-                Nunc non mollis tellus. Sed arcu leo, faucibus vitae hendrerit at, eleifend et leo. Morbi facilisis
-                rutrum
-                imperdiet.
-                Proin pharetra tincidunt neque eu imperdiet. Interdum et malesuada fames ac ante ipsum primis in.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
-        <div class="carousel-container">
-            <div v-if="projectsPending">
-                <Loader />
+        <div class="carousel-container" aria-label="Project carousel">
+            <div v-if="projectsPending" role="alert" aria-busy="true">
+                <Loader alt="Loading projects..."/>
             </div>
-            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500">
-                <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id">
-                    <Project :title="project.name" :description="project.description" :image="project.image"
-                        :id="project.id" />
+            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500" aria-roledescription="carousel">
+                <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id" aria-roledescription="slide">
+                    <Project :title="project.name" :description="project.description" :image="project.image" :id="project.id"/>
                 </Slide>
-
                 <template #addons>
-                    <Navigation />
+                    <Navigation aria-label="Carousel navigation"/>
                 </template>
             </Carousel>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/activities/services" class="bottom-link"> Go to all services
-                <Icon name="ep:arrow-right-bold" />
+            <NuxtLink to="/activities/services" class="bottom-link" aria-label="Navigate to all services page"> Go to all services
+                <Icon name="ep:arrow-right-bold" aria-hidden="true"/>
             </NuxtLink>
         </div>
     </main>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';

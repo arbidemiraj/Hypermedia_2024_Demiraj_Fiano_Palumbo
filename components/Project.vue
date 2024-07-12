@@ -1,7 +1,7 @@
 <template>
     <NuxtLink :to="'/activities/projects/' + id" class="card-link">
         <div class="project-card">
-            <img :src='image' alt="Project Image">
+            <img :src='image' :alt="`Image of the ${title} project`">
             <h2>{{title}}</h2>
             <div class="description" v-html="truncatedDescription"></div>
             <button class="btn">Learn more</button>
@@ -35,9 +35,9 @@
 
             const words = introduction.split(' ');
 
-            if (words.length > 35) {
+            if (words.length > 50) {
                 console.log(words.length);
-                return words.slice(0, 35).join('  ') + '...';
+                return words.slice(0, 50).join(' ') + '...';
             }
             
             return introduction;

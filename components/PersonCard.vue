@@ -1,7 +1,7 @@
 <template>
     <div class="person">
       <div class="header">
-        <img :src="photo" alt="Profile Picture" class="profile-picture" />
+        <img :src="photo" :alt="`Profile picture of ${name} ${surname}`" class="profile-picture" />
         <div class="info">
           <h1>{{ name }}</h1>
           <p><strong>Email:</strong> {{ email }}</p>

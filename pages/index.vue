@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <b class="main-text">Empowering <b class="women-title">WOMEN</b> to reclaim their lives</b>
+    <h1 class="main-text">Empowering <b class="women-title">WOMEN</b> to reclaim their lives</h1>
     <a href="#get-help" @click.prevent="scrollTo('#get-help')"><button class="button">How can I get help?</button></a>
   </div>
   <div class="mission-container">
     <div class="content-container">
-      <b class="main-text-black">Supporting Women Through Difficult Times</b>
+      <h2 class="main-text-black">Supporting Women Through Difficult Times</h2>
       <p>ByYourSide is dedicated to providing a safe, nurturing space for women who have experienced violence.
         Our platform offers comprehensive resources, including crisis intervention, legal assistance, counseling, and
         empowerment programs, to help survivors on their healing journey. We believe in the strength and resilience of
@@ -16,48 +16,48 @@
     <img class="no-violence-img" src="/assets/images/home_stopviolence.png" alt="stop-violence" />
   </div>
   <div id="get-help" class="assistance-container">
-    <b class="main-text-white">Immediate Help Options for Women in Need</b>
+    <h2 class="main-text-white">Immediate Help Options for Women in Need</h2>
     <p style="padding: 50px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet rhoncus
       tortor, eget venenatis quam. Donec enim turpis, feugiat sit amet quam a, dapibus facilisis nunc. Fusce sodales
       tempor venenatis.</p>
     <div class="contact-option-container">
       <div class="contact-option">
         <Icon name="material-symbols:call" color="#fff" size="100" />
-        <b class="contact-title">Hotline Support</b>
+        <h3 class="contact-title">Hotline Support</h3>
       </div>
       <div class="contact-option">
         <Icon name="fluent:chat-20-filled" color="#fff" size="100" />
-        <b class="contact-title">ChatBot support</b>
+        <h3 class="contact-title">ChatBot support</h3>
       </div>
       <div class="contact-option">
         <Icon name="streamline:sos-help-emergency-sign-solid" color="#fff" size="100" />
-        <b class="contact-title">Emergency services</b>
+        <h3 class="contact-title">Emergency services</h3>
       </div>
       <div class="contact-option">
         <Icon name="fluent:mail-20-filled" color="#fff" size="100" />
-        <b class="contact-title">Contact us</b>
+        <h3 class="contact-title">Contact us</h3>
       </div>
     </div>
   </div>
 
   <div class="activities-container">
     <div class="activities-content">
-      <b class="main-text-black">Discover our activities</b>
+      <h2 class="main-text-black">Discover our activities</h2>
       <p>We are dedicated to providing a safe haven and comprehensive assistance to women who have experienced violence.
         Our mission is to foster healing, build resilience, and promote independence through a variety of carefully
         designed services and projects. Explore the activities we offer to support you on your journey to recovery and
         empowerment.</p>
       <NuxtLink to="/activities/"><button class="button-activities"> Explore our activities</button></NuxtLink>
     </div>
-    <img class="for-women-img" src="/assets/images/forwomen.png" alt="stop-violence" />
+    <img class="for-women-img" src="/assets/images/forwomen.png" alt="" />
   </div>
   <div class="faq-container">
-    <b class="faq-title">Frequently Asked Questions</b>
+    <h2 class="faq-title">Frequently Asked Questions</h2>
     <div class="faq-item-container">
       <FaqItem v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer" />
     </div>
   </div>
-  <ScrollToTop />
+  <ScrollToTop aria-label="Scroll to top" tabIndex="0"/>
 </template>
 
 <script setup>

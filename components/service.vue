@@ -3,7 +3,7 @@
             <div class="card-content">
                 <div class="title-icon-container">
                 <h2>{{title}}</h2>
-                    <Icon class="service-icon" :name='image' color="#bb5f75" size="40"/>
+                    <Icon class="service-icon" :name='image' color="#bb5f75" size="40" :alt="`Icon of the ${title} service`"/>
                 </div>
                 <div class="description" v-html="truncatedDescription"></div>
             </div>

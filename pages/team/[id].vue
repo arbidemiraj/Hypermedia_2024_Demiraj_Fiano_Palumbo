@@ -1,33 +1,34 @@
 <template>
-  <div class="container">
-    <div class="person" :class="{ 'centered': !hasActivities }">
-      <div class="header">
-        <NuxtLink to="/team" class="back-link"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
-        <div class="navigation">
-          <NuxtLink :to="previousLink" class="nav-button">
+  <section class="container" role="main">
+    <article class="person" :class="{ 'centered': !hasActivities }" aria-labelledby="personName">
+      <header class="header">
+        <NuxtLink to="/team" class="back-link" role="button" aria-label="Back to our team"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
+        <nav class="navigation" aria-label="Person navigation">
+          <NuxtLink :to="previousLink" class="nav-button" role="button" aria-label="Go to previous person">
             <Icon name="eva:arrow-back-outline" /> <strong>PREVIOUS</strong>
           </NuxtLink>
-          <NuxtLink :to="nextLink" class="nav-button">
+          <NuxtLink :to="nextLink" class="nav-button" role="button" aria-label="Go to next person">
             <strong>NEXT</strong> <Icon name="eva:arrow-forward-outline" />
           </NuxtLink>
-        </div>
+        </nav>
         <div class="info">
-          <div v-if="personPending">
+          <div v-if="personPending" role="alert" aria-busy="true">
             <Loader />
           </div>
-          <img :src="person.photo" alt="Profile Picture" class="profile-picture" />
+          <img :src="person.photo" alt="Profile picture of {{ person.name }} {{ person.surname }}" class="profile-picture" />
           <div class="person-details">
-            <p class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
-            <p><strong>Email:</strong> {{ person.mail }}</p>
+            <p id="personName" class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
+            <p><strong>Email:</strong> <a :href="`mailto:${person.mail}`" class="email-link">{{ person.mail }}</a></p>
             <p><strong>Birthdate:</strong> {{ person.birthdate }}</p>
           </div>
         </div>
-        <div :class="{ 'cv': true, 'centered-cv': !hasActivities }">
+        <section :class="{ 'cv': true, 'centered-cv': !hasActivities }" aria-labelledby="cvLabel">
+          <h2 id="cvLabel" class="visually-hidden">Curriculum Vitae</h2>
           <p>{{ person.cv }}</p>
-        </div>
-      </div>
-    </div>
-    <div v-if="hasActivities" class="side-content">
+        </section>
+      </header>
+    </article>
+    <aside v-if="hasActivities" class="side-content" aria-label="Related activities">
       <div v-if="hasProjects" class="managed-projects">
         <h2>MANAGED PROJECTS</h2>
         <div v-if="projectsPending">
@@ -57,11 +58,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </aside>
+  </section>
 </template>
-
-
 
 <script setup>
 import handleFetchError from '~/composables/errorHandler';
@@ -246,6 +245,17 @@ useSeoMeta({
   text-align: center;
   max-width: 900px; /* Esempio di larghezza massima per il CV centrato */
   margin: 0 auto; /* Per centrare il contenuto */
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 @media (max-width: 768px) {

@@ -3,11 +3,16 @@
     <div class="title-background">
       <h1 class="title">CONTACT<br>US</h1>
     </div>
-    <section class="contact-header">
+    <section class="contact-header" aria-labelledby="contactInfoHeading">
       <div class="contact-info">
-        <img src="/assets/images/phoneicon.png" class="phone-icon" />
-        <h2>CALL US AT</h2>
+        <div class="phone-info-container">
+          <Icon name="el:phone-alt" color="#bb5f75" aria-hidden="true" />
+        <div class="phone-info">
+          <h2>CALL US AT</h2>
         <p class="phone-number">+39 367 8919785</p>
+        </div>
+        </div>
+       
         <h3>DON'T BE AFRAID, BE FREE!</h3>
         <p class="message">
           Violence against women takes many forms, including physical, emotional, and sexual abuse. It thrives in
@@ -25,12 +30,12 @@
     </section>
     <div class="form-container">
       <div class="overlay"></div>
-      <div class="form-content">
+      <div class="form-content" aria-labelledby="formHeading">
         <h2>Do you need help?<br>Send us a request by filling up this form!</h2>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" aria-label="Contact Us Form">
           <div class="form-group">
             <label for="request-type">For Who?</label>
-            <select id="request-type" name="name" required v-model="requestType">
+            <select id="request-type" name="name" required v-model="requestType" aria-required="true">
               <option value="you">For You</option>
               <option value="friend">For Your Friend</option>
             </select>
@@ -38,39 +43,39 @@
           <div class="form-group">
             <label for="email">Email</label>
             <div class="input-wrapper">
-              <i class="fas fa-envelope icon"></i>
+              <i class="fas fa-envelope icon" aria-hidden="true"></i>
               <input type="email" id="email" name="email" required v-model="email"
-                :class="!validateEmail ? 'incorrect' : ''" />
+                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" aria-describedby="emailError"/>
               <p v-if="!validateEmail" class="incorrect-text">Check that the email format is right</p>
             </div>
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <div class="input-wrapper">
-              <i class="fas fa-phone icon"></i>
+              <i class="fas fa-phone icon" aria-hidden="true"></i>
               <input type="tel" id="phone" name="phone" required v-model="phone"
-                placeholder="+39 Insert your phone number" />
+                placeholder="+39 Insert your phone number" aria-required="true" />
             </div>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" required v-model="message"
-              placeholder="Insert your message"></textarea>
+              placeholder="Insert your message" aria-required="true"></textarea>
           </div>
           <button type="submit" class="submit-btn">Submit</button>
         </form>
       </div>
     </div>
-    <section class="contact-email">
+    <section class="contact-email" aria-labelledby="emailInfoHeading">
       <div class="email-info">
         <p>or</p>
-        <img src="/assets/images/emailicon.png" class="email-icon" />
+        <img src="/assets/images/emailicon.png" class="email-icon" alt=""/>
         <p>SEND US AN EMAIL AT</p>
         <a href="mailto:byyoursidecenter@gmail.com">byyoursidecenter@gmail.com</a>
       </div>
     </section>
     <!-- Popup for mail status -->
-    <div v-if="showPopUp" class="mail-status-popup" :class="mailStatus === 200 ? 'success' : 'error'">
+    <div v-if="showPopUp" class="mail-status-popup" :class="mailStatus === 200 ? 'success' : 'error'" role="alert">
       {{ mailStatus === 200 ? 'Email sent successfully!' : 'Failed to send email.' }}
     </div>
   </div>
@@ -151,6 +156,13 @@ function resetForm() {
   font-weight: 800;
 }
 
+.phone-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 .title-background {
   background-image: url("assets/images/helping-hand.jpg");
   background-size: cover;
@@ -185,7 +197,8 @@ function resetForm() {
 }
 
 .phone-number {
-  font-size: 1.3rem;
+  font-size: 40px;
+  font-weight: 900;
   color: #bb5f75;
 }
 
