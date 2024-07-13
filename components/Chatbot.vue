@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="chat-content">
-    <div class="messageBox">
+    <div ref="messageBox" class="messageBox">
       <div class="message-container">
         <div v-if="!isOptionSelected" class="bot-message">
           <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below</p>
@@ -28,6 +28,11 @@
       </button>
       <div v-for="(message, index) in messages" :key="index" :class="message.isUser ? 'user-message' : 'bot-message'">
         <p>{{ message.content }}</p>
+      </div>
+      <div v-if="isLoading" class="loading-animation">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
       </div>
     </div>
   </div>
@@ -45,6 +50,7 @@
   export default {
     data() {
       return {
+        isLoading: false,
         isChatVisible: false,
         optionMessages: [
           "LEGAL COUNSELING",
@@ -72,9 +78,17 @@
           this.messages.push({content: this.currentMessage, isUser: true});
           this.respondToUser(this.currentMessage);
           this.currentMessage = '';
+          this.$nextTick(() => {
+            const messageBox = this.$refs.messageBox;
+            messageBox.scrollTo({
+              top: messageBox.scrollHeight,
+              behavior: 'smooth'
+            });
+          });
         }
       },
       async respondToUser(message) {
+        this.isLoading = true;
         let chatbotResponseText = '';
         try {
           if(this.selectedOption == "LEGAL COUNSELING") {
@@ -98,10 +112,20 @@
             console.log(response);
             this.messages.push(response);
           }
+
+          this.$nextTick(() => {
+            const messageBox = this.$refs.messageBox;
+            messageBox.scrollTo({
+              top: messageBox.scrollHeight,
+              behavior: 'smooth'
+            });
+          });
+
         } catch (error) {
         console.error('Error fetching chatbot response:', error);
         return 'Sorry, I am having trouble understanding your request.';
         }
+        this.isLoading = false;
       },
       handleSelectedOption(index) {
         const responses = {
@@ -222,15 +246,14 @@ h1 {
 }
 
 .messageBox{
-  padding: 16px;
   flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
   height: 410px; /* forse dovrà essere max-height */
-  padding: 0 16px;
   flex-grow: 1;
+  margin-bottom: 10px;
 }
 
 .bot-message {
@@ -239,7 +262,7 @@ h1 {
   border-radius: 10px;
   text-align: left;
   align-self: flex-start;
-  width: 70%;
+  width: 85%;
   color: white;
 }
 
@@ -262,7 +285,7 @@ h1 {
 }
 
 .bot-message p {
-  font-size: 10px;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -272,12 +295,12 @@ h1 {
   border-radius: 10px;
   text-align: right;
   align-self: flex-end;
-  width: 70%;
+  width: 80%;
   color: black;
 }
 
 .user-message p {
-  font-size: 10px;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -315,6 +338,34 @@ h1 {
 .askButton:hover {
   background-color:  #bb5f75;
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Style for the typing animation */
+.loading-animation {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+/* Style for each dot */
+.typing-dot {
+  background-color: #bb5f75;
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%;
+  margin: 0 2px;
+  margin-bottom: 10px;
+  animation: blink 1.4s infinite both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
 
 @media (max-width: 768px) {
   .chat-box {
