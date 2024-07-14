@@ -5,27 +5,13 @@
     </NuxtLink>
   </template>
 
-<script>
-export default {
-  props: {
-    id: {
-      type: Number,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    surname: {
-      type: String,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    }
-  }
-};
+<script setup>
+defineProps({
+    id: Number,
+    name: String,
+    surname: String,
+    image: String
+});
 </script>
 
 <style scoped>

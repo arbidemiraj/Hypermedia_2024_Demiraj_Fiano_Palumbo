@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import handleFetchError from '~/composables/errorHandler';
+import handleFetchError from '~/composables/errorHandler.js';
 
 useSeoMeta({
     title: 'ByYourSide | Person',

@@ -16,7 +16,7 @@
         </li>
         <li>
           <NuxtLink to="/contactUs" exact-active-class="active">
-            <CustomButton text="GET HELP" />
+            <button class="btn-primary">GET HELP</button>
           </NuxtLink>
         </li>
       </ul>
@@ -80,6 +80,22 @@ const isActivitiesPage = computed(() => {
   transition: opacity 0.3s;
 }
 
+.btn-primary {
+    background-color: var(--btn-color);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .btn-primary:hover {
+    opacity: 0.8;
+  }
+
 .mobile-menu-btn {
   display: none;
 }
@@ -96,8 +112,8 @@ nav {
 }
 
 .site-header {
-  background: linear-gradient(90deg, #b35c6e 78%, #b35c6e 100%);
-  color: white;
+  background: var(--gradient-color);
+  color: var(--text-color);
   padding: 0rem 2rem;
   overflow: hidden;
 }
@@ -112,23 +128,22 @@ nav ul {
 }
 
 nav ul li a {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
   transition: background-color 0.3s, opacity 0.3s;
 }
 
 nav ul li a:hover {
-  color: #ddba8e;
+  color: var(--btn-hover-color);
 }
 
 nav ul li a.active {
-  color: #ddba8e;
+  color: var(--btn-color);
 }
 
 .disable-scrolling {
   overflow: hidden;
   height: 100vh;
-  /* Prevents scrolling */
 }
 
 .mobile-menu {
@@ -155,8 +170,8 @@ nav ul li a.active {
   }
 
   .site-header {
-    background: linear-gradient(90deg, #b35c6e 78%, #b35c6e 100%);
-    color: white;
+    background: var(--gradient-color);
+    color: var(--text-color);
     padding: 0.5rem 1rem;
     height: 100%;
   }
@@ -171,7 +186,6 @@ nav ul li a.active {
     background: none;
     border: none;
     cursor: pointer;
-    color: white;
     z-index: 1000;
     transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   }
@@ -185,7 +199,7 @@ nav ul li a.active {
     bottom: 0;
     right: 0;
     height: 2000px;
-    background: linear-gradient(90deg, #de90a1c4 78%, #d5697f 100%, #d58696 100% #d58696 100%);
+    background: var(--gradient-color);
     width: auto;
     color: white;
     display: flex;
@@ -209,11 +223,11 @@ nav ul li a.active {
 
   .mobile-link {
     text-decoration: none;
-    color: white;
+    color: var(--text-color);
   }
 
   .mobile-link:hover {
-    color: #ddba8e;
+    color: var(--btn-hover-color);
   }
 }
 </style>

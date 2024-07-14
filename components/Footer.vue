@@ -46,9 +46,6 @@
                     <a href="https://facebook.com/" target=”_blank” aria-label="Link to Facebook"><Icon name="f7:logo-facebook" color="white" size="40" /></a>
                     <a href="https://x.com/" target=”_blank” aria-label="Link to Twitter"><Icon name="ri:twitter-x-line" color="white" size="40" /></a>
                 </div>
-                <div class="footer-links">
-                    <!-- Add any additional links here -->
-                </div>
             </div>
         </div>
     </footer>
@@ -73,7 +70,7 @@ p {
 }
 
 .footer {
-    background: linear-gradient(90deg,#bb5f75, #bb5f75);
+    background: var(--gradient-color);
     width: 100%;
     overflow: hidden;
     color: white;
@@ -98,7 +95,7 @@ ul {
 }
 
 ul li a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -110,18 +107,17 @@ ul li a {
 .footer-content {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allow wrapping to prevent overflow */
+    flex-wrap: wrap; 
 }
 
 .socials {
     display: flex;
     align-items: center;
     gap: 2rem;
-    justify-content: center; /* Center align socials */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Add responsive design to handle smaller screens */
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;

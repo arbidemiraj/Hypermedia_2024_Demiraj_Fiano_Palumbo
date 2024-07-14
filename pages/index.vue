@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="main-text">Empowering <b class="women-title">WOMEN</b> to reclaim their lives</h1>
+    <h1 class="main-text">Empowering <span class="women-title">Women</span> to reclaim their lives</h1>
     <a href="#get-help" @click.prevent="scrollTo('#get-help')"><button class="button">How can I get help?</button></a>
   </div>
   <div class="mission-container">
@@ -120,9 +120,9 @@ html {
 
 .women-title {
   color: #bb5f75;
-  font-family: 'Bebas Neu', sans-serif;
-  font-size: 68px;
-  font-weight: 800;
+  font-family: "Poppins", sans-serif;
+  font-size: 80px;
+  font-weight: 900;
 }
 
 .faq-container {
@@ -167,16 +167,15 @@ html {
 
 .button {
   background-color: #bb5f75;
-  width: 300px;
+  width: 450px;
   margin-inline: 100px;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 100px;
   font-weight: 400;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 20px 20px;
+  font-size: 30px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .activities-container {
@@ -245,13 +244,14 @@ html {
 }
 
 .container {
-  background-image: url('assets/images/home_main_image_cut.jpg');
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)), url('assets/images/home_main_image_cut.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 100px 20px;
   margin: 0;
+  background-color: rgb(0, 0, 0);
 }
 
 .content-container {
@@ -275,9 +275,9 @@ html {
   margin-top: 80px;
   padding: 100px;
   width: 800px;
-  font-size: 60px;
+  font-size: 72px;
   font-weight: 900;
-  font-family: 'Playfair Display' sans-serif;
+  font-family: 'Poppins' sans-serif;
   color: white;
 }
 
@@ -287,7 +287,7 @@ html {
     justify-content: center;
     padding: 50px 20px;
     background-size: cover;
-    background-image: url('assets/images/home_mobile_img.jpg');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('assets/images/home_mobile_img.jpg');
     height: 600px;
   }
 
@@ -311,7 +311,7 @@ html {
     color: white;
     border: none;
     border-radius: 20px;
-    font-weight: 400;
+    font-weight: 900;
     padding: 10px 20px;
     font-size: 20px;
     margin-top: 100px;
@@ -338,7 +338,7 @@ html {
   }
 
   .no-violence-img {
-    height: 180px;
+    height: auto;
   }
 
   .mission-container {
@@ -378,8 +378,7 @@ html {
   }
 
   .for-women-img {
-    height: 280px;
-    margin: 60px 0px;
+    display: none;
   }
 
   .faq-container {

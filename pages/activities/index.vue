@@ -3,8 +3,27 @@
     <header class="title-background">
       <h1 class="title">ACTIVITIES</h1>
     </header>
-    <section class="container">
-      <div class="main-container">
+    <div class="container">
+      <div class="intro-container">
+        <h2 class="section-title">OUR MISSION</h2>
+      <p>At ByYourSide, we are dedicated to providing comprehensive support and assistance to women who have experienced
+        or are currently experiencing violence. Our mission is to empower and protect, ensuring that every woman has
+        access to the resources and services she needs to build a safer, brighter future. Our center offers a range of
+        projects and services designed to address the immediate and long-term needs of our clients, fostering an
+        environment of care, understanding, and hope.</p>
+
+      <p>On this page, you will find information about our main projects and services, all tailored to provide holistic
+        support to those in need. From legal counseling and emergency shelter to psychological support and educational
+        programs, ByYourSide is committed to being a beacon of hope and a pillar of strength for women in our community.
+        Explore our activities to learn more about how we can help you or someone you know.</p>
+      
+      
+        <div class="links">
+          <a href="#services" class="goto-link" @click.prevent="scrollTo('#services')">View our main services</a>
+          <a href="#projects" class="goto-link" @click.prevent="scrollTo('#projects')">View our main projects</a>
+        </div>
+      </div>
+      <div id="projects" class="main-container">
         <h2 class="section-title">OUR MAIN PROJECTS</h2>
         <article class="text-card-box">
           <p class="description-text">
@@ -34,7 +53,7 @@
           </NuxtLink>
         </footer>
       </div>
-      <div class="main-container">
+      <div id="services" class="main-container">
         <h2 class="section-title">OUR MAIN SERVICES</h2>
         <article class="text-card-box">
           <p class="description-text">
@@ -69,11 +88,13 @@
           </NuxtLink>
         </footer>
       </div>
-    </section>
+    </div>
   </main>
 </template>
 
 <script setup>
+
+const selected = ref(false);
 
 useSeoMeta({
   title: 'ByYourSide | Activities',
@@ -87,23 +108,44 @@ const { data: TopProjects, pending: projectsPending, error: error1 } = await use
 const { data: TopServices, pending: servicesPending, error: error2 } = await useAsyncData('topServices', () =>
   $fetch('/api/activities/services/topServices')
 );
+
+const scrollTo = (hash) => {
+  const element = document.querySelector(hash);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>
 
 <style scoped>
-main {
+.links {
+  display: flex;
+  gap: 100px;
+  margin-top: 20px;
+}
+
+.goto-link {
+  color: var(--bg-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.intro-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
+  max-width: 1400px;
 }
 
 .main-container {
+  display: flex;
+  flex-direction: column;
   margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1400px;
 }
 
 .section-title {
@@ -111,7 +153,7 @@ main {
 }
 
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
   background-size: cover;
   background-position: center;
   opacity: 2;
@@ -124,7 +166,6 @@ main {
 
 .title {
   font-size: 50px;
-  margin-left: 10px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
 }
@@ -132,21 +173,22 @@ main {
 .text-card-box {
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1400px;
   align-items: center;
 }
 
 .description-text {
   flex: 1;
-  margin-right: 20px;
   margin-bottom: 50px;
   font-size: 1rem;
 }
 
 .card-container {
   display: flex;
-  gap: 75px;
-  flex: 2;
+  gap: 100px; /* Adjusted gap for better spacing */
+  flex-wrap: wrap; /* Allows cards to wrap onto the next line */
+  justify-content: center; /* Centers cards within the container */
+  align-items: flex-start; /* Aligns items at the start of the container */
 }
 
 .card {
@@ -154,16 +196,17 @@ main {
   text-decoration: none;
   color: black;
   background-color: white;
-  width: 250px;
-  height: 300px;
+  width: 280px;
+  height: auto; /* Adjusts height automatically based on content */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  gap: 10px;
   padding: 20px;
+  gap: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px; /* Adds bottom margin for when cards wrap */
 }
 
 .card:hover {
@@ -172,7 +215,7 @@ main {
 }
 
 .card-image {
-  width: 150px;
+  width: auto;
   height: 200px;
   border-radius: 50px;
 }
@@ -243,12 +286,26 @@ main {
 }
 
 .container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
+  .title-background{
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/home_main_image.jpg');
+    text-align: center;
+    background-size: cover;
+  }
+
   .container {
-    padding: 10px 30px;
+    padding: 10px 10px;
+    text-align: center;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .services {
@@ -264,13 +321,12 @@ main {
   }
 
   .card-container {
-    flex-direction: column;
-    width: 70%;
+    gap: 10px; /* Reduces gap on smaller screens */
   }
 
   .card {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Allows cards to expand to full container width */
+    max-width: none; /* Removes max-width restriction */
   }
 }
 </style>

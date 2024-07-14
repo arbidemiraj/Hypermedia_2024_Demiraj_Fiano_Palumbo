@@ -3,13 +3,13 @@
         <NuxtLink to="/activities/projects" class="back-link" aria-label="Go back to projects list">
             <Icon name="eva:arrow-back-outline" aria-hidden="true" /> Go to projects
         </NuxtLink>
-        <section aria-labelledby="projectTitle">
+        <section class="title" aria-labelledby="projectTitle">
             <div v-if="projectsPending" role="alert" aria-live="polite">
                 <Loader />
             </div>
             <img :src="Activity.image" :alt="`Image of ${Activity.name} project`" class="project-logo" />
             <div class="team">
-                <h1 id="projectTitle" class="project-title">{{ Activity.name }}</h1>
+                <h2 id="projectTitle" class="project-title">{{ Activity.name }}</h2>
                 <div class="managed-by" aria-label="Project manager">
                     <p>Managed by</p>
                     <div v-if="personPending" role="alert" aria-live="polite">

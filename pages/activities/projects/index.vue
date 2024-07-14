@@ -11,7 +11,7 @@
             <div v-if="projectsPending" role="alert" aria-busy="true">
                 <Loader alt="Loading projects..."/>
             </div>
-            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500" aria-roledescription="carousel">
+            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500" aria-roledescription="carousel" v-else>
                 <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id" aria-roledescription="slide">
                     <Project :title="project.name" :description="project.description" :image="project.image" :id="project.id"/>
                 </Slide>
@@ -90,7 +90,7 @@ main {
 }
 
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
+  background-image: url("assets/images/forwomen.png");
   background-size: cover;
   background-position: center;
   padding: 5px;
