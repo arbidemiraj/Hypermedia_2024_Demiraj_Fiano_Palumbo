@@ -9,7 +9,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 defineProps({
   ariaLabel: String,
-  tabIndex: Number
+  tabIndex: String
 })
 
 const isVisible = ref(false);

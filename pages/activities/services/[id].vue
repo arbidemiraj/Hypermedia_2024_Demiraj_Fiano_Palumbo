@@ -3,13 +3,13 @@
         <NuxtLink to="/activities/services" class="back-link" aria-label="Go back to services list">
             <Icon name="eva:arrow-back-outline" aria-hidden="true" /> Back to services
         </NuxtLink>
-        <article class="title">
+        <section class="title">
             <Icon class="service-logo" :name='Activity.image' alt="Service logo" />
             <section class="team">
                 <div v-if="servicesPending" role="alert" aria-live="polite">
                     <Loader />
                 </div>
-                <h1 class="project-title">{{ Activity.name }}</h1>
+                <h2 class="project-title">{{ Activity.name }}</h2>
                 <div class="managed-by">
                     <div v-if="personPending" role="alert" aria-live="polite">
                         <Loader />
@@ -21,7 +21,7 @@
                     </NuxtLink>
                 </div>
             </section>
-        </article>
+        </section>
         <section v-for="(section, index) in sections" :key="index" aria-labelledby="'sectionTitle' + index">
             <h2 :id="'sectionTitle' + index">{{ sectionTitles[index] }}</h2>
             <div v-html="section"></div>

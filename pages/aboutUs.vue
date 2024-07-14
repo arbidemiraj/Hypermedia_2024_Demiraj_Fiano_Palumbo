@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted } from 'vue';
 
 useSeoMeta({
   title: 'ByYourSide | About Us',

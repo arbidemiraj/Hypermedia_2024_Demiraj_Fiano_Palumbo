@@ -1,7 +1,7 @@
 <template>
   <div class="team">
     <header class="title-background">
-      <h1 class='title'>OUR<br>TEAM</h1>
+      <h1 class='title'>OUR TEAM</h1>
     </header>
     <main>
       <div class="team__header">

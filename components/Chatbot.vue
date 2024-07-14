@@ -5,142 +5,150 @@
     </div>
   </NuxtLink>
   <transition name="fade">
-<div v-if="isChatVisible" class="chat-box">
-  <div class="chat-header">
-    <div class="chatbot-name">
-      <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
-      <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
-    </div>
-    <div class="icons-container">
-      <button class="close-btn" @click="toggleChat"><Icon size="23" color="#d5697f" name="fluent:minimize-12-filled"></Icon></button>
-      <button class="close-btn" @click="closeChat"><Icon size="23" color="#d5697f" name="ep:close-bold"></Icon></button>
-    </div>
-  </div>
-  <div class="chat-content">
-    <div ref="messageBox" class="messageBox">
-      <div class="message-container">
-        <div v-if="!isOptionSelected" class="bot-message">
-          <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below</p>
+    <div v-if="isChatVisible" class="chat-box">
+      <div class="chat-header">
+        <div class="chatbot-name">
+          <img class="chatbot-img-header" src="assets/images/chatbotIconNoHand.png" alt="ChatbotIcon" />
+          <h1><b>Hope</b><b v-if="isOptionSelected" class="selected-bot"> - {{ selectedOption }}</b></h1>
+        </div>
+        <div class="icons-container">
+          <button class="close-btn" @click="toggleChat">
+            <Icon size="23" color="#d5697f" name="fluent:minimize-12-filled"></Icon>
+          </button>
+          <button class="close-btn" @click="closeChat">
+            <Icon size="23" color="#d5697f" name="ep:close-bold"></Icon>
+          </button>
         </div>
       </div>
-      <button v-if="!isOptionSelected" v-for="(message, index) in optionMessages" :key="index" class="bot-message-option" @click="handleSelectedOption(index)">
-        <p>{{ message }}</p>
-      </button>
-      <div v-for="(message, index) in messages" :key="index" :class="message.isUser ? 'user-message' : 'bot-message'">
-        <p>{{ message.content }}</p>
+      <div class="chat-content">
+        <div id="messageBox" class="messageBox">
+          <div class="message-container">
+            <div v-if="!isOptionSelected" class="bot-message">
+              <p>Hi I’m Hope and I’m here to help you! What do you need help for?<br> Click one of the two options below
+              </p>
+            </div>
+          </div>
+          <button v-if="!isOptionSelected" v-for="(message, index) in optionMessages" :key="index"
+            class="bot-message-option" @click="handleSelectedOption(index)">
+            <p>{{ message }}</p>
+          </button>
+          <div v-for="(message, index) in messages" :key="index"
+            :class="message.isUser ? 'user-message' : 'bot-message'">
+            <p>{{ message.content }}</p>
+          </div>
+          <div v-if="isLoading" class="loading-animation">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
       </div>
-      <div v-if="isLoading" class="loading-animation">
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
+      <div class="inputContainer">
+        <input v-model="currentMessage" type="text" class="messageInput" placeholder="Ask me anything..."
+          @keyup.enter="sendMessage" />
+        <button class="askButton" @click="sendMessage">
+          Ask
+        </button>
       </div>
     </div>
-  </div>
-  <div class="inputContainer">
-    <input v-model="currentMessage" type="text" class="messageInput" placeholder="Ask me anything..." @keyup.enter="sendMessage"/>
-    <button class="askButton" @click="sendMessage">
-      Ask
-    </button>
-  </div>
-</div>
-</transition>
+  </transition>
 </template>
 
-<script>  
-  export default {
-    data() {
-      return {
-        isLoading: false,
-        isChatVisible: false,
-        optionMessages: [
-          "LEGAL COUNSELING",
-          "RECOGNISE THE VIOLENCE"
-        ],
-        currentMessage: '',
-        messages: [],
-        selectedOption: '',
-        isOptionSelected: false,
-      };
-  
-    },
-    methods: {
-      toggleChat() {
-        this.isChatVisible = !this.isChatVisible;
-      },
-      closeChat() {
-        this.messages = [];
-        this.isChatVisible = !this.isChatVisible;
-        this.selectedOption = '';
-        this.isOptionSelected = false;
-      },
-      sendMessage() {
-        if (this.currentMessage.trim() !== "") {
-          this.messages.push({content: this.currentMessage, isUser: true});
-          this.respondToUser(this.currentMessage);
-          this.currentMessage = '';
-          this.$nextTick(() => {
-            const messageBox = this.$refs.messageBox;
-            messageBox.scrollTo({
-              top: messageBox.scrollHeight,
-              behavior: 'smooth'
-            });
-          });
-        }
-      },
-      async respondToUser(message) {
-        this.isLoading = true;
-        let chatbotResponseText = '';
-        try {
-          if(this.selectedOption == "LEGAL COUNSELING") {
-            this.isOptionSelected = true;
-            const chatbotResponse = await fetch('/api/chatBotLegal/', {
-              method: 'POST',
-              body: message,          
-            }); 
-            chatbotResponseText = await chatbotResponse.text();
-            const response = {content: chatbotResponseText , isUser: false};
-            console.log(response);
-            this.messages.push(response);
-          }else if (this.selectedOption == "RECOGNISE THE VIOLENCE") {
-            this.isOptionSelected = true;
-            const chatbotResponse = await fetch('/api/chatBotRecognise/', {
-              method: 'POST',
-              body: message,          
-            }); 
-            chatbotResponseText = await chatbotResponse.text();
-            const response = {content: chatbotResponseText , isUser: false};
-            console.log(response);
-            this.messages.push(response);
-          }
+<script setup>
+import { ref, nextTick } from 'vue';
 
-          this.$nextTick(() => {
-            const messageBox = this.$refs.messageBox;
-            messageBox.scrollTo({
-              top: messageBox.scrollHeight,
-              behavior: 'smooth'
-            });
-          });
+const isLoading = ref(false);
+const isChatVisible = ref(false);
+const optionMessages = ref([
+  "LEGAL COUNSELING",
+  "RECOGNISE THE VIOLENCE"
+]);
+const currentMessage = ref('');
+const messages = ref([]);
+const selectedOption = ref('');
+const isOptionSelected = ref(false);
 
-        } catch (error) {
-        console.error('Error fetching chatbot response:', error);
-        return 'Sorry, I am having trouble understanding your request.';
-        }
-        this.isLoading = false;
-      },
-      handleSelectedOption(index) {
-        const responses = {
-          "LEGAL COUNSELING": "I’m here to support you with legal assistance and provide the guidance you need. If you’re facing domestic abuse, understanding your legal rights and options is crucial. I can provide legal advice, and help you navigate the steps to ensure your safety and protect your rights.",
-          "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
-          "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
-        };
-        this.isOptionSelected = true;
-        this.selectedOption = this.optionMessages[index];
-        this.messages = [];
-        const response = {content: responses[this.selectedOption.toUpperCase()], isUser: false};
-        this.messages.push(response);
-      }
+const toggleChat = () => {
+  isChatVisible.value = !isChatVisible.value;
+};
+
+const closeChat = () => {
+  messages.value = [];
+  isChatVisible.value = !isChatVisible.value;
+  selectedOption.value = '';
+  isOptionSelected.value = false;
+};
+
+const sendMessage = async () => {
+  if (currentMessage.value.trim() !== "") {
+    messages.value.push({ content: currentMessage.value, isUser: true });
+    await respondToUser(currentMessage.value);
+
+    nextTick(() => {
+      const messageBox = document.querySelector("#messageBox"); // Adjust selector as needed
+      messageBox.scrollTo({
+        top: messageBox.scrollHeight,
+        behavior: 'smooth'
+      });
+    });
+  }
+};
+
+const respondToUser = async (message) => {
+  isLoading.value = true;
+  let chatbotResponseText = '';
+  currentMessage.value = '';
+
+  nextTick(() => {
+    const messageBox = document.querySelector("#messageBox"); // Adjust selector as needed
+    messageBox.scrollTo({
+      top: messageBox.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
+
+  try {
+    if (selectedOption.value == "LEGAL COUNSELING") {
+      isOptionSelected.value = true;
+      const chatbotResponse = await fetch('/api/chatBotLegal/', {
+        method: 'POST',
+        body: message,
+      });
+      chatbotResponseText = await chatbotResponse.text();
+    } else if (selectedOption.value == "RECOGNISE THE VIOLENCE") {
+      isOptionSelected.value = true;
+      const chatbotResponse = await fetch('/api/chatBotRecognise/', {
+        method: 'POST',
+        body: message,
+      });
+      chatbotResponseText = await chatbotResponse.text();
+    } else {
+      chatbotResponseText = "Please select an option first";
     }
+    const response = { content: chatbotResponseText, isUser: false };
+    console.log(response);
+    messages.value.push(response);
+
+  } catch (error) {
+    console.error('Error fetching chatbot response:', error);
+    messages.value.push({ content: 'Sorry, I am having trouble understanding your request.', isUser: false });
+  }
+
+  isLoading.value = false;
+};
+
+const handleSelectedOption = (index) => {
+  const responses = {
+    "LEGAL COUNSELING": "I’m here to support you with legal assistance and provide the guidance you need. If you’re facing domestic abuse, understanding your legal rights and options is crucial. I can provide legal advice, and help you navigate the steps to ensure your safety and protect your rights.",
+    "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
+    "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
   };
+  isOptionSelected.value = true;
+  selectedOption.value = optionMessages.value[index];
+  messages.value = [];
+  const response = { content: responses[selectedOption.value.toUpperCase()], isUser: false };
+  messages.value.push(response);
+};
 </script>
 
 <style scoped>
@@ -151,18 +159,18 @@
 }
 
 .fade-enter-active {
-    transition: all 0.3s ease-out;
-  }
+  transition: all 0.3s ease-out;
+}
 
-  .fade-leave-active {
-    transition: all 0.3s ease-in;
-  }
+.fade-leave-active {
+  transition: all 0.3s ease-in;
+}
 
-  .fade-enter-from,
-  .fade-leave-to {
-    transform: translateY(1200px);
-    opacity: 0;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateY(1200px);
+  opacity: 0;
+}
 
 .chatbot-icon {
   position: fixed;
@@ -174,6 +182,7 @@
   padding: 7px;
   z-index: 1000;
 }
+
 .chatbot-icon:hover {
   cursor: pointer;
   transform: scale(1.05);
@@ -185,14 +194,14 @@
 }
 
 .selected-bot {
-  color: #bb5f75;
+  color: var(--bg-color);
   align-items: center;
   font-size: 12px;
 }
 
 .chat-box {
   position: fixed;
-  width: 360px;
+  width: 400px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -245,19 +254,19 @@ h1 {
   background-color: white;
 }
 
-.messageBox{
+.messageBox {
   flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 410px; /* forse dovrà essere max-height */
-  flex-grow: 1;
-  margin-bottom: 10px;
+  height: 410px;
+  /* forse dovrà essere max-height */
+  margin-bottom: 30px;
 }
 
 .bot-message {
-  background-color:rgba(193, 60, 92, 0.83);
+  background-color: var(--bg-color);
   padding: 10px;
   border-radius: 10px;
   text-align: left;
@@ -267,7 +276,7 @@ h1 {
 }
 
 .bot-message-option {
-  background-color:rgba(193, 60, 92, 0.83);
+  background-color: var(--bg-color);
   padding: 5px 10px;
   font-size: 12px;
   font-weight: bold;
@@ -324,7 +333,7 @@ h1 {
 }
 
 .askButton {
-  background-color: #bb5f75;
+  background-color: var(--bg-color);
   color: white;
   font-size: 16px;
   padding: 8px 16px;
@@ -336,12 +345,19 @@ h1 {
 }
 
 .askButton:hover {
-  background-color:  #bb5f75;
+  background-color: var(--bg-color);
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Style for the typing animation */
@@ -353,66 +369,55 @@ h1 {
 
 /* Style for each dot */
 .typing-dot {
-  background-color: #bb5f75;
-  width: 8px; 
-  height: 8px; 
+  background-color: var(--bg-color);
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   margin: 0 2px;
   margin-bottom: 10px;
   animation: blink 1.4s infinite both;
 }
 
-.typing-dot:nth-child(1) { animation-delay: 0s; }
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 
 @media (max-width: 768px) {
   .chat-box {
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    flex-grow: 1;
+    height: 100vh; 
     right: 0;
     bottom: 0;
-    background-color: white;
-    box-sizing: border-box;
+    border-radius: 0; 
+    padding: 10px; 
   }
-
-  .fade-enter-active {
-    transition: all 0.3s ease-out;
+  .chatbot-icon {
+    bottom: 10px;
+    right: 10px;
   }
-
-  .fade-leave-active {
-    transition: all 0.3s ease-in;
-  }
-
-  .fade-enter-from,
-  .fade-leave-to {
-    transform: translateY(200px);
-    opacity: 0;
-  }
-
-  .messageBox {
-    height: 100%;
-    overflow-y: auto;
-    flex-grow: 1;
-    margin-bottom: 100px;
-    background-color: white;
-  }
-
   .inputContainer {
-    position: fixed;
-    padding: 8px 16px;
-    bottom: 20px;
+    border-radius: 20px; 
   }
-
-  .user-message p {
-    font-size: 14px;
+  .messageBox {
+    height: calc(100vh - 160px); 
   }
-
-  .bot-message p {
-    font-size: 14px;
+  .user-message p{
+    font-size: 18px;
+  }
+  .bot-message p{
+    font-size: 18px;
+  }
+  .bot-message-option p{
+    font-size: 18px;
   }
 }
 </style>

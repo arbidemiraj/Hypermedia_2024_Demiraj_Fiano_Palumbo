@@ -1,51 +1,47 @@
 <template>
     <NuxtLink :to="'/activities/services/' + id" class="card">
-            <div class="card-content">
-                <div class="title-icon-container">
-                <h2>{{title}}</h2>
-                    <Icon class="service-icon" :name='image' color="#bb5f75" size="40" :alt="`Icon of the ${title} service`"/>
-                </div>
-                <div class="description" v-html="truncatedDescription"></div>
+        <div class="card-content">
+            <div class="title-icon-container">
+                <h2>{{ title }}</h2>
+                <Icon class="service-icon" :name='image' color="#bb5f75" size="40"
+                    :alt="`Icon of the ${title} service`" />
             </div>
-            <div class="card-footer">
-                <button class="btn">See more</button>
-            </div>
+            <div class="description" v-html="truncatedDescription"></div>
+        </div>
+        <div class="card-footer">
+            <button class="btn">See more</button>
+        </div>
     </NuxtLink>
 </template>
 
-<script>
-    export default {
-        props: {
-            title: {
-                type: String,
-                required: true
-            },
-            image: {
-                type: String,
-                required: true
-            },
-            description: {
-                type: String,
-                required: true
-            },
-            id: {
-                type: Number,
-                required: true
-            },
-        },
-        computed: {
-            truncatedDescription() {
-            const introduction = this.description.split('###')[0];
+<script setup>
 
-            const words = introduction.split(' ');
-            if (words.length > 50) {
-                return words.slice(0, 50).join(' ') + ' ...';
-            }
-            
-            return introduction;
-            }
-        }
-    };
+import { ref, onMounted } from 'vue';
+
+const props = defineProps({
+    title: String,
+    image: String,
+    description: String,
+    id: Number
+});
+
+const truncatedDescription = ref('');
+
+const computeDescription = () => {
+    const introduction = props.description.split('###')[0];
+    const words = introduction.split(' ');
+
+    if (words.length > 50) {
+        truncatedDescription.value = words.slice(0, 50).join(' ') + '...';
+    }
+    else {
+        truncatedDescription.value = introduction;
+    }
+}
+
+onMounted(() => {
+    computeDescription();
+});
 </script>
 
 <style scoped>
@@ -55,7 +51,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 100%;
-    max-width: calc(50% - 10px); /* Ensures two cards per row with a gap */
+    max-width: calc(50% - 10px);
+    /* Ensures two cards per row with a gap */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,6 +64,7 @@
     transform: translateY(-7px);
     transition: all 0.3s;
 }
+
 .card-content {
     padding: 20px;
 }
@@ -77,11 +75,11 @@
     line-height: 1.5;
 }
 
-.title-icon-container{
+.title-icon-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
     width: 100%;
 }
 
@@ -117,6 +115,7 @@
     cursor: pointer;
     font-size: 0.9rem;
 }
+
 /*.btn:hover {
     background-color: #be7687;
 }*/

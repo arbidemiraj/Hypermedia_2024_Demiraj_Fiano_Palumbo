@@ -35,19 +35,19 @@ export default defineEventHandler( async (event) => {
     },
     {
       role: "user",
-      content: "I'm reaching out because I'm in a really tough situation and I don't know where else to turn. My name is Sarah, and I'm 32 years old.",
+      content: "I'm reaching out because I'm in a really tough situation and I don't know where else to turn. My name is [name], and I'm 32 years old.",
     },
     {
       role: "assistant",
-      content: "Sarah, I'm so sorry to hear about what you're going through. It takes a lot of courage to reach out for help, and I want you to know that you're not alone. Your safety and well-being are the top priority. Can you tell me more about what's been happening?",
+      content: "I'm so sorry to hear about what you're going through. It takes a lot of courage to reach out for help, and I want you to know that you're not alone. Your safety and well-being are the top priority. Can you tell me more about what's been happening?",
     },
     {
       role: "user",
-      content: "At first, everything seemed fine between me and my husband, but gradually, John has become more and more controlling and abusive. He criticizes everything I do, from how I look to how I take care of our children",
+      content: "At first, everything seemed fine between me and my husband, but gradually, he has become more and more controlling and abusive. He criticizes everything I do, from how I look to how I take care of our children",
     },
     {
       role: "assistant",
-      content: "I'm really sorry to hear that you're experiencing this, Sarah. No one deserves to be treated that way. It's important to know that you have rights and options to protect yourself from this kind of behavior. In Italy, there are laws that specifically address domestic violence and provide protection for victims. Have you considered seeking legal help or support to address this situation? ",
+      content: "I'm really sorry to hear that you're experiencing this. No one deserves to be treated that way. It's important to know that you have rights and options to protect yourself from this kind of behavior. In Italy, there are laws that specifically address domestic violence and provide protection for victims. Have you considered seeking legal help or support to address this situation? ",
     },
     {
       role: "user",

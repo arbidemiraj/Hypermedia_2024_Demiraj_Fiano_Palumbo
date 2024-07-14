@@ -160,7 +160,7 @@ export default {
 
 @media (max-width: 768px) {
   .error-page {
-    height: 100%;
+    height: 100vh;
   }
   .error-content {
     flex-direction: column;

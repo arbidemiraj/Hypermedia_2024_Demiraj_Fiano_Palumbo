@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="title-background">
-      <h1 class="title">CONTACT<br>US</h1>
+      <h1 class="title">CONTACT US</h1>
     </div>
     <section class="contact-header" aria-labelledby="contactInfoHeading">
       <div class="contact-info">
         <div class="phone-info-container">
-          <Icon name="el:phone-alt" color="#bb5f75" aria-hidden="true" />
+          <Icon name="el:phone-alt" color="#bb5f75" aria-hidden="true" size="100"/>
         <div class="phone-info">
           <h2>CALL US AT</h2>
         <p class="phone-number">+39 367 8919785</p>
@@ -43,7 +43,7 @@
           <div class="form-group">
             <label for="email">Email</label>
             <div class="input-wrapper">
-              <i class="fas fa-envelope icon" aria-hidden="true"></i>
+              <i class="fas fa-envelope form-icon" aria-hidden="true"></i>
               <input type="email" id="email" name="email" required v-model="email"
                 :class="!validateEmail ? 'incorrect' : ''" aria-required="true" aria-describedby="emailError"/>
               <p v-if="!validateEmail" class="incorrect-text">Check that the email format is right</p>
@@ -52,7 +52,7 @@
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <div class="input-wrapper">
-              <i class="fas fa-phone icon" aria-hidden="true"></i>
+              <i class="fas fa-phone form-icon" aria-hidden="true"></i>
               <input type="tel" id="phone" name="phone" required v-model="phone"
                 placeholder="+39 Insert your phone number" aria-required="true" />
             </div>
@@ -177,8 +177,7 @@ function resetForm() {
   /* White overlay with 80% opacity */
 }
 
-.contact-page {
-  font-family: Arial, sans-serif;
+.contact-page p{
   text-align: center;
   padding: 20px;
 }
@@ -191,14 +190,16 @@ function resetForm() {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
 }
 
 .phone-number {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 900;
+  margin-bottom: 50px;
+  font-style: italic;
   color: #bb5f75;
 }
 
@@ -208,7 +209,7 @@ function resetForm() {
   margin-bottom: 20px;
 }
 
-.contact-message p {
+.contact-message {
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0 auto;
@@ -287,6 +288,10 @@ textarea {
   background-color: #fff;
 }
 
+.icon {
+  margin-bottom: 30px;
+}
+
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -296,7 +301,7 @@ textarea {
   background-color: #fff;
 }
 
-.icon {
+.form-icon {
   width: 20px;
   height: 20px;
   margin-right: 10px;
@@ -398,5 +403,36 @@ textarea {
 
 .input-wrapper {
   position: relative;
+}
+
+@media (max-width: 768px) {
+
+  .phone-number {
+    font-size: 24px;
+  }
+
+  .form-content {
+    padding: 20px 10px;
+  }
+
+  .form-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
 }
 </style>

@@ -1,7 +1,20 @@
+:root{
+    --bg-color: #bb5f75;
+    --gradient-color: linear-gradient(30deg, #b35c6e 75%, #b35c6e 100%);
+    --text-color: #ffffff;
+    --title-color: #000000;
+    --title-color-alt: #ffffff;
+    --title-color-accent: #bb5f75;
+    --btn-color: #d2b392;
+    --btn-hover-color: #ddba8e;
+
+    --font-size: 16px;
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    font-family: Poppins;
+    font-family: 'Poppins';
 }
 
 * {
@@ -10,7 +23,8 @@ html, body {
 
 h1 {
     font-size: 50px;
-    font-weight: 800;
+    font-weight: 900;
+    font-family: "Poppins", sans-serif;
     color: #fff;
 }
 

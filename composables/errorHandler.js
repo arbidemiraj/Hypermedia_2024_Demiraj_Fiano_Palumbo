@@ -1,5 +1,5 @@
 
-export default function handleFetchError(data: Ref<any>, errorCode: number) {
+export default function handleFetchError(data, errorCode) {
     let errorMessage = '';
     if (!data.value) {
         errorMessage = 'Oops! The page you were looking for seems inexistent...';
