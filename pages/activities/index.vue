@@ -153,7 +153,7 @@ const scrollTo = (hash) => {
 }
 
 .title-background {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
   background-size: cover;
   background-position: center;
   opacity: 2;
@@ -196,7 +196,7 @@ const scrollTo = (hash) => {
   text-decoration: none;
   color: black;
   background-color: white;
-  width: 280px;
+  width: 350px;
   height: auto; /* Adjusts height automatically based on content */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -223,7 +223,6 @@ const scrollTo = (hash) => {
 .card-icon {
   width: 150px;
   height: 150px;
-
 }
 
 .card-title {
@@ -293,7 +292,7 @@ const scrollTo = (hash) => {
 
 @media (max-width: 768px) {
   .title-background{
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/home_main_image.jpg');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/home_main_image.jpg');
     text-align: center;
     background-size: cover;
   }

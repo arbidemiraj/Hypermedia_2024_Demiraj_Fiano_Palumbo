@@ -5,24 +5,33 @@
         </div>
         <div class="text-container">
             <h2>Our philosophy</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Welcome to our Projects, where we showcase the impactful initiatives led by ByYourSide to support women
+                victims of abuse. Here, you'll find information on our diverse projects aimed at promoting safety,
+                empowerment, and healing. Explore how we are making a difference in the lives of countless women and
+                communities.
+            </p>
         </div>
         <div class="carousel-container" aria-label="Project carousel">
             <div v-if="projectsPending" role="alert" aria-busy="true">
-                <Loader alt="Loading projects..."/>
+                <Loader alt="Loading projects..." />
             </div>
-            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true" :transition="500" aria-roledescription="carousel" v-else>
-                <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id" aria-roledescription="slide">
-                    <Project :title="project.name" :description="project.description" :image="project.image" :id="project.id"/>
+            <Carousel :key="carouselKey" ref="carousel" :items-to-show="itemsToShow" :wrapAround="true"
+                :transition="500" aria-roledescription="carousel" v-else>
+                <Slide class="carousel" v-for="(project, index) in Activity" :key="project.id"
+                    aria-roledescription="slide">
+                    <Project :title="project.name" :description="project.description" :image="project.image"
+                        :id="project.id" />
                 </Slide>
                 <template #addons>
-                    <Navigation aria-label="Carousel navigation"/>
+                    <Navigation aria-label="Carousel navigation" />
                 </template>
             </Carousel>
         </div>
         <div class="bottom-link-container">
-            <NuxtLink to="/activities/services" class="bottom-link" aria-label="Navigate to all services page"> Go to all services
-                <Icon name="ep:arrow-right-bold" aria-hidden="true"/>
+            <NuxtLink to="/activities/services" class="bottom-link" aria-label="Navigate to all services page"> Go to
+                all
+                services
+                <Icon name="ep:arrow-right-bold" aria-hidden="true" />
             </NuxtLink>
         </div>
     </main>
@@ -43,8 +52,8 @@ const screenWidth = ref(0);
 const carouselKey = ref(0);
 
 const updateScreenWidth = () => {
-  screenWidth.value = window.innerWidth;
-  carouselKey.value += 1;
+    screenWidth.value = window.innerWidth;
+    carouselKey.value += 1;
 };
 
 onMounted(() => {
@@ -53,17 +62,17 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateScreenWidth);
+    window.removeEventListener('resize', updateScreenWidth);
 });
 
 const itemsToShow = computed(() => {
-  if (screenWidth.value >= 1200) {
-    return 3;
-  } else if (screenWidth.value >= 800) {
-    return 2;
-  } else {
-    return 1;
-  }
+    if (screenWidth.value >= 1200) {
+        return 3;
+    } else if (screenWidth.value >= 800) {
+        return 2;
+    } else {
+        return 1;
+    }
 });
 </script>
 
@@ -83,22 +92,23 @@ main {
 }
 
 .title {
-  font-size: 50px;
-  margin-left: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+    font-size: 50px;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
 }
 
 .title-background {
-  background-image: url("assets/images/forwomen.png");
-  background-size: cover;
-  background-position: center;
-  padding: 5px;
-  text-align: left;
-  color: white;
-  width: 100%;
-  box-shadow: 5px black;
-  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+    background-size: cover;
+    background-position: center;
+    padding: 5px;
+    text-align: left;
+    color: white;
+    width: 100%;
+    box-shadow: 5px black;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* White overlay with 80% opacity */
 }
 
 .carousel-container {

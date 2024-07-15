@@ -164,7 +164,7 @@ function resetForm() {
 }
 
 .title-background {
-  background-image: url("assets/images/helping-hand.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url("assets/images/helping-hand.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.90;

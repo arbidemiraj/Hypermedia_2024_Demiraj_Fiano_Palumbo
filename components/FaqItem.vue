@@ -2,10 +2,8 @@
   <div class="faq-container">
     <div class="question-container" @click="toggleAnswer">
       <h3>{{ question }}</h3>
-      <Icon v-if="!isVisible" class="show-icon" name="eva:arrow-ios-downward-outline" color="#bb5f75" size="30px"
-        @click="toggleAnswer" />
-      <Icon v-if="isVisible" class="hide-icon" name="ep:arrow-up-bold" color="#bb5f75" size="20px"
-        @click="toggleAnswer" />
+      <Icon v-if="!isVisible" class="show-icon" name="eva:arrow-ios-downward-outline" color="#bb5f75" size="30px" />
+      <Icon v-if="isVisible" class="hide-icon" name="ep:arrow-up-bold" color="#bb5f75" size="20px" />
     </div>
     <p class="answer" v-if="isVisible">{{ answer }}</p>
   </div>
@@ -29,6 +27,7 @@ const isVisible = ref(false);
 
 const toggleAnswer = () => {
   isVisible.value = !isVisible.value;
+  console.log(isVisible.value);
 };
 </script>
 

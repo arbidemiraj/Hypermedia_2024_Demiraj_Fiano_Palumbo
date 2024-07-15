@@ -44,7 +44,7 @@ onMounted(() => {
     text-decoration: none;
     color: black;
     width: 100%; /* Adjusted for responsiveness */
-    max-width: 320px; /* Maximum width for better appearance on larger screens */
+    max-width: 400px; /* Maximum width for better appearance on larger screens */
     margin: 20px auto; /* Center cards on the page */
 }
 
@@ -114,6 +114,10 @@ onMounted(() => {
 @media (max-width: 768px) {
     .card-link {
         width: 90%;
+    }
+
+    .card-link {
+        max-width: 300px;
     }
 }
 </style>
