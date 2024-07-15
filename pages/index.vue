@@ -115,21 +115,17 @@ const faqs =  [
 <style scoped>
 html {
   scroll-behavior: smooth;
-  /* Fallback for browsers that support it */
 }
-
 .women-title {
   color: #bb5f75;
   font-family: "Poppins", sans-serif;
   font-size: 80px;
   font-weight: 900;
 }
-
 .faq-container {
   display: flex;
   flex-direction: column;
 }
-
 .faq-item-container {
   display: flex;
   flex-wrap: wrap;
@@ -138,19 +134,16 @@ html {
   padding: 50px;
   margin: 0 auto;
 }
-
 .activities-content {
   font-size: 20px;
   display: flex;
   flex-direction: column;
 }
-
 .for-women-img {
   height: 500px;
   margin: 40px;
   border-radius: 30px;
 }
-
 .button-activities {
   background-color: #bb5f75;
   width: 300px;
@@ -164,7 +157,6 @@ html {
   cursor: pointer;
   margin-top: 20px;
 }
-
 .button {
   background-color: #bb5f75;
   width: 450px;
@@ -177,14 +169,12 @@ html {
   font-size: 30px;
   cursor: pointer;
 }
-
 .activities-container {
   display: flex;
   flex-direction: row;
   margin-top: 60px;
   padding: 50px;
 }
-
 .contact-option-container {
   display: flex;
   flex-direction: row;
@@ -192,13 +182,11 @@ html {
   gap: 80px;
   justify-content: space-between;
 }
-
 .contact-title {
   font-size: 24px;
   font-weight: 900;
   color: white;
 }
-
 .contact-option {
   display: flex;
   flex-direction: column;
@@ -209,7 +197,6 @@ html {
   max-width: calc(50% - 10px);
   border-radius: 20px;
 }
-
 .assistance-container {
   background-color: #bb5f75;
   color: white;
@@ -220,14 +207,12 @@ html {
   justify-content: center;
   padding: 100px 0px;
 }
-
 .main-text-black {
   margin-top: 80px;
   font-size: 42px;
   font-weight: 900;
   color: black;
 }
-
 .faq-title {
   margin-top: 80px;
   font-size: 42px;
@@ -235,14 +220,12 @@ html {
   color: #000;
   align-self: center;
 }
-
 .main-text-white {
   margin-top: 80px;
   font-size: 42px;
   font-weight: 900;
   color: white;
 }
-
 .container {
   background:linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)), url('assets/images/home_main_image_cut.jpg');
   background-size: cover;
@@ -253,24 +236,20 @@ html {
   margin: 0;
   background-color: rgb(0, 0, 0);
 }
-
 .content-container {
   width: 600px;
   font-size: 20px;
   display: flex;
   flex-direction: column;
 }
-
 .no-violence-img {
   height: 500px;
 }
-
 .mission-container {
   padding: 50px;
   display: flex;
   flex-direction: row;
 }
-
 .main-text {
   margin-top: 80px;
   padding: 100px;
@@ -280,7 +259,6 @@ html {
   font-family: 'Poppins' sans-serif;
   color: white;
 }
-
 @media (max-width: 768px) {
   .container {
     display: flex;
@@ -289,100 +267,6 @@ html {
     background-size: cover;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('assets/images/home_mobile_img.jpg');
     height: 600px;
-  }
-
-  .header {
-    height: 100%;
-  }
-
-  .women-title {
-    display: flex;
-    opacity: 1;
-    flex-direction: column;
-    font-size: 55px;
-    font-weight: 900;
-  }
-
-  .button {
-    background-color: #bb5f75;
-    opacity: 1;
-    width: 300px;
-    margin-inline: 0px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-weight: 900;
-    padding: 10px 20px;
-    font-size: 20px;
-    margin-top: 100px;
-  }
-
-  .main-text {
-    font-size: 38px;
-    width: auto;
-    padding: 0px;
-    margin: 0px;
-  }
-
-  .women-title {
-    color: #de768e;
-    font-size: 40px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  .content-container {
-    width: 100%;
-  }
-
-  .no-violence-img {
-    height: auto;
-  }
-
-  .mission-container {
-    flex-direction: column;
-  }
-
-  .main-text-black {
-    font-size: 32px;
-  }
-
-  .main-text-white {
-    font-size: 32px;
-  }
-
-  .faq-title {
-    font-size: 32px;
-  }
-
-  .activities-container {
-    flex-direction: column;
-  }
-
-  .button-activities {
-    width: 250px;
-    font-size: 16px;
-  }
-
-  .contact-option-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .contact-option {
-    padding: 20px;
-    max-width: 100%;
-  }
-
-  .for-women-img {
-    display: none;
-  }
-
-  .faq-container {
-    text-align: center;
   }
 }
 </style>

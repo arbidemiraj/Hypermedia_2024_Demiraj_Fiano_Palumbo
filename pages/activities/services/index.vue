@@ -1,12 +1,13 @@
 <template>
     <main>
         <div class="title-background">
-            <h1 class=title>Services</h1>
+            <h1 class="title">SERVICES</h1>
         </div>
         <div class="text">
-            <p>Le attività di MicAccoglie si suddividono in diverse aree di intervento, dall'accompagnamento
-                nei percorsi di uscita dalla violenza alle azioni di comunicazione, prevenzione e formazione scolastica
-                e aziendale
+            <p>
+                Welcome to Our Services,
+                we offer a comprehensive range of services designed to provide safety, healing, and empowerment. Our
+                compassionate team is here to help you navigate your journey towards recovery and a brighter future.
             </p>
         </div>
 
@@ -19,7 +20,7 @@
         </div>
         <nav class="bottom-link-container">
             <NuxtLink to="/activities/projects" class="bottom-link"> Go to all projects
-                <Icon name="ep:arrow-right-bold" aria-hidden="true"/>
+                <Icon name="ep:arrow-right-bold" aria-hidden="true" />
             </NuxtLink>
         </nav>
     </main>
@@ -55,22 +56,23 @@ main {
 }
 
 .title {
-  font-size: 50px;
-  margin-left: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+    font-size: 50px;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
 }
 
 .title-background {
-  background-image: url("assets/images/imageWomenScritta.png");
-  background-size: cover;
-  background-position: center;
-  padding: 5px;
-  text-align: left;
-  color: white;
-  width: 100%;
-  box-shadow: 5px black;
-  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+    text-align: left;
+    color: white;
+    width: 100%;
+    box-shadow: 5px black;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* White overlay with 80% opacity */
 }
 
 .container {
