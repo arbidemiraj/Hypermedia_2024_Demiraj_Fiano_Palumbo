@@ -66,7 +66,7 @@ export default defineEventHandler( async (event) => {
 
 
   try {
-    const response = await openai.chat.completions.create({
+    const {response, error} = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: messageHistoryLegal,
       temperature: 0.4,
@@ -82,7 +82,7 @@ export default defineEventHandler( async (event) => {
     return response.choices[0].message.content.trim();
   } catch (error) {
     console.error('Error fetching chatbot response:', error);
-    return 'Sorry, I am having trouble understanding your request.';
+    return 'Sorry the chatbot is currently unavaliabe, please try again later.';
   }
 
 })
