@@ -228,7 +228,7 @@ html {
   color: white;
 }
 .container {
-  background:linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)), url('assets/images/home_main_image_cut.jpg');
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)), url('assets/images/home_main_image_cut.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
