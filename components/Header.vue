@@ -144,7 +144,6 @@ nav ul li a.active {
 }
 
 a.active:hover {
-  color: white;
   opacity: 0.5;
 }
 
