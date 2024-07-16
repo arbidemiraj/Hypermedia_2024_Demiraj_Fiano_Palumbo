@@ -124,6 +124,6 @@ export default defineEventHandler(async (event) => {
     return response.choices[0].message.content.trim();
   } catch (error) {
     console.error("Error fetching chatbot response:", error);
-    return "Sorry, I am having trouble understanding your request.";
+    return "Sorry the chatbot is currently unavaliabe, please try again later.";
   }
 });

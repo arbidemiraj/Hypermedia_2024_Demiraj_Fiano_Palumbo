@@ -111,7 +111,6 @@ const respondToUser = async (message) => {
     });
   });
 
-  try {
     if (selectedOption.value == "LEGAL COUNSELING") {
       isOptionSelected.value = true;
       const chatbotResponse = await fetch('/api/chatBotLegal/', {
@@ -132,11 +131,6 @@ const respondToUser = async (message) => {
     const response = { content: chatbotResponseText, isUser: false };
     console.log(response);
     messages.value.push(response);
-
-  } catch (error) {
-    console.error('Error fetching chatbot response:', error);
-    messages.value.push({ content: 'Sorry, I am having trouble understanding your request.', isUser: false });
-  }
 
   isLoading.value = false;
 };
