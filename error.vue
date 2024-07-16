@@ -25,16 +25,20 @@
 
 
 <script setup>
-const {error} = defineProps({
+import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
+
+const { error } = defineProps({
   error: Object,
 });
 
 console.log(error);
 
-const goBack = () => {
-  this.$router.go(-1);
-}
+const router = useRouter();
 
+const goBack = () => {
+  router.go(-1);
+}
 </script>
 
 
