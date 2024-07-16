@@ -344,6 +344,10 @@ textarea {
   margin: 50px auto;
 }
 
+.email-info p {
+  font-size: 24px;
+}
+
 .email-info a {
   color: #e91e63;
   text-decoration: none;
