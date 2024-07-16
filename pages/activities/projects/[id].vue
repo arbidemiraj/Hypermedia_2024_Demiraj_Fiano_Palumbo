@@ -17,7 +17,8 @@
                     </div>
                     <NuxtLink :to="'/team/' + Person.id" class="person-link" aria-label="View manager profile">
                         <b>{{ Person.name }} {{ Person.surname }}</b>&nbsp;&nbsp;
-                        <img :src="Person.photo" :alt="`Image of ${Person.name} ${Person.surname}`" class="person-logo" />
+                        <img :src="Person.photo" :alt="`Image of ${Person.name} ${Person.surname}`"
+                            class="person-logo" />
                     </NuxtLink>
                 </div>
             </div>
@@ -40,11 +41,11 @@ useSeoMeta({
 const { id } = useRoute().params;
 const { data: Activity, pending: projectsPending, error: error1 } = await useFetch(`/api/activities/projects/${id}`);
 
-if(error1.value?.statusCode) handleFetchError(Activity, error1.statusCode);
+if (error1.value?.statusCode) handleFetchError(Activity, error1.statusCode);
 
 const { data: Person, personPending, error: error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
 
-if(error2.value?.statusCode) handleFetchError(Person, error2.statusCode);
+if (error2.value?.statusCode) handleFetchError(Person, error2.statusCode);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Project details"]
 

@@ -21,9 +21,9 @@
         </li>
       </ul>
       <transition name="btn-fade">
-      <button class="mobile-menu-btn" @click="toggleMenu" aria-label="Toggle mobile menu">
-        <Icon :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'" size="30px" color="white" />
-      </button>
+        <button class="mobile-menu-btn" @click="toggleMenu" aria-label="Toggle mobile menu">
+          <Icon :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'" size="30px" color="white" />
+        </button>
       </transition>
     </nav>
     <transition name="slide-fade">
@@ -35,7 +35,8 @@
           </li>
           <li>
             <NuxtLink @click="toggleMenu" class="mobile-link" to="/activities" exact-active-class="active">
-              <b>ACTIVITIES</b></NuxtLink>
+              <b>ACTIVITIES</b>
+            </NuxtLink>
           </li>
           <li>
             <NuxtLink @click="toggleMenu" class="mobile-link" to="/team" exact-active-class="active"><b>TEAM</b>
@@ -81,20 +82,21 @@ const isActivitiesPage = computed(() => {
 }
 
 .btn-primary {
-    background-color: var(--btn-color);
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .btn-primary:hover {
-    opacity: 0.8;
-  }
+  background-color: var(--btn-color);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
 
 .mobile-menu-btn {
   display: none;

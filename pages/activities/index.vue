@@ -6,18 +6,21 @@
     <div class="container">
       <div class="intro-container">
         <h2 class="section-title">OUR MISSION</h2>
-      <p>At ByYourSide, we are dedicated to providing comprehensive support and assistance to women who have experienced
-        or are currently experiencing violence. Our mission is to empower and protect, ensuring that every woman has
-        access to the resources and services she needs to build a safer, brighter future. Our center offers a range of
-        projects and services designed to address the immediate and long-term needs of our clients, fostering an
-        environment of care, understanding, and hope.</p>
+        <p>At ByYourSide, we are dedicated to providing comprehensive support and assistance to women who have
+          experienced
+          or are currently experiencing violence. Our mission is to empower and protect, ensuring that every woman has
+          access to the resources and services she needs to build a safer, brighter future. Our center offers a range of
+          projects and services designed to address the immediate and long-term needs of our clients, fostering an
+          environment of care, understanding, and hope.</p>
 
-      <p>On this page, you will find information about our main projects and services, all tailored to provide holistic
-        support to those in need. From legal counseling and emergency shelter to psychological support and educational
-        programs, ByYourSide is committed to being a beacon of hope and a pillar of strength for women in our community.
-        Explore our activities to learn more about how we can help you or someone you know.</p>
-      
-      
+        <p>On this page, you will find information about our main projects and services, all tailored to provide
+          holistic
+          support to those in need. From legal counseling and emergency shelter to psychological support and educational
+          programs, ByYourSide is committed to being a beacon of hope and a pillar of strength for women in our
+          community.
+          Explore our activities to learn more about how we can help you or someone you know.</p>
+
+
         <div class="links">
           <a href="#services" class="goto-link" @click.prevent="scrollTo('#services')">View our main services</a>
           <a href="#projects" class="goto-link" @click.prevent="scrollTo('#projects')">View our main projects</a>
@@ -185,10 +188,14 @@ const scrollTo = (hash) => {
 
 .card-container {
   display: flex;
-  gap: 100px; /* Adjusted gap for better spacing */
-  flex-wrap: wrap; /* Allows cards to wrap onto the next line */
-  justify-content: center; /* Centers cards within the container */
-  align-items: flex-start; /* Aligns items at the start of the container */
+  gap: 100px;
+  /* Adjusted gap for better spacing */
+  flex-wrap: wrap;
+  /* Allows cards to wrap onto the next line */
+  justify-content: center;
+  /* Centers cards within the container */
+  align-items: flex-start;
+  /* Aligns items at the start of the container */
 }
 
 .card {
@@ -197,7 +204,8 @@ const scrollTo = (hash) => {
   color: black;
   background-color: white;
   width: 350px;
-  height: auto; /* Adjusts height automatically based on content */
+  height: auto;
+  /* Adjusts height automatically based on content */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -206,7 +214,8 @@ const scrollTo = (hash) => {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px; /* Adds bottom margin for when cards wrap */
+  margin-bottom: 20px;
+  /* Adds bottom margin for when cards wrap */
 }
 
 .card:hover {
@@ -291,7 +300,7 @@ const scrollTo = (hash) => {
 }
 
 @media (max-width: 768px) {
-  .title-background{
+  .title-background {
     text-align: center;
     background-size: cover;
   }
@@ -319,12 +328,15 @@ const scrollTo = (hash) => {
   }
 
   .card-container {
-    gap: 10px; /* Reduces gap on smaller screens */
+    gap: 10px;
+    /* Reduces gap on smaller screens */
   }
 
   .card {
-    width: 100%; /* Allows cards to expand to full container width */
-    max-width: none; /* Removes max-width restriction */
+    width: 100%;
+    /* Allows cards to expand to full container width */
+    max-width: none;
+    /* Removes max-width restriction */
   }
 }
 </style>

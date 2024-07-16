@@ -7,13 +7,13 @@
     <section class="contact-header" aria-labelledby="contactInfoHeading">
       <div class="contact-info">
         <div class="phone-info-container">
-          <Icon name="el:phone-alt" color="#bb5f75" aria-hidden="true" size="100"/>
-        <div class="phone-info">
-          <h2>CALL US AT</h2>
-        <p class="phone-number">+39 367 8919785</p>
+          <Icon name="el:phone-alt" color="#bb5f75" aria-hidden="true" size="100" />
+          <div class="phone-info">
+            <h2 class="contact-title">CALL US AT</h2>
+            <p class="phone-number">+39 367 8919785</p>
+          </div>
         </div>
-        </div>
-       
+
         <h3>DON'T BE AFRAID, BE FREE!</h3>
         <p class="message">
           Violence against women takes many forms, including physical, emotional, and sexual abuse. It thrives in
@@ -47,7 +47,7 @@
             <div class="input-wrapper">
               <Icon name="fa:envelope" class="form-icon" size="30" aria-hidden="true"></Icon>
               <input type="email" id="email" name="email" required v-model="email"
-                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" @blur="validateEmailOnBlur"/>
+                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" @blur="validateEmailOnBlur" />
               <p v-if="!validateEmail" class="incorrect-text">Check that the email format is right</p>
             </div>
           </div>
@@ -55,27 +55,26 @@
             <label for="phone">Phone Number</label>
             <div class="input-wrapper">
               <Icon name="ic:baseline-phone" class="form-icon" size="30" aria-hidden="true"></Icon>
-              <input type="tel" v-model="phone" id="phone" name="phone" required 
-                placeholder="Insert your phone number" aria-required="true" 
-                :class="!validatePhone ? 'incorrect' : ''"
-                v-model.number="phone" @keypress="allowOnlyNumbers" @blur="validatePhoneOnBlur"/>
+              <input type="tel" v-model="phone" id="phone" name="phone" required placeholder="Insert your phone number"
+                aria-required="true" :class="!validatePhone ? 'incorrect' : ''" v-model.number="phone"
+                @keypress="allowOnlyNumbers" @blur="validatePhoneOnBlur" />
               <p v-if="!validatePhone" class="incorrect-text">Check that the phone number is right</p>
             </div>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" required v-model="message"
-              placeholder="Insert your message" aria-required="true"></textarea>
+            <textarea id="message" name="message" required v-model="message" placeholder="Insert your message"
+              aria-required="true"></textarea>
           </div>
           <button type="submit" class="submit-btn">Submit</button>
         </form>
       </div>
     </div>
-    
-    <section class="contact-email" >
+
+    <section class="contact-email">
       <div class="email-info">
         <p>or</p>
-        <img src="/assets/images/emailicon.png" class="email-icon" alt=""/>
+        <img src="/assets/images/emailicon.png" class="email-icon" alt="" />
         <p>SEND US AN EMAIL AT</p>
         <a href="mailto:byyoursidecenter@gmail.com">byyoursidecenter@gmail.com</a>
       </div>
@@ -174,8 +173,8 @@ function allowOnlyNumbers(event) {
   const isNumber = /^\d+$/.test(event.key);
 
   // Check if pressed key is not a number or if input already has 10 numbers
-  if ((!isNumber && event.key !== 'Backspace' && event.key !== 'Tab') || 
-      (isNumber && currentValue.length >= 10)) {
+  if ((!isNumber && event.key !== 'Backspace' && event.key !== 'Tab') ||
+    (isNumber && currentValue.length >= 10)) {
     event.preventDefault(); // Prevent non-numeric characters or more than 10 numbers
   }
 }
@@ -194,8 +193,12 @@ function allowOnlyNumbers(event) {
 .phone-info-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-right: 100px;
   gap: 20px;
+}
+
+.contact-title {
+  font-size: 30px;
 }
 
 .title-background {
@@ -212,20 +215,26 @@ function allowOnlyNumbers(event) {
   /* White overlay with 80% opacity */
 }
 
-.contact-page p{
+.contact-page p {
   text-align: center;
   padding: 20px;
 }
 
 .contact-header {
+  display: flex;
   margin-bottom: 40px;
+  align-items: center;
 }
 
 .visibility-hidden {
   display: none;
 }
+
 .contact-info {
   background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 20px;
   border-radius: 8px;
   max-width: 1000px;
@@ -433,13 +442,17 @@ textarea {
 }
 
 .incorrect {
-  border-color: red; /* Example style for when the input content is invalid */
+  border-color: red;
+  /* Example style for when the input content is invalid */
 }
 
 .incorrect-text {
-  color: red; /* Styles the text of the error message */
-  font-size: 0.8rem; /* Adjusts the size of the error message text */
-  margin-top: 4px; /* Adds space between the input field and the error message */
+  color: red;
+  /* Styles the text of the error message */
+  font-size: 0.8rem;
+  /* Adjusts the size of the error message text */
+  margin-top: 4px;
+  /* Adds space between the input field and the error message */
 }
 
 .input-wrapper {
@@ -462,6 +475,12 @@ textarea {
 
   .form-group {
     margin-bottom: 10px;
+  }
+
+  .phone-info-container {
+    margin-right: 0;
+    flex-direction: column;
+    gap: 10px;
   }
 
   input,

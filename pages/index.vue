@@ -17,9 +17,10 @@
   </div>
   <div id="get-help" class="assistance-container">
     <h2 class="main-text-white">Immediate Help Options for Women in Need</h2>
-    <p style="padding: 50px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet rhoncus
-      tortor, eget venenatis quam. Donec enim turpis, feugiat sit amet quam a, dapibus facilisis nunc. Fusce sodales
-      tempor venenatis.</p>
+    <p style="padding: 50px; font-size: 20px">In times of crisis, finding immediate assistance can be a daunting task. Our center is
+      dedicated to providing swift and compassionate support to women in need, ensuring that help is always within
+      reach. Whether you are facing an emergency situation, seeking advice, or just need someone to talk to, our team is
+      here for you 24/7.</p>
     <div class="contact-option-container">
       <div class="contact-option">
         <Icon name="material-symbols:call" color="#fff" size="100" />
@@ -57,75 +58,78 @@
       <FaqItem v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer" />
     </div>
   </div>
-  <ScrollToTop aria-label="Scroll to top" tabIndex="0"/>
+  <ScrollToTop aria-label="Scroll to top" tabIndex="0" />
 </template>
 
 <script setup>
-const faqs =  [
-        {
-          question: 'What should I do if I am in immediate danger?',
-          answer: 'If you are in immediate danger, call emergency services (911 in the US) immediately. Try to get to a safe location if possible, such as a friend\'s house, a public place, or a domestic violence shelter.'
-        },
-        {
-          question: 'How can I recognize signs of abuse?',
-          answer: 'Signs of abuse can include physical injuries (bruises, cuts), emotional manipulation, threats, isolation from friends and family, and controlling behavior. Abuse can be physical, emotional, psychological, sexual, or financial.'
-        },
-        {
-          question: 'Where can I find a safe place to stay?',
-          answer: 'Many cities have domestic violence shelters or safe houses. You can contact national hotlines or local organizations that provide shelter and support services for women in crisis. Websites like the National Domestic Violence Hotline offer resources and support.'
-        },
-        {
-          question: 'What are my legal rights as a victim of domestic violence?',
-          answer: 'As a victim of domestic violence, you have the right to legal protection, which can include restraining orders, custody of children, and pressing charges against the abuser. It is important to consult with a legal professional who specializes in domestic violence cases.'
-        },
-        {
-          question: 'How can I get help without my abuser knowing?',
-          answer: 'Use a safe computer or phone that your abuser does not have access to. Reach out to trusted friends, family, or support organizations discreetly. Many hotlines and organizations offer confidential help and can guide you on how to stay safe while seeking help.'
-        },
-        {
-          question: 'What resources are available for emotional and psychological support?',
-          answer: 'Counseling and support groups are available for victims of domestic violence. Many organizations provide free or low-cost therapy, support groups, and hotlines where you can speak with trained professionals. Online resources and forums can also offer support.'
-        },
-        {
-          question: 'How can I help a friend who I suspect is being abused?',
-          answer: 'Approach your friend with care and concern. Let them know that you are there for them and willing to listen. Avoid pressuring them to leave their abuser, as this decision is deeply personal and complex. Offer resources and encourage them to seek professional help.'
-        },
-        {
-          question: 'Can I receive financial assistance to leave my abuser?',
-          answer: 'Yes, there are programs that offer financial assistance to victims of domestic violence. These can include emergency funds, housing assistance, and support with legal fees. Contact local shelters and domestic violence organizations for more information.'
-        },
-        {
-          question: 'What steps should I take to create a safety plan?',
-          answer: 'A safety plan includes identifying safe places to go, keeping important documents and money accessible, and having a plan for contacting emergency services. It is helpful to work with a domestic violence advocate to create a comprehensive safety plan tailored to your situation.'
-        },
-        {
-          question: 'How can I rebuild my life after leaving an abusive relationship?',
-          answer: 'Rebuilding your life involves seeking emotional support, possibly finding new housing, securing financial stability, and taking legal action if necessary. Reach out to support groups, therapy, job training programs, and legal aid to assist in this process.'
-        }
-      ];
+const faqs = [
+  {
+    question: 'What should I do if I am in immediate danger?',
+    answer: 'If you are in immediate danger, call emergency services (911 in the US) immediately. Try to get to a safe location if possible, such as a friend\'s house, a public place, or a domestic violence shelter. Our center can also provide immediate assistance and safe shelter.'
+  },
+  {
+    question: 'How can I recognize signs of abuse?',
+    answer: 'Signs of abuse can include physical injuries (bruises, cuts), emotional manipulation, threats, isolation from friends and family, and controlling behavior. Abuse can be physical, emotional, psychological, sexual, or financial. Our chatbot can assist you in classifying and recognizing different forms of violence, such as domestic or economic violence.'
+  },
+  {
+    question: 'Where can I find a safe place to stay?',
+    answer: 'Our center offers hospitality services for women in crisis. Additionally, many cities have domestic violence shelters or safe houses. You can contact national hotlines or local organizations that provide shelter and support services for women in need.'
+  },
+  {
+    question: 'What are my legal rights as a victim of domestic violence?',
+    answer: 'As a victim of domestic violence, you have the right to legal protection, which can include restraining orders, custody of children, and pressing charges against the abuser. Our chatbot can assist you to help you understand and exercise your rights.'
+  },
+  {
+    question: 'How can I get help without my abuser knowing?',
+    answer: 'Use a safe computer or phone that your abuser does not have access to. Reach out to trusted friends, family, or support organizations discreetly. Many hotlines and organizations offer confidential help and can guide you on how to stay safe while seeking help. Our chatbot is also available to provide discreet assistance and advice.'
+  },
+  {
+    question: 'What resources are available for emotional and psychological support?',
+    answer: 'Our center provides psychological support, including counseling and support groups. Many organizations offer free or low-cost therapy, support groups, and hotlines where you can speak with trained professionals. Online resources and forums can also offer support.'
+  },
+  {
+    question: 'How can I help a friend who I suspect is being abused?',
+    answer: 'Approach your friend with care and concern. Let them know that you are there for them and willing to listen. Avoid pressuring them to leave their abuser, as this decision is deeply personal and complex. Offer resources and encourage them to seek professional help. You can also refer them to our center for support and resources.'
+  },
+  {
+    question: 'Can I receive financial assistance to leave my abuser?',
+    answer: 'Yes, there are programs that offer financial assistance to victims of domestic violence. These can include emergency funds, housing assistance, and support with legal fees. Contact our center or local shelters and domestic violence organizations for more information.'
+  },
+  {
+    question: 'What steps should I take to create a safety plan?',
+    answer: 'A safety plan includes identifying safe places to go, keeping important documents and money accessible, and having a plan for contacting emergency services. It is helpful to work with a domestic violence advocate to create a comprehensive safety plan tailored to your situation. Our center can assist you in developing a personalized safety plan.'
+  },
+  {
+    question: 'How can I rebuild my life after leaving an abusive relationship?',
+    answer: 'Rebuilding your life involves seeking emotional support, possibly finding new housing, securing financial stability, and taking legal action if necessary. Our center offers support in these areas, including job training programs, psychological support, and legal counseling. Reach out to support groups, therapy, job training programs, and legal aid to assist in this process.'
+  }
+];
 
-    const scrollTo = (hash) => {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+const scrollTo = (hash) => {
+  const element = document.querySelector(hash);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>
 
 <style scoped>
 html {
   scroll-behavior: smooth;
 }
+
 .women-title {
   color: #bb5f75;
   font-family: "Poppins", sans-serif;
   font-size: 80px;
   font-weight: 900;
 }
+
 .faq-container {
   display: flex;
   flex-direction: column;
 }
+
 .faq-item-container {
   display: flex;
   flex-wrap: wrap;
@@ -134,16 +138,19 @@ html {
   padding: 50px;
   margin: 0 auto;
 }
+
 .activities-content {
   font-size: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .for-women-img {
   height: 500px;
   margin: 40px;
   border-radius: 30px;
 }
+
 .button-activities {
   background-color: #bb5f75;
   width: 300px;
@@ -157,6 +164,7 @@ html {
   cursor: pointer;
   margin-top: 20px;
 }
+
 .button {
   background-color: #bb5f75;
   font-family: 'Poppins', sans-serif;
@@ -170,12 +178,14 @@ html {
   font-size: 30px;
   cursor: pointer;
 }
+
 .activities-container {
   display: flex;
   flex-direction: row;
   margin-top: 60px;
   padding: 50px;
 }
+
 .contact-option-container {
   display: flex;
   flex-direction: row;
@@ -183,11 +193,13 @@ html {
   gap: 80px;
   justify-content: space-between;
 }
+
 .contact-title {
   font-size: 24px;
   font-weight: 900;
   color: white;
 }
+
 .contact-option {
   display: flex;
   flex-direction: column;
@@ -198,6 +210,7 @@ html {
   max-width: calc(50% - 10px);
   border-radius: 20px;
 }
+
 .assistance-container {
   background-color: #bb5f75;
   color: white;
@@ -208,12 +221,14 @@ html {
   justify-content: center;
   padding: 50px 0px;
 }
+
 .main-text-black {
   margin-top: 80px;
   font-size: 42px;
   font-weight: 900;
   color: black;
 }
+
 .faq-title {
   margin-top: 80px;
   font-size: 42px;
@@ -221,12 +236,14 @@ html {
   color: #000;
   align-self: center;
 }
+
 .main-text-white {
   margin-top: 80px;
   font-size: 42px;
   font-weight: 900;
   color: white;
 }
+
 .container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)), url('assets/images/home_main_image_cut.jpg');
   background-size: cover;
@@ -237,20 +254,24 @@ html {
   margin: 0;
   background-color: rgb(0, 0, 0);
 }
+
 .content-container {
   width: 600px;
   font-size: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .no-violence-img {
   height: 500px;
 }
+
 .mission-container {
   padding: 50px;
   display: flex;
   flex-direction: row;
 }
+
 .main-text {
   margin-top: 80px;
   padding: 100px;
@@ -260,6 +281,7 @@ html {
   font-family: 'Poppins' sans-serif;
   color: white;
 }
+
 @media (max-width: 768px) {
   .container {
     display: flex;

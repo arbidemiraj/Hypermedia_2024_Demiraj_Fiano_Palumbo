@@ -1,6 +1,6 @@
 <template>
   <div v-show="isVisible" class="scroll-to-top" @click="scrollToTop">
-    <Icon name="solar:round-alt-arrow-up-bold" color="#bb5f75" size="65" :aria-label="ariaLabel" :tabIndex="tabIndex"/>
+    <Icon name="solar:round-alt-arrow-up-bold" color="#bb5f75" size="65" :aria-label="ariaLabel" :tabIndex="tabIndex" />
   </div>
 </template>
 
@@ -51,5 +51,4 @@ onBeforeUnmount(() => {
 .scroll-to-top:hover {
   opacity: 1;
 }
-
 </style>

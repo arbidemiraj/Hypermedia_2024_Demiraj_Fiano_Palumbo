@@ -43,18 +43,9 @@
         </section>
       </div>
       <div class="right-content">
-        <Loader v-if="isLoading" aria-busy="true"/>
-        <iframe 
-          :class="{'is-loading': isLoading}"
-          :src="iframeSrc" 
-          width="600" 
-          height="450" 
-          style="border:0;" 
-          allowfullscreen 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade" 
-          ref="iframe"
-          tabindex="0" 
+        <Loader v-if="isLoading" aria-busy="true" />
+        <iframe :class="{ 'is-loading': isLoading }" :src="iframeSrc" width="600" height="450" style="border:0;"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" ref="iframe" tabindex="0"
           aria-live="polite">
         </iframe>
         <section class="directions">
@@ -85,10 +76,10 @@ const iframeSrc = ref('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d279
 const iframe = ref();
 
 onMounted(() => {
-    iframe.value.onload = () => {
-      isLoading.value = false;
-    }
-  })
+  iframe.value.onload = () => {
+    isLoading.value = false;
+  }
+})
 
 </script>
 

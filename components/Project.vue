@@ -44,26 +44,33 @@ onMounted(() => {
 .card-link {
     text-decoration: none;
     color: black;
-    width: 100%; /* Adjusted for responsiveness */
-    max-width: 400px; /* Maximum width for better appearance on larger screens */
-    margin: 20px auto; /* Center cards on the page */
+    width: 100%;
+    /* Adjusted for responsiveness */
+    max-width: 400px;
+    /* Maximum width for better appearance on larger screens */
+    margin: 20px auto;
+    /* Center cards on the page */
 }
 
 .project-card {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    height: auto; /* Changed to auto to accommodate content */
+    height: auto;
+    /* Changed to auto to accommodate content */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition for hover effects */
 }
 
 .project-card:hover {
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Slightly darker shadow on hover for better contrast */
-    transform: scale(1.03); /* Reduced scale effect for subtlety */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    /* Slightly darker shadow on hover for better contrast */
+    transform: scale(1.03);
+    /* Reduced scale effect for subtlety */
 }
 
 .project-card img {
@@ -86,10 +93,13 @@ onMounted(() => {
     color: #666;
     line-height: 1.5;
     text-align: center;
-    overflow: hidden; /* Prevents overflow */
-    text-overflow: ellipsis; /* Adds ellipsis to overflowed text */
+    overflow: hidden;
+    /* Prevents overflow */
+    text-overflow: ellipsis;
+    /* Adds ellipsis to overflowed text */
     display: -webkit-box;
-    line-clamp: 3; /* Limits to 3 lines */
+    line-clamp: 3;
+    /* Limits to 3 lines */
     -webkit-box-orient: vertical;
     margin-bottom: 20px;
 }
@@ -102,9 +112,12 @@ onMounted(() => {
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-    align-self: center; /* Ensures button is centered within the card */
-    margin-top: auto; /* Pushes the button to the bottom of the card */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+    align-self: center;
+    /* Ensures button is centered within the card */
+    margin-top: auto;
+    /* Pushes the button to the bottom of the card */
 }
 
 .project-card .btn:hover {

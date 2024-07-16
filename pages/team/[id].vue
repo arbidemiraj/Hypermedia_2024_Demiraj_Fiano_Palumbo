@@ -2,20 +2,24 @@
   <section class="container" role="main">
     <article class="person" :class="{ 'centered': !hasActivities }" aria-labelledby="personName">
       <header class="header">
-        <NuxtLink to="/team" class="back-link" role="button" aria-label="Back to our team"><Icon name="eva:arrow-back-outline"/> Back to our team </NuxtLink>
+        <NuxtLink to="/team" class="back-link" role="button" aria-label="Back to our team">
+          <Icon name="eva:arrow-back-outline" /> Back to our team
+        </NuxtLink>
         <nav class="navigation" aria-label="Person navigation">
           <NuxtLink :to="previousLink" class="nav-button" role="button" aria-label="Go to previous person">
             <Icon name="eva:arrow-back-outline" /> <strong>PREVIOUS</strong>
           </NuxtLink>
           <NuxtLink :to="nextLink" class="nav-button" role="button" aria-label="Go to next person">
-            <strong>NEXT</strong> <Icon name="eva:arrow-forward-outline" />
+            <strong>NEXT</strong>
+            <Icon name="eva:arrow-forward-outline" />
           </NuxtLink>
         </nav>
         <div class="info">
           <div v-if="personPending" role="alert" aria-busy="true">
             <Loader />
           </div>
-          <img :src="person.photo" alt="Profile picture of {{ person.name }} {{ person.surname }}" class="profile-picture" />
+          <img :src="person.photo" alt="Profile picture of {{ person.name }} {{ person.surname }}"
+            class="profile-picture" />
           <div class="person-details">
             <p id="personName" class="person-name"><strong>{{ person.name }} {{ person.surname }}</strong></p>
             <p><strong>Email:</strong> <a :href="`mailto:${person.mail}`" class="email-link">{{ person.mail }}</a></p>
@@ -36,7 +40,7 @@
         </div>
         <div class="projects">
           <div v-for="(project, index) in managedProjects" :key="index" class="project">
-            <NuxtLink class="managed-link":to="'/activities/projects/' + project.id">
+            <NuxtLink class="managed-link" :to="'/activities/projects/' + project.id">
               <img :src="project.image" alt="Project Image" class="project-image" />
               <p>{{ project.name }}</p>
             </NuxtLink>
@@ -52,7 +56,7 @@
         <div class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
             <NuxtLink class="managed-link" :to="'/activities/services/' + service.id">
-              <Icon :name="service.image" class="service-image" color="#bb5f75"/>
+              <Icon :name="service.image" class="service-image" color="#bb5f75" />
               <p>{{ service.name }}</p>
             </NuxtLink>
           </div>
@@ -66,45 +70,44 @@
 import handleFetchError from '~/composables/errorHandler.js';
 
 useSeoMeta({
-    title: 'ByYourSide | Person',
-    description: 'This is the single person page with all relevant information about a team member, including its curriculum vitae and the activities they are responsible for.',
+  title: 'ByYourSide | Person',
+  description: 'This is the single person page with all relevant information about a team member, including its curriculum vitae and the activities they are responsible for.',
 });
 
-  const { id } = useRoute().params; //person id
+const { id } = useRoute().params; //person id
 
-  const { data: person, pending: personPending, error: error1 } = await useFetch(`/api/team/${id}`);
-  if (error1.value?.statusCode) handleFetchError(person, error1.statusCode);
+const { data: person, pending: personPending, error: error1 } = await useFetch(`/api/team/${id}`);
+if (error1.value?.statusCode) handleFetchError(person, error1.statusCode);
 
-  const { data: managedProjects, pending: projectsPending, error: error2 } = await useFetch(`/api/activities/projects/projectsByPerson/${id}`);
-  if (error2.value?.statusCode) handleFetchError(managedProjects, error2.statusCode);
+const { data: managedProjects, pending: projectsPending, error: error2 } = await useFetch(`/api/activities/projects/projectsByPerson/${id}`);
+if (error2.value?.statusCode) handleFetchError(managedProjects, error2.statusCode);
 
-  const { data: managedServices, pending: servicesPending, error: error3 } = await useFetch(`/api/activities/services/servicesByPerson/${id}`);
-  if (error3.value?.statusCode) handleFetchError(managedServices, error3.statusCode);
+const { data: managedServices, pending: servicesPending, error: error3 } = await useFetch(`/api/activities/services/servicesByPerson/${id}`);
+if (error3.value?.statusCode) handleFetchError(managedServices, error3.statusCode);
 
-  const firstId = 2;
-  const lastId = 21;
+const firstId = 2;
+const lastId = 21;
 
-  const previousLink = computed(() => {
-    const currentId = parseInt(id);
-    const prevId = currentId === firstId ? lastId : currentId - 1;
-    return `/team/${prevId}`;
-  });
+const previousLink = computed(() => {
+  const currentId = parseInt(id);
+  const prevId = currentId === firstId ? lastId : currentId - 1;
+  return `/team/${prevId}`;
+});
 
-  const nextLink = computed(() => {
-    const currentId = parseInt(id);
-    const nextId = currentId === lastId ? firstId : currentId + 1;
-    return `/team/${nextId}`;
-  });
+const nextLink = computed(() => {
+  const currentId = parseInt(id);
+  const nextId = currentId === lastId ? firstId : currentId + 1;
+  return `/team/${nextId}`;
+});
 
-  const hasProjects = computed(() => managedProjects.value && managedProjects.value.length > 0);
-  const hasServices = computed(() => managedServices.value && managedServices.value.length > 0);
-  const hasActivities = computed(() => hasProjects.value || hasServices.value);
+const hasProjects = computed(() => managedProjects.value && managedProjects.value.length > 0);
+const hasServices = computed(() => managedServices.value && managedServices.value.length > 0);
+const hasActivities = computed(() => hasProjects.value || hasServices.value);
 
 
 </script>
-  
-<style scoped>
 
+<style scoped>
 .container {
   display: flex;
   flex-direction: row;
@@ -123,7 +126,7 @@ useSeoMeta({
 
 .profile-picture {
   align-self: center;
-  width: 250px; 
+  width: 250px;
   height: auto;
   border-radius: 200px;
 }
@@ -151,28 +154,33 @@ useSeoMeta({
   margin-top: 100px;
 }
 
-.managed-projects, .managed-services {
+.managed-projects,
+.managed-services {
   margin-top: 20px;
 }
 
-.managed-projects h2, .managed-services h2 {
+.managed-projects h2,
+.managed-services h2 {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.projects, .services {
+.projects,
+.services {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-.project, .service {
+.project,
+.service {
   margin-bottom: 10px;
   text-align: center;
 }
 
-.project-image, .service-image {
+.project-image,
+.service-image {
   width: 120px;
   height: 120px;
   margin-bottom: 5px;
@@ -180,9 +188,9 @@ useSeoMeta({
 }
 
 .managed-link {
-    text-decoration: none;
-    font-weight: bold;
-    color:#8a5963;
+  text-decoration: none;
+  font-weight: bold;
+  color: #8a5963;
 }
 
 .navigation {
@@ -200,23 +208,23 @@ useSeoMeta({
   margin: 0 10px;
   text-decoration: none;
   color: white;
-  background-color: #c96d81; 
+  background-color: #c96d81;
   border: none;
-  border-radius: 25px; 
+  border-radius: 25px;
   font-weight: bold;
   font-size: 16px;
 }
 
 .nav-button:hover {
-  background-color: #b35c6e; 
+  background-color: #b35c6e;
 }
 
 .nav-button svg {
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 
 .nav-button strong {
-  margin-left: 5px; 
+  margin-left: 5px;
 }
 
 .header {
@@ -243,8 +251,10 @@ useSeoMeta({
 
 .centered-cv {
   text-align: center;
-  max-width: 900px; /* Esempio di larghezza massima per il CV centrato */
-  margin: 0 auto; /* Per centrare il contenuto */
+  max-width: 900px;
+  /* Esempio di larghezza massima per il CV centrato */
+  margin: 0 auto;
+  /* Per centrare il contenuto */
 }
 
 .visually-hidden {
@@ -274,7 +284,8 @@ useSeoMeta({
   }
 
   .centered-cv {
-    max-width: 80%; /* Larghezza massima per il CV centrato */
+    max-width: 80%;
+    /* Larghezza massima per il CV centrato */
   }
 
   .nav-button {

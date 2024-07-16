@@ -111,26 +111,26 @@ const respondToUser = async (message) => {
     });
   });
 
-    if (selectedOption.value == "LEGAL COUNSELING") {
-      isOptionSelected.value = true;
-      const chatbotResponse = await fetch('/api/chatBotLegal/', {
-        method: 'POST',
-        body: message,
-      });
-      chatbotResponseText = await chatbotResponse.text();
-    } else if (selectedOption.value == "RECOGNISE THE VIOLENCE") {
-      isOptionSelected.value = true;
-      const chatbotResponse = await fetch('/api/chatBotRecognise/', {
-        method: 'POST',
-        body: message,
-      });
-      chatbotResponseText = await chatbotResponse.text();
-    } else {
-      chatbotResponseText = "Please select an option first";
-    }
-    const response = { content: chatbotResponseText, isUser: false };
-    console.log(response);
-    messages.value.push(response);
+  if (selectedOption.value == "LEGAL COUNSELING") {
+    isOptionSelected.value = true;
+    const chatbotResponse = await fetch('/api/chatBotLegal/', {
+      method: 'POST',
+      body: message,
+    });
+    chatbotResponseText = await chatbotResponse.text();
+  } else if (selectedOption.value == "RECOGNISE THE VIOLENCE") {
+    isOptionSelected.value = true;
+    const chatbotResponse = await fetch('/api/chatBotRecognise/', {
+      method: 'POST',
+      body: message,
+    });
+    chatbotResponseText = await chatbotResponse.text();
+  } else {
+    chatbotResponseText = "Please select an option first";
+  }
+  const response = { content: chatbotResponseText, isUser: false };
+  console.log(response);
+  messages.value.push(response);
 
   isLoading.value = false;
 };
@@ -392,29 +392,35 @@ h1 {
 @media (max-width: 768px) {
   .chat-box {
     width: 100%;
-    height: 100vh; 
+    height: 100vh;
     right: 0;
     bottom: 0;
-    border-radius: 0; 
-    padding: 10px; 
+    border-radius: 0;
+    padding: 10px;
   }
+
   .chatbot-icon {
     bottom: 10px;
     right: 10px;
   }
+
   .inputContainer {
-    border-radius: 20px; 
+    border-radius: 20px;
   }
+
   .messageBox {
-    height: calc(100vh - 160px); 
+    height: calc(100vh - 160px);
   }
-  .user-message p{
+
+  .user-message p {
     font-size: 18px;
   }
-  .bot-message p{
+
+  .bot-message p {
     font-size: 18px;
   }
-  .bot-message-option p{
+
+  .bot-message-option p {
     font-size: 18px;
   }
 }

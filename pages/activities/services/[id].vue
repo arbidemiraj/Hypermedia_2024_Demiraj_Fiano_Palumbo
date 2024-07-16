@@ -17,7 +17,8 @@
                     <p> Managed by </p>
                     <NuxtLink :to="'/team/' + Person.id" class="person-link" aria-label="View manager profile">
                         <b>{{ Person.name }} {{ Person.surname }}</b>
-                        <img :src="Person.photo" :alt="`Profile image of ${Person.name} ${Person.surname}`" class="person-logo" />
+                        <img :src="Person.photo" :alt="`Profile image of ${Person.name} ${Person.surname}`"
+                            class="person-logo" />
                     </NuxtLink>
                 </div>
             </section>
@@ -126,7 +127,7 @@ const sections = computed(() => {
 }
 
 strong {
-    color:#bb5f75;
+    color: #bb5f75;
 }
 
 .service {

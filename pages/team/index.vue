@@ -5,11 +5,13 @@
     </header>
     <main>
       <div class="team__header">
-        <p>Welcome to our team page! Here, you'll meet the compassionate and dedicated professionals committed to empowering and supporting women. Our team of experts provides a safe and nurturing environment, offering the care and resources needed for healing and rebuilding lives with dignity and strength.</p>
+        <p>Welcome to our team page! Here, you'll meet the compassionate and dedicated professionals committed to
+          empowering and supporting women. Our team of experts provides a safe and nurturing environment, offering the
+          care and resources needed for healing and rebuilding lives with dignity and strength.</p>
       </div>
       <section class="team__members" aria-label="Team Members">
-        <TeamMemberCard v-for="(member, index) in Person" :key="index" :id="member.id" :name="member.name" :surname="member.surname"
-          :image="member.photo" />
+        <TeamMemberCard v-for="(member, index) in Person" :key="index" :id="member.id" :name="member.name"
+          :surname="member.surname" :image="member.photo" />
       </section>
     </main>
   </div>
@@ -17,11 +19,11 @@
 
 <script setup>
 useSeoMeta({
-    title: 'ByYourSide | Team',
-    description: 'This is the team page with a list of the members working in the center.',
+  title: 'ByYourSide | Team',
+  description: 'This is the team page with a list of the members working in the center.',
 });
 
-  const { data: Person, pending, error } = await useFetch('/api/team');
+const { data: Person, pending, error } = await useFetch('/api/team');
 </script>
 
 <style scoped>
@@ -45,7 +47,8 @@ useSeoMeta({
   color: white;
   width: 100%;
   box-shadow: 5px black;
-  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
+  background-color: rgba(255, 255, 255, 0.3);
+  /* White overlay with 80% opacity */
 }
 
 .team__members {
