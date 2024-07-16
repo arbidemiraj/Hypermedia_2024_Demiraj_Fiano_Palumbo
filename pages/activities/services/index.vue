@@ -35,7 +35,6 @@ useSeoMeta({
 
 const { data: Activity, pending: servicesPending, error } = await useFetch('/api/activities/services');
 
-console.log(Activity)
 </script>
 
 <style scoped>
@@ -63,7 +62,7 @@ main {
 }
 
 .title-background {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.webp');
     background-size: cover;
     background-position: center;
     padding: 10px;
@@ -71,8 +70,6 @@ main {
     color: white;
     width: 100%;
     box-shadow: 5px black;
-    background-color: rgba(255, 255, 255, 0.3);
-    /* White overlay with 80% opacity */
 }
 
 .container {

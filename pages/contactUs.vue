@@ -3,6 +3,7 @@
     <div class="title-background">
       <h1 class="title">CONTACT US</h1>
     </div>
+    <h2 id="contactInfoHeading" class="visibility-hidden">Contact Information</h2>
     <section class="contact-header" aria-labelledby="contactInfoHeading">
       <div class="contact-info">
         <div class="phone-info-container">
@@ -30,6 +31,7 @@
     </section>
     <div class="form-container">
       <div class="overlay"></div>
+      <h2 id="formHeading" class="visibility-hidden">Contact Us Form</h2>
       <div class="form-content" aria-labelledby="formHeading">
         <h2>Do you need help?<br>Send us a request by filling up this form!</h2>
         <form @submit.prevent="submitForm" aria-label="Contact Us Form">
@@ -43,16 +45,16 @@
           <div class="form-group">
             <label for="email">Email</label>
             <div class="input-wrapper">
-              <i class="fas fa-envelope form-icon" aria-hidden="true"></i>
+              <Icon name="fa:envelope" class="form-icon" size="30" aria-hidden="true"></Icon>
               <input type="email" id="email" name="email" required v-model="email"
-                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" aria-describedby="emailError"/>
+                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" />
               <p v-if="!validateEmail" class="incorrect-text">Check that the email format is right</p>
             </div>
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <div class="input-wrapper">
-              <i class="fas fa-phone form-icon" aria-hidden="true"></i>
+              <Icon name="ic:baseline-phone" class="form-icon" size="30" aria-hidden="true"></Icon>
               <input type="tel" id="phone" name="phone" required v-model="phone"
                 placeholder="+39 Insert your phone number" aria-required="true" />
             </div>
@@ -66,7 +68,8 @@
         </form>
       </div>
     </div>
-    <section class="contact-email" aria-labelledby="emailInfoHeading">
+    
+    <section class="contact-email" >
       <div class="email-info">
         <p>or</p>
         <img src="/assets/images/emailicon.png" class="email-icon" alt=""/>
@@ -101,6 +104,7 @@ const validateEmail = ref(true);
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+// Check if the email is valid
 watch(email, (newEmail) => {
   isCheckingActive.value = true;
   validateEmail.value = emailRegex.test(newEmail.toLowerCase());
@@ -123,7 +127,6 @@ async function submitForm() {
 
   showPopUp.value = true;
 
-  console.log('data: ', data.value);
   if (data.value?.status === 200) {
     mailStatus.value = 200;
     resetForm();
@@ -186,6 +189,9 @@ function resetForm() {
   margin-bottom: 40px;
 }
 
+.visibility-hidden {
+  display: none;
+}
 .contact-info {
   background: #fff;
   padding: 20px;
@@ -288,22 +294,17 @@ textarea {
   background-color: #fff;
 }
 
-.icon {
-  margin-bottom: 30px;
-}
-
 .input-wrapper {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
+  gap: 5px;
   border-radius: 30px;
-  padding: 0 15px;
+  padding: 8px;
   background-color: #fff;
 }
 
 .form-icon {
-  width: 20px;
-  height: 20px;
   margin-right: 10px;
   color: #bb5f75;
 }
@@ -318,7 +319,8 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 30px;
-  font-size: 1rem;
+  font-size: 20px;
+  font-weight: 600;
   cursor: pointer;
   width: 100%;
   max-width: 200px;
@@ -345,7 +347,7 @@ textarea {
 .email-info a {
   color: #e91e63;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 26px;
 }
 
 .email-info a:hover {
@@ -394,11 +396,14 @@ textarea {
   color: var(--fail-text);
 }
 
+.incorrect {
+  border-color: red; /* Example style for when the input content is invalid */
+}
+
 .incorrect-text {
-  color: grey;
-  font-size: 14px;
-  margin-top: 15px;
-  margin-left: 10px;
+  color: red; /* Styles the text of the error message */
+  font-size: 0.8rem; /* Adjusts the size of the error message text */
+  margin-top: 4px; /* Adds space between the input field and the error message */
 }
 
 .input-wrapper {

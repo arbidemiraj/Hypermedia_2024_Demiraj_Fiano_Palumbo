@@ -21,6 +21,7 @@ const props = defineProps({
 
 const truncatedDescription = ref('');
 
+// Compute the truncated description for the card (max 50 words)
 const computeDescription = () => {
     const introduction = props.description.split('###')[0];
     const words = introduction.split(' ');

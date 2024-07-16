@@ -49,7 +49,7 @@
         empowerment.</p>
       <NuxtLink to="/activities/"><button class="button-activities"> Explore our activities</button></NuxtLink>
     </div>
-    <img class="for-women-img" src="/assets/images/forwomen.png" alt="" />
+    <img class="for-women-img" src="/assets/images/forwomen_home.jpg" alt="" />
   </div>
   <div class="faq-container">
     <h2 class="faq-title">Frequently Asked Questions</h2>
@@ -159,6 +159,7 @@ html {
 }
 .button {
   background-color: #bb5f75;
+  font-family: 'Poppins', sans-serif;
   width: 450px;
   margin-inline: 100px;
   color: white;
@@ -253,7 +254,7 @@ html {
 .main-text {
   margin-top: 80px;
   padding: 100px;
-  width: 800px;
+  width: 900px;
   font-size: 72px;
   font-weight: 900;
   font-family: 'Poppins' sans-serif;
@@ -267,6 +268,92 @@ html {
     background-size: cover;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('assets/images/home_mobile_img.jpg');
     height: 600px;
+  }
+
+  .header {
+    height: 100%;
+  }
+
+  .button {
+    background-color: #bb5f75;
+    opacity: 1;
+    width: 300px;
+    margin-inline: 0px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 900;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin-top: 100px;
+  }
+
+  .main-text {
+    font-size: 50px;
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .women-title {
+    color: #de768e;
+    font-size: 55px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .content-container {
+    width: 100%;
+  }
+
+  .no-violence-img {
+    height: auto;
+  }
+
+  .mission-container {
+    flex-direction: column;
+  }
+
+  .main-text-black {
+    font-size: 32px;
+  }
+
+  .main-text-white {
+    font-size: 32px;
+  }
+
+  .faq-title {
+    font-size: 32px;
+  }
+
+  .activities-container {
+    flex-direction: column;
+  }
+
+  .button-activities {
+    width: 250px;
+    font-size: 16px;
+  }
+
+  .contact-option-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .contact-option {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .for-women-img {
+    display: none;
+  }
+
+  .faq-container {
+    text-align: center;
   }
 }
 </style>

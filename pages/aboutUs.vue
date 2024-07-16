@@ -147,7 +147,7 @@ iframe {
 }
 
 .title-background {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/sede.jpg');
+  background-image: url("assets/images/sede.jpg");
   background-size: cover;
   background-position: center;
   padding: 5px;
@@ -155,6 +155,7 @@ iframe {
   color: white;
   width: 100%;
   box-shadow: 5px black;
+  background-color: rgba(255, 255, 255, 0.3); /* White overlay with 80% opacity */
 }
 
 .directions {
@@ -170,7 +171,6 @@ iframe {
   }
 
   .title-background {
-    background:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('assets/images/sede.jpg');
     align-items: center;
     text-align: center;
   }
