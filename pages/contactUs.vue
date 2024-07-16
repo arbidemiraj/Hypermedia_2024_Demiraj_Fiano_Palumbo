@@ -230,7 +230,7 @@ function resetForm() {
 
 .form-container {
   position: relative;
-  background-image: url('/assets/images/forwomen.png');
+  background-image: url('/assets/images/forwomen_home.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
