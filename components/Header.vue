@@ -70,7 +70,7 @@ const closeMenu = () => {
 };
 
 const isActivitiesPage = computed(() => {
-  return ['/activities', '/activities/services', '/activities/projects'].includes(route.path);
+  return route.path.startsWith('/activities');
 });
 
 </script>
@@ -139,6 +139,11 @@ nav ul li a:hover {
 
 nav ul li a.active {
   color: var(--btn-color);
+}
+
+a.active:hover {
+  color: white;
+  opacity: 0.5;
 }
 
 .disable-scrolling {

@@ -47,7 +47,7 @@
             <div class="input-wrapper">
               <Icon name="fa:envelope" class="form-icon" size="30" aria-hidden="true"></Icon>
               <input type="email" id="email" name="email" required v-model="email"
-                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" />
+                :class="!validateEmail ? 'incorrect' : ''" aria-required="true" @blur="validateEmailOnBlur"/>
               <p v-if="!validateEmail" class="incorrect-text">Check that the email format is right</p>
             </div>
           </div>
@@ -55,8 +55,11 @@
             <label for="phone">Phone Number</label>
             <div class="input-wrapper">
               <Icon name="ic:baseline-phone" class="form-icon" size="30" aria-hidden="true"></Icon>
-              <input type="tel" id="phone" name="phone" required v-model="phone"
-                placeholder="+39 Insert your phone number" aria-required="true" />
+              <input type="tel" v-model="phone" id="phone" name="phone" required 
+                placeholder="Insert your phone number" aria-required="true" 
+                :class="!validatePhone ? 'incorrect' : ''"
+                v-model.number="phone" @keypress="allowOnlyNumbers" @blur="validatePhoneOnBlur"/>
+              <p v-if="!validatePhone" class="incorrect-text">Check that the phone number is right</p>
             </div>
           </div>
           <div class="form-group">
@@ -99,19 +102,35 @@ const requestType = ref('');
 const isCheckingActive = ref(false);
 const mailStatus = ref(0);
 const showPopUp = ref(false);
+const validatePhone = ref(true);
 
 const validateEmail = ref(true);
 
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// Check if the phone number is valid
+const validatePhoneOnBlur = () => {
+  if (phone.value === '') {
+    validatePhone.value = true;
+    return;
+  }
+
+  const phoneRegex = /^\d{10}$/;
+  validatePhone.value = phoneRegex.test(phone.value);
+};
 
 // Check if the email is valid
-watch(email, (newEmail) => {
-  isCheckingActive.value = true;
-  validateEmail.value = emailRegex.test(newEmail.toLowerCase());
-});
+const validateEmailOnBlur = () => {
+  if (email.value === '') {
+    validateEmail.value = true;
+    return;
+  }
+
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  validateEmail.value = emailRegex.test(email.value);
+};
+
 
 async function submitForm() {
-  if (!validateEmail.value) return;
+  if (!validateEmail.value || !validatePhone.value) return;
 
   const { data, error } = await useFetch('/api/send-email', {
     method: 'POST',
@@ -139,13 +158,26 @@ async function submitForm() {
   }, 3000);
 }
 
-function resetForm() {
+const resetForm = () => {
   email.value = '';
   message.value = '';
   phone.value = '';
   requestType.value = '';
   isCheckingActive.value = false;
   validateEmail.value = true;
+  validatePhone.value = true;
+}
+
+function allowOnlyNumbers(event) {
+  const inputField = event.target;
+  const currentValue = inputField.value;
+  const isNumber = /^\d+$/.test(event.key);
+
+  // Check if pressed key is not a number or if input already has 10 numbers
+  if ((!isNumber && event.key !== 'Backspace' && event.key !== 'Tab') || 
+      (isNumber && currentValue.length >= 10)) {
+    event.preventDefault(); // Prevent non-numeric characters or more than 10 numbers
+  }
 }
 
 </script>
