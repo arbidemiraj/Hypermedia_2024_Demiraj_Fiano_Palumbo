@@ -51,6 +51,8 @@ const { data: Activity, pending: projectsPending, error } = await useFetch('/api
 const screenWidth = ref(0);
 const carouselKey = ref(0);
 
+//Handles the screen width change for the carousel responsiveness
+
 const updateScreenWidth = () => {
     screenWidth.value = window.innerWidth;
     carouselKey.value += 1;
@@ -64,6 +66,8 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('resize', updateScreenWidth);
 });
+
+//Determines the number of items to show in the carousel based on the screen width
 
 const itemsToShow = computed(() => {
     if (screenWidth.value >= 1200) {
@@ -99,7 +103,7 @@ main {
 }
 
 .title-background {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.webp');
     background-size: cover;
     background-position: center;
     padding: 5px;
@@ -107,8 +111,6 @@ main {
     color: white;
     width: 100%;
     box-shadow: 5px black;
-    background-color: rgba(255, 255, 255, 0.3);
-    /* White overlay with 80% opacity */
 }
 
 .carousel-container {

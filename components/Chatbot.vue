@@ -68,6 +68,7 @@ const messages = ref([]);
 const selectedOption = ref('');
 const isOptionSelected = ref(false);
 
+
 const toggleChat = () => {
   isChatVisible.value = !isChatVisible.value;
 };
@@ -79,6 +80,7 @@ const closeChat = () => {
   isOptionSelected.value = false;
 };
 
+// Send user message
 const sendMessage = async () => {
   if (currentMessage.value.trim() !== "") {
     messages.value.push({ content: currentMessage.value, isUser: true });
@@ -94,13 +96,15 @@ const sendMessage = async () => {
   }
 };
 
+//Handle chatbot response
 const respondToUser = async (message) => {
   isLoading.value = true;
   let chatbotResponseText = '';
   currentMessage.value = '';
 
+  // Scroll to the bottom of the chatbox
   nextTick(() => {
-    const messageBox = document.querySelector("#messageBox"); // Adjust selector as needed
+    const messageBox = document.querySelector("#messageBox");
     messageBox.scrollTo({
       top: messageBox.scrollHeight,
       behavior: 'smooth'

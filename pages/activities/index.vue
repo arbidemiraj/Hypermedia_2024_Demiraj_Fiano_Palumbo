@@ -115,6 +115,7 @@ const scrollTo = (hash) => {
     element.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
 </script>
 
 <style scoped>
@@ -153,10 +154,9 @@ const scrollTo = (hash) => {
 }
 
 .title-background {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.png');
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/forwomen.webp');
   background-size: cover;
   background-position: center;
-  opacity: 2;
   padding: 5px;
   text-align: left;
   color: white;
