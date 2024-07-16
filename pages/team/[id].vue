@@ -51,7 +51,7 @@
         </div>
         <div class="services">
           <div v-for="(service, index) in managedServices" :key="index" class="service">
-            <NuxtLink class="managed-link":to="'/activities/services/' + service.id">
+            <NuxtLink class="managed-link" :to="'/activities/services/' + service.id">
               <Icon :name="service.image" class="service-image" color="#bb5f75"/>
               <p>{{ service.name }}</p>
             </NuxtLink>

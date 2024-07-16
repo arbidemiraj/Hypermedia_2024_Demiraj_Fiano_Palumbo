@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
     {
       role: "assistant",
       content:
-        "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
+        "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and to classify this abuse in the right category.",
     },
     {
       role: "user",
@@ -68,7 +68,7 @@ export default defineEventHandler(async (event) => {
     {
       role: "assistant",
       content:
-        "At ByYourSide, we provide psychological support to help you navigate through the emotional impact of abuse. Our team of professionals can offer you counseling and guidance to help you heal and regain your confidence. You can reach out to us through [email1], [email2], or by calling [phone number] to schedule a session. Is there anything else you would like to know or talk about?",
+        "At ByYourSide, we provide psychological support to help you navigate through the emotional impact of abuse. Our team of professionals can offer you counseling and guidance to help you heal and regain your confidence. You can reach out to us through byyoursidecenter@gmail.com or by calling at our phone number: +39 367 8919785. to schedule a session. Is there anything else you would like to know or talk about?",
     },
     {
       role: "user",
@@ -97,7 +97,7 @@ export default defineEventHandler(async (event) => {
     {
       role: "assistant",
       content:
-        "At ByYourSide, we offer services to help women who are experiencing economic violence. Our employment desk can provide guidance on finding job opportunities and our legal counseling team can assist with issues related to financial independence. Encourage your friend to reach out to us for assistance. She can contact us through [email1], [email2], or by calling [phone number]. Is there anything else you would like to discuss or any other way we can assist you?",
+        "At ByYourSide, we offer services to help women who are experiencing economic violence. Our employment desk can provide guidance on finding job opportunities and our legal counseling team can assist with issues related to financial independence. Encourage your friend to reach out to us for assistance. She can contact us through byyoursidecenter@gmail.com pr by calling at +39 367 8919785. Is there anything else you would like to discuss or any other way we can assist you?",
     },
   ];
 

@@ -30,6 +30,7 @@
 </template>
 
 <script setup>
+import handleFetchError from '~/composables/errorHandler.js';
 
 useSeoMeta({
     title: 'ByYourSide | Project',
@@ -38,7 +39,12 @@ useSeoMeta({
 
 const { id } = useRoute().params;
 const { data: Activity, pending: projectsPending, error: error1 } = await useFetch(`/api/activities/projects/${id}`);
+
+if(error1.value?.statusCode) handleFetchError(Activity, error1.statusCode);
+
 const { data: Person, personPending, error: error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
+
+if(error2.value?.statusCode) handleFetchError(Person, error2.statusCode);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Project details"]
 
@@ -139,6 +145,7 @@ const sections = computed(() => {
     }
 
     .managed-by {
+        font-size: 16px;
         flex-direction: column;
         /* Stack elements vertically on smaller screens */
         align-items: flex-start;

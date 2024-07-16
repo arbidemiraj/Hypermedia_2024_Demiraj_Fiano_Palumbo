@@ -292,7 +292,6 @@ const scrollTo = (hash) => {
 
 @media (max-width: 768px) {
   .title-background{
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('assets/images/home_main_image.jpg');
     text-align: center;
     background-size: cover;
   }

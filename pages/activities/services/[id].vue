@@ -14,7 +14,7 @@
                     <div v-if="personPending" role="alert" aria-live="polite">
                         <Loader />
                     </div>
-                    <p> managed by </p>
+                    <p> Managed by </p>
                     <NuxtLink :to="'/team/' + Person.id" class="person-link" aria-label="View manager profile">
                         <b>{{ Person.name }} {{ Person.surname }}</b>
                         <img :src="Person.photo" :alt="`Profile image of ${Person.name} ${Person.surname}`" class="person-logo" />
@@ -22,7 +22,7 @@
                 </div>
             </section>
         </section>
-        <section v-for="(section, index) in sections" :key="index" aria-labelledby="'sectionTitle' + index">
+        <section v-for="(section, index) in sections" :key="index" :aria-labelledby="'sectionTitle' + index">
             <h2 :id="'sectionTitle' + index">{{ sectionTitles[index] }}</h2>
             <div v-html="section"></div>
         </section>
@@ -37,6 +37,7 @@
 </template>
 
 <script setup>
+import handleFetchError from '~/composables/errorHandler';
 
 useSeoMeta({
     title: 'ByYourSide | Service',
@@ -44,9 +45,13 @@ useSeoMeta({
 });
 
 const { id } = useRoute().params;
-const { data: Activity, pending: servicesPending, error1 } = await useFetch(`/api/activities/services/${id}`);
+const { data: Activity, pending: servicesPending, error: error1 } = await useFetch(`/api/activities/services/${id}`);
 
-const { data: Person, pending: personPending, error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
+if (error1.value?.statusCode) handleFetchError(Activity, error1.statusCode);
+
+const { data: Person, pending: personPending, error: error2 } = await useFetch(`/api/team/${Activity.value.responsible}`);
+
+if (error2.value?.statusCode) handleFetchError(Person, error2.statusCode);
 
 const sectionTitles = ['Introduction', 'Our Mission', "Service details", 'Benefits', 'How it works'];
 
@@ -163,7 +168,9 @@ strong {
     }
 
     .managed-by {
-        font-size: 14px;
+        font-size: 16px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .service-logo {

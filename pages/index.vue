@@ -206,7 +206,7 @@ html {
   align-items: center;
   text-align: center;
   justify-content: center;
-  padding: 100px 0px;
+  padding: 50px 0px;
 }
 .main-text-black {
   margin-top: 80px;

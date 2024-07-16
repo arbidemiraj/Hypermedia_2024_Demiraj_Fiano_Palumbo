@@ -5,13 +5,12 @@
       <img src="@/assets/images/logo.png" alt="Logo" class="logo" />
       <hr class="separator" />
       <div class="error-content">
+        <h1 class="error-text">{{ error.statusCode }}</h1>
         <div class="error-text">
-          <h1>Oops! The page you were looking for seems inexistent :(<br>Try with a different one</br></h1>
-          
+          <h1 v-if="error.statusCode == 404">{{error.message ? error.message : 'Oops! The page you were looking for seems inexistent'}}</br></h1>
+          <h1 v-else>An error occurred, {{ error.message }}</h1>
         </div>
-        <div class="error-icon">
-          <img src="@/assets/images/warning-icon.png" alt="Warning Icon" class="warning-icon" />
-        </div>
+        <img src="@/assets/images/warning-icon.png" alt="Warning Icon" class="warning-icon" />
       </div>
     </div>
     <div class="error-bottom">
@@ -25,17 +24,17 @@
 
 
 
-<script>
-export default {
-  methods: {
-    goBack() {
-      this.$router.go(-1);
-    },
-    goHome() {
-      this.$router.go('./src/pages/index.vue');
-    }
-  }
+<script setup>
+const {error} = defineProps({
+  error: Object,
+});
+
+console.log(error);
+
+const goBack = () => {
+  this.$router.go(-1);
 }
+
 </script>
 
 
@@ -84,6 +83,7 @@ export default {
 .error-content {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   margin-top: 80px;
@@ -110,7 +110,6 @@ export default {
 .warning-icon {
   height: 200px;
   width: 200px;
-  margin-right: 80px;
 }
 
 .error-bottom {

@@ -144,7 +144,7 @@ const respondToUser = async (message) => {
 const handleSelectedOption = (index) => {
   const responses = {
     "LEGAL COUNSELING": "I’m here to support you with legal assistance and provide the guidance you need. If you’re facing domestic abuse, understanding your legal rights and options is crucial. I can provide legal advice, and help you navigate the steps to ensure your safety and protect your rights.",
-    "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and guide you through the activities we provide to tackle it",
+    "RECOGNISE THE VIOLENCE": "Hi I'm Hope and i'm here to help you in your journey to understand if you are victim of abuse and to classify this abuse in the right category.",
     "HELP": "I'm here to assist you. You can ask about legal counseling or recognizing violence."
   };
   isOptionSelected.value = true;
