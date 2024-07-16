@@ -107,7 +107,7 @@ export default defineEventHandler(async (event) => {
   });
 
   try {
-    const {response, error} = await openai.chat.completions.create({
+    const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: messageHistoryRecognize,
       temperature: 0.4,
